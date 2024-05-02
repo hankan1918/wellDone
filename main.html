@@ -7,9 +7,33 @@
     <link rel="stylesheet" href="style/config.css">
     <link rel="stylesheet" href="style/chellenge.css">
     <link rel="stylesheet" href="style/setting.css">
+    <link rel="stylesheet" href="style/button.css">
+    <link rel="stylesheet" href="style/main.css">
 
 </head>
 <body>
+    <div class="page" id="main" style="margin-bottom: 100%">
+        <img src="./img/background/main-background.png" alt="bg" id="background-image">
+        <h1>This is title</h1>
+        <div class="button-div">
+            <button class="main-button" id="game-start"></button>
+            <label for="game-start" class="button-label" id="start-label">
+                <img src="./img/button/game-start.png" alt="game start" class="button-image">
+            </label>
+            <button class="main-button" id="settings"></button>
+            <label for="settings" class="button-label" id="settings-label">
+                <img src="./img/button/settings.png" alt="game start" class="button-image">
+            </label>
+            <button class="main-button" id="achievements"></button>
+            <label for="achievements" class="button-label" id="achievements-label">
+                <img src="./img/button/achievements.png" alt="game start" class="button-image">
+            </label>
+            <button class="main-button" id="highscores"></button>
+            <label for="highscores" class="button-label" id="highscores-label">
+                <img src="./img/button/highscores.png" alt="game start" class="button-image">
+            </label>
+        </div>
+    </div>
     <button onclick="showSetting();">tmp for setting</button>
 
     <div class="page" id="setting" style="display: none;">
