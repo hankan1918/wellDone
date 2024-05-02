@@ -1,0 +1,31 @@
+.button-div {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 300px;
+}
+
+.main-button {
+    display: none;
+}
+
+#start-label {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    margin: 0 auto;
+}
+
+#achievements-label, #settings-label, #highscores-label {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    margin: 30px auto;
+}
+
+.button-image {
+    display: block;
+    height: 100%;
+    margin: 0 auto;
+}
