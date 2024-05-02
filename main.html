@@ -16,7 +16,7 @@
         <img src="./img/background/main-background.png" alt="bg" id="background-image">
         <h1>This is title</h1>
         <div class="button-div">
-            <button class="main-button" id="game-start"></button>
+            <button class="main-button" id="game-start" onclick="showGame();"></button>
             <label for="game-start" class="button-label" id="start-label">
                 <img src="./img/button/game-start.png" alt="game start" class="button-image">
             </label>
@@ -68,6 +68,20 @@
         <h1>Collection</h1>
         <div id="cards"></div>
     </div>
+
+    <div class="page" id="game" style="display: none; width: 100vw; height: 100vh;">
+        <h1>Game</h1>
+        <!--
+            - 24/05/03 gmae화면 div 추
+            
+        -->
+        <h1 id="scoreboard"></h1>
+        <h1 id="lifeboard"></h1>
+        <input type="button" onclick="init(document.getElementById('gameCanvas'), document.getElementById('scoreboard'), document.getElementById('lifeboard'),0.05);" value="START">
+        <input type="button" onclick="newGame(document.getElementById('gameCanvas'), document.getElementById('scoreboard'), document.getElementById('lifeboard'),0.05);" value="REPLAY">
+        <canvas id="gameCanvas" width="800" height="700" style="border: 1px solid black;"></canvas>
+    </div>
+    
     <script type="text/javascript" src="scripts/setting.js"></script>
     <script type="text/javascript" src="scripts/challenge.js"></script>
     <script type="text/javascript" src="scripts/genDefault.js"></script>
