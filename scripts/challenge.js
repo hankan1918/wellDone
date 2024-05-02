@@ -57,8 +57,8 @@ function createCards(name, dec, imgUrl, have = true) {
         handleMouseMovement(container, overlay);
 }
 
-var tasks = ["Clear 1 Stage", "Clear 2 Stage", "Clear 3 Stage", "Clear All Stage"];
-var taskDescrptions = ["첫번째 스테이지를 클리어하라!", "두번째 스테이지를 클리어하라!", "세번째 스테이지를 클리어하라!", "모든 스테이지를 클리어하라!"]
+var tasks = ["Clear Easy", "Clear Normal", "Clear Hard"];
+var taskDescrptions = ["Easy 모드 클리어 완료", "Normal 모드 클리어 완료", "Hard 모드 클리어 완료"];
 var challengeState;
 const TASK_KEY = 'challenge';
 
@@ -74,7 +74,7 @@ function changeState(achieve){
 
 function load_chellenge(){
     var get = localStorage.getItem(TASK_KEY);
-    if(get == null){
+    if(get == null || get == ""){
         challengeState = '0'.repeat(tasks.length);
         localStorage.setItem(TASK_KEY, challengeState);
         get = localStorage.getItem(TASK_KEY);

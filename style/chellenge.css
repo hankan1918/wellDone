@@ -1,17 +1,6 @@
-#chellenge{
-    text-align: center;
-}
-
-#chellenge h1 {
-    font-size: 80px;
-    padding: 0;
-    margin: 10px;
-    font-family: 'TTHakgyoansimYeohaengR';
-}
-
 #chellenge h4 {
     font-family: 'Chosunilbo_myungjo';
-
+    
 }
 
 #cards {
@@ -30,6 +19,7 @@
     width: 250px;
     height: 390px;
     margin-bottom: 15px;
+    transition: all 0.2s;
 }
 
 .title-card:hover{
@@ -63,7 +53,7 @@
     height: 310px;
     background-image: url(img/001.png);
     background-size: cover;
-    border-radius: 5%;
+    /* border-radius: 5%; */
 }
 p {
     font-family: 'TTHakgyoansimYeohaengR';

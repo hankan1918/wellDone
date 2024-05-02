@@ -6,24 +6,45 @@
     <title>Games Using Canvas</title>
     <link rel="stylesheet" href="style/config.css">
     <link rel="stylesheet" href="style/chellenge.css">
+    <link rel="stylesheet" href="style/setting.css">
+
 </head>
 <body>
-    <button onclick="load_chellenge();">도전과제</button>
-    <div id="chellenge">
-        <h1>Collection</h1>
-        <div id="cards">
+    <button onclick="showSetting();">tmp for setting</button>
+
+    <div class="page" id="setting" style="display: none;">
+        <h1>Setting</h1>
+        <!-- 
+            - 알바생 디자인 바꾸기
+            - 배경 그림
+            - 배경 음악
+         -->
+        <div class="picker" id="char">
+            <h3>Character</h3>
+            <div id="charMenu">
+                <div>
+                    <img src="img/char/char001.png" alt="">
+                </div>
+                <div>
+                    <img src="img/char/char001.png" alt="">
+                </div>
+                <div>
+                    <img src="img/char/char001.png" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="picker" id="bgi">
+            <h3>Theme</h3>
+        </div>
+        <div class="picker" id="bgm">
+            <h3>BGM</h3>
         </div>
     </div>
-    <h1 id="scoreboard"></h1>
-    <input type="button" onclick="init(document.getElementById('2sided'), document.getElementById('scoreboard'), 0.08);" value="START">
-    <div id="stage4">
-        <canvas id="2sided" width="1000" height="400" style="border: 1px solid black;"></canvas>
-        
+    <div class="page" id="chellenge">
+        <h1>Collection</h1>
+        <div id="cards"></div>
     </div>
-    <input type="button" onclick="init(document.getElementById('a'), document.getElementById('scoreboard'), 0.08);" value="START">
-
-    <canvas id="a" width="500" height="1000" style="border: 1px solid black;"></canvas>
-    
+    <script type="text/javascript" src="scripts/setting.js"></script>
     <script type="text/javascript" src="scripts/challenge.js"></script>
     <script type="text/javascript" src="scripts/genDefault.js"></script>
 </body>

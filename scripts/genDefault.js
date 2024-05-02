@@ -37,7 +37,7 @@ function init(c, s, w = 0.05){
     canvas.addEventListener('mousemove', function(event){
         if(event.x >= (barWidth/2) && event.x<=width-(barWidth/2)){
             barX = event.x - (barWidth/2);
-            console.log(event.x)
+            // console.log(event.x)
         }
     })
     console.log(`speed: ${speed}`);

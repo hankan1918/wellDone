@@ -11,6 +11,10 @@
     font-weight: normal;
     font-style: normal;
 }
+@font-face{
+    font-family:'bitbit';
+    src:url('//cdn.df.nexon.com/img/common/font/DNFBitBit-Regular.woff'),url('//cdn.df.nexon.com/img/common/font/DNFBitBit-Regular.woff2') ;
+}
 
 * {
     color: #022D3E;
@@ -22,4 +26,11 @@ canvas {
     display: block;
     margin: auto;
     border: 3px solid black;
+}
+
+h1{
+    text-align: center;
+    font-size: 80px;
+    padding: 0;
+    margin: 10px;
 }
