@@ -2,28 +2,14 @@
     text-align: center;
 }
 
-.base{
-    align-items: center;
-    margin: 0 auto;
-    width: 800px;
-}
-
-.heading {
-    margin: 50px;
-    margin-top: 80px;
-    align-items: center;
-    text-align: center;
-    text-shadow: 0px 3px 3px #846c40;
-}
-
-h1 {
+#chellenge h1 {
     font-size: 80px;
     padding: 0;
     margin: 10px;
     font-family: 'TTHakgyoansimYeohaengR';
 }
 
-h4 {
+#chellenge h4 {
     font-family: 'Chosunilbo_myungjo';
 
 }
@@ -75,7 +61,7 @@ h4 {
     object-fit: cover;
     width: 220px;
     height: 310px;
-    background-image: url(img/001.webp);
+    background-image: url(img/001.png);
     background-size: cover;
     border-radius: 5%;
 }
