@@ -1,0 +1,26 @@
+@font-face {
+    font-family: 'TTHakgyoansimYeohaengR';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2402_keris@1.0/TTHakgyoansimYeohaengR.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Chosunilbo_myungjo';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Chosunilbo_myungjo.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    color: #022D3E;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+canvas {
+    display: block;
+    margin: auto;
+    border: 3px solid black;
+}
