@@ -28,6 +28,10 @@ canvas {
     border: 3px solid black;
 }
 
+.page{
+    display: none;
+}
+
 h1{
     text-align: center;
     font-size: 80px;
