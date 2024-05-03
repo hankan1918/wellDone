@@ -4,28 +4,52 @@
     margin-top: 300px;
 }
 
-.main-button {
+/*모든 기본 버튼은 보이지 않게 합니다*/
+button {
     display: none;
 }
 
-#start-label {
-    display: block;
-    justify-content: center;
-    align-items: center;
-    height: 100px;
-    margin: 0 auto;
+.main-button-label {
+    display: table;
 }
 
-#achievements-label, #settings-label, #highscores-label {
-    display: block;
+.sub-button-label {
+    display: table;
+}
+
+.sub-button-label div img {
     justify-content: center;
     align-items: center;
     height: 60px;
+}
+
+#start-label {
+    justify-content: center;
+    align-items: center;
+    height: 100px;
     margin: 30px auto;
 }
 
-.button-image {
-    display: block;
-    height: 100%;
+#settings-label, #achievements-label, #highscores-label {
+    margin: 20px auto;
+}
+
+.button-box {
     margin: 0 auto;
+}
+
+.button-box img:first-child {
+    display: block;
+}
+
+.button-box img:last-child {
+    display: none;
+}
+
+.button-box:hover img:first-child {
+    display: none;
+}
+
+.button-box:hover img:last-child {
+    display: block;
 }
