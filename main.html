@@ -16,7 +16,7 @@
         <img src="./img/background/main-background.png" alt="bg" id="background-image">
         <h1>This is title</h1>
         <div class="button-div">
-            <button class="main-button" id="game-start" onclick="showGame();"></button>
+            <button class="main-button" id="game-start" onclick="showPage('game', 'main')"></button>
             <label for="game-start" class="button-label" id="start-label">
                 <img src="./img/button/game-start.png" alt="game start" class="button-image">
             </label>
@@ -69,7 +69,8 @@
         <div id="cards"></div>
     </div>
 
-    <div class="page" id="game" style="display: none; width: 100vw; height: 100vh;">
+    <div class="page" id="game" style="display: none;">
+        <button onclick="showPage('main', 'game')">Back</button>
         <h1>Game</h1>
         <!--
             - 24/05/03 gmae화면 div 추
