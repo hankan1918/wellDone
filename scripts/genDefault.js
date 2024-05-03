@@ -113,7 +113,7 @@ function init(c, sb, lb, w){
 function bounce(){
     if((ballY >= barY - ballRadius) && (ballY <= barY + barHeight + ballRadius) && (ballX >= barX - ballRadius) && (ballX <= (barX + barWidth + ballRadius))){
         var distanceFromCenter = ballX - (barX + barWidth / 2);
-        ballVx = -1*distanceFromCenter* weight;
+        ballVx = distanceFromCenter* weight;
         ballVy = Math.sqrt(speed**2 - ballVx**2);
         ballVy *= -1;
         console.log(`ballVx: ${ballVx}, ballvy: ${ballVy}`);

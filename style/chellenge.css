@@ -1,22 +1,25 @@
+:root{
+    --cardSize: 
+}
+
 #chellenge h4 {
     font-family: 'Chosunilbo_myungjo';
-    
 }
 
 #cards {
     display: flex;
     margin: 60px 0 0 0;
     padding: 40px;
-    overflow: scroll;
+    overflow: hidden;
     place-items: center;
-    gap: 50px;
+    gap: 20px;
     justify-content: center;
 }
 
 .title-card {
     align-items: center;
     text-align: center;
-    width: 250px;
+    width: 260px;
     height: 390px;
     margin-bottom: 15px;
     transition: all 0.2s;
@@ -53,11 +56,9 @@
     height: 310px;
     background-image: url(img/001.png);
     background-size: cover;
-    /* border-radius: 5%; */
+    border-radius: 5%;
 }
-p {
+#chellenge p {
     font-family: 'TTHakgyoansimYeohaengR';
-    margin-top: 12px;
-    text-align: center;
     font-size: large;
 }
