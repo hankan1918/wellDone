@@ -20,7 +20,7 @@
             <label for="game-start" class="button-label" id="start-label">
                 <img src="./img/button/game-start.png" alt="game start" class="button-image">
             </label>
-            <button class="main-button" id="settings" onclick="showPage('setting', 'main')"></button>
+            <button class="main-button" id="settings" onclick="showPage('setting', 'main'); showSetting();"></button>
             <label for="settings" class="button-label" id="settings-label">
                 <img src="./img/button/settings.png" alt="game start" class="button-image">
             </label>
@@ -45,14 +45,14 @@
         <div class="picker" id="char">
             <h3>Character</h3>
             <div id="charMenu">
-                <div>
-                    <img src="img/char/char001.png" alt="">
+                <div onclick="selectChar(this);">
+                    <img src="img/char/char001.png" alt="A">
                 </div>
-                <div>
-                    <img src="img/char/char001.png" alt="">
+                <div onclick="selectChar(this);">
+                    <img src="img/char/char001.png" alt="B">
                 </div>
-                <div>
-                    <img src="img/char/char001.png" alt="">
+                <div onclick="selectChar(this);">
+                    <img src="img/char/char001.png" alt="C">
                 </div>
             </div>
         </div>
@@ -83,6 +83,7 @@
         <canvas id="gameCanvas" width="800" height="700" style="border: 1px solid black;"></canvas>
     </div>
     
+    <script type="text/javascript" src="scripts/config.js"></script>
     <script type="text/javascript" src="scripts/pageLoad.js"></script>
     <script type="text/javascript" src="scripts/setting.js"></script>
     <script type="text/javascript" src="scripts/challenge.js"></script>

@@ -1,6 +1,7 @@
 .picker{
     display: flex;
     align-items: center;
+    justify-content: center;
     margin: 0 auto;
     width: 900px;
 }
@@ -18,21 +19,26 @@
 
 #charMenu{
     display: flex;
+    height: 300px;
+    align-items: center;
 }
 
 #charMenu>div{
     overflow: hidden;
     clip-path: polygon(30% 0, 100% 0, 70% 100%, 0 100%);
-    width: 200px; height: 200px;
-    border: 1px solid blue;
+    width: 150px; height: 150px;
     transition: all 0.3s;
-    margin: -20px;
+    margin: auto -20px;
     padding: 30px;
 }
 
 #charMenu>div:hover{
-    transform: scale(1.1);
+    transform: scale(1.2);
     transition: all 0.3s;
+}
+
+.selected{
+    transform: scale(1.2);
 }
 
 #charMenu>div>img{
