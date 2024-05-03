@@ -11,21 +11,27 @@ button {
 
 .main-button-label {
     display: table;
-    justify-content: center;
-    align-items: center;
-    height: 100px;
-    margin: 30px auto;
 }
 
 .sub-button-label {
     display: table;
-    margin: 20px auto;
 }
 
 .sub-button-label div img {
     justify-content: center;
     align-items: center;
     height: 60px;
+}
+
+#start-label {
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    margin: 30px auto;
+}
+
+#settings-label, #achievements-label, #highscores-label {
+    margin: 20px auto;
 }
 
 .button-box {
