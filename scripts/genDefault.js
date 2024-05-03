@@ -52,13 +52,15 @@ var weight;                         /* 무게 */
 
 /* 패들 관련 변수 */
 var barWidth = 100;                 /* 패들 너비 */
-var barHeight = 15;                 /* 패들 높이 */
+var barHeight = 10;                 /* 패들 높이 */
 var barX;                           /* 패들 x */
 var barY;                           /* 패들 y */
 
 /* 제한시간, 점수, 목숨 관련 변수 */
-const TOTALTIME = 300;              /* 제한 시간 */
-var gameTimer;                      /* 게임 시간 */
+var gTimer;
+const TOTALTIME = 10;               /* 제한 시간 */
+var remainingTime;                  /* 남은 시간 */
+var timeboard;                      /* 게임 시간판 */
 var scoreboard;                     /* 점수판 */
 const MIN_SCORE = 0;                /* 초기 점수 */
 var score;                          /* 점수 */
@@ -68,7 +70,6 @@ var life;                           /* 목숨 */
 
 /* 블록 관련 변수 */
 let blockTimer;
-let activeBlock = null;             /* 활성화 된 블럭 */
 let activeBlocks = [];              /* 활성화 된 블럭 배열 */
 var brickFallSpeed = 0.5;           /* 블록 낙하 속도 */
 var brickWidth = 75;                /* 블록 너비 */
@@ -83,15 +84,20 @@ function showGame(){
 }
 
 /* init */
-function init(c, sb, lb, w){
+function init(c, sb, lb, tb, w){
     clearInterval(timer);
     clearInterval(blockTimer);
+    clearInterval(gTimer);
     canvas = c;
     weight = w;
     scoreboard = sb;
     lifeboard = lb;
+    timeboard = tb;
+    
 
-    /* 점수, 목숨세팅 */
+    /* 제한시간, 점수, 목숨세팅 */
+    remainingTime = TOTALTIME;
+    timeboard.innerText = remainingTime;
     score = MIN_SCORE;
     scoreboard.innerText = score;
     life = MAX_LIFE
@@ -106,10 +112,7 @@ function init(c, sb, lb, w){
 
     /* 격자 */
     initGrid();
-
-    /* 블록 */
-    blockTimer = setInterval(createNewBlock, 2000);
-
+    
     /* 패들 */
     barX = width/2 - (barWidth/2);      // 패들 x축 초기 위치
     barY = height - barHeight*2;        // 패들 y축 초기 위치
@@ -130,10 +133,18 @@ function init(c, sb, lb, w){
     })
     console.log(`speed: ${speed}`);
     console.log(`x: ${ballX}`, `y: ${ballY}`);
+
+    blockTimer = setInterval(createNewBlock, 2000);
     timer = setInterval(draw, 10);
+    gTimer = setInterval(gameTimer, 1000);
 }
 
-/* 공 바운스 */
+/*
+    공 바운스
+    - 벽에 끼이는 문제 있었음 해결:
+        - 벽에 끼인 만큼 벽 안으로 밀어내는 코드 추가
+        - Math.max(): 가장 큰 값 반환, Math.min(): 가장 작은 값 반환
+*/
 function bounce(){
     if((ballY >= barY - ballRadius) && (ballY <= barY + barHeight + ballRadius) && (ballX >= barX - ballRadius) && (ballX <= (barX + barWidth + ballRadius))){
         var distanceFromCenter = ballX - (barX + barWidth / 2);
@@ -144,9 +155,11 @@ function bounce(){
     }
     else if(ballX <= ballRadius || ballX >= width-ballRadius){
         ballVx *= -1;
+        ballX = Math.max(ballRadius, Math.min(width - ballRadius, ballX)); // 벽끼임 문제 해결.겹친 영역만큼 공의 위치를 밖으로 이동
     }
     else if(ballY <= ballRadius){
         ballVy *= -1;
+        ballY = Math.max(ballRadius, ballY);
     }
 }
 
@@ -162,7 +175,7 @@ function draw(){
         ballVy *= -1;
         life -= 1;
         drawBall();
-        howLife();
+        whatLife();
         if(life <= 0)
             drawGameover();
     }
@@ -171,8 +184,9 @@ function draw(){
         ballX += ballVx; 
         ballY += ballVy; 
         context.clearRect(0, 0, width, height); 
-        howLife();
-        howScore();
+        whatTime();
+        whatLife();
+        whatScore();
         drawBall();
         drawBar();
         drawBricks();
@@ -188,14 +202,16 @@ function draw(){
     - activeBlock: 블럭 객체 생성 (x좌표, y좌표, stats, 색상(색상 배열 중 랜덤 색))
     - 생성한 블럭 객체를 activeBlocks 배열에 추가
 */
+var brickColor = ["red", "green",  "orange", "black", "pink"];
 function createNewBlock(){
     const emptyCell = findEmptyGridCell();
     const gridX = emptyCell.x;
     const gridY = emptyCell.y;
     const x = gridX * gridSize + Math.random() * (gridSize - brickWidth);
     const y = -brickHeight;
-    activeBlock = { x, y, status: 1, color: brickColor[Math.floor(Math.random() * brickColor.length)] };
-    activeBlocks.push({ x, y, status: 1, color: brickColor[Math.floor(Math.random() * brickColor.length)] }); // newBlock 변수 제거
+    const color = brickColor[Math.floor(Math.random() * brickColor.length)];
+    const activeBlock = { x, y, status: 1, color: color };
+    activeBlocks.push(activeBlock);
     grid[gridX][gridY] = true;      // 격자 활성화
 }
 
@@ -205,7 +221,6 @@ function createNewBlock(){
     - 활성화 블럭의 y좌표값을 낙하속도만큼 증가
     - 블럭이 캔버스 아래로 내려가면 제거 처리 (격자 칸을 비움)
 */
-var brickColor = ["red", "green",  "orange", "balck", "pink"];
 function drawBricks(){
     for (let i = 0; i < activeBlocks.length; i++){
         const block = activeBlocks[i];
@@ -244,13 +259,12 @@ function collisionDetection(){
                 ballVy *= -1;
                 b.status = 0;
                 score++;
+
+                updateGrid(b.x, b.y);   // 격자 업데이트 (블록이 있던 칸 비우기)
   
-            // 격자 업데이트 (블록이 있던 칸 비우기)
-            updateGrid(b.x, b.y);
-  
-            // 파괴된 블록 제거
-            activeBlocks.splice(i, 1);      // activeBlocks.splice(제거 시작할 인덱스, 제거할 요소의 개수)
-            i--;                            // splice로 요소 제거하면 인덱스가 하나씩 앞으로 당겨지므로 -1 해야함
+                // 파괴된 블록 제거
+                activeBlocks.splice(i, 1);      // activeBlocks.splice(제거 시작할 인덱스, 제거할 요소의 개수)
+                i--;                            // splice로 요소 제거하면 인덱스가 하나씩 앞으로 당겨지므로 -1 해야함
             }
         }
     }
@@ -314,27 +328,49 @@ function updateGrid(brickX, brickY){
     grid[gridX][gridY] = false;                     // 격자 비움 표시
 }
 
+/* 시간 계산 */
+function gameTimer(){
+    remainingTime--;
+    if (remainingTime <= 0){
+        life -= 1;
+        whatTime();
+        whatLife();
+        remainingTime = TOTALTIME;
+        if(life <= 0){
+            drawGameover();
+            resetGame();
+        }
+    }
+}
+
+/* 제한 시간 출력 */
+function whatTime(){
+    timeboard.innerText = "시간: " + remainingTime;
+}
+
 /* 점수 출력 */
-function howScore(){
+function whatScore(){
     scoreboard.innerText = "점수: " + score;
 }
 
 /* 목숨 출력 */
-function howLife(){
+function whatLife(){
     lifeboard.innerText = "남은 목숨: " + life;
 }
 
 /* newgame replay 처리 */
-function newGame(c, sb, lb, w){
+function newGame(c, sb, lb, tb, w){
     // init에 보낼 인수
     rc = c;         // canvas
     rw = w;         // weight
     rsb = sb;       // scoreboard
     rlb = lb;       // lifeboard
+    rtb = tb;       // timeboard
 
     // 점수, 목숨 초기화
     life = MAX_LIFE;
     score = MIN_SCORE;
+    remainingTime = TOTALTIME;
 
     // 공 위치 초기화
     ballX = width/2;                    
@@ -344,13 +380,41 @@ function newGame(c, sb, lb, w){
     activeBlocks = [];
     clearInterval(blockTimer);
     createNewBlock();
-    init(rc, rsb, rlb, rw);
+    init(rc, rsb, rlb, rtb, rw);
+
+    // 격자 초기화
+    initGrid();
 }
 
+/*
+    init함수를 부르는 거 제외 한 초기화
+*/
+function resetGame(){
+    // 점수, 목숨 초기화
+    life = MAX_LIFE;
+    score = MIN_SCORE;
+    remainingTime = TOTALTIME;
+
+    // 공 위치 초기화
+    ballX = width/2;                    
+    ballY = height/2;
+    
+    // 블럭 초기화
+    activeBlocks = [];
+    clearInterval(blockTimer);
+    createNewBlock();
+
+    // 격자 초기화
+    initGrid();
+}
+
+/* 게임 오버 */
 function drawGameover(msg="게임오버"){
     context.clearRect(0, 0, width, height);
+    context.fillStyle = "red"
     context.font = '50px serif';
     context.fillText(msg, 100, 100);
     clearInterval(timer);
     clearInterval(blockTimer);
+    clearInterval(gTimer);
 }
