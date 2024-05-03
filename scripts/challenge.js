@@ -63,9 +63,11 @@ var challengeState;
 const TASK_KEY = 'challenge';
 
 function changeState(achieve){
-    if(tasks.indexOf(achieve) == -1){
+    var t;
+    if((t = tasks.indexOf(achieve))== -1){
         console.log(`도전과제 ${achieve}를 찾을 수 없습니다.`);
-    } else {
+    } else if(challengeState[t] == '0'){
+        alert(`도전과제 달성! : ${achieve}`);
         var t = tasks.indexOf(achieve);
         challengeState = challengeState.substring(0, t) + '1' + challengeState.substring(t+1, challengeState.length);
         localStorage.setItem(TASK_KEY, challengeState);
@@ -80,6 +82,7 @@ function load_chellenge(){
         get = localStorage.getItem(TASK_KEY);
     }
     
+    challengeState = get;
     var container = document.querySelector('#cards');
     container.innerHTML = "";
 
