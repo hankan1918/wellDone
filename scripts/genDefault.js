@@ -56,19 +56,21 @@ var barHeight = 15;                 /* 패들 높이 */
 var barX;                           /* 패들 x */
 var barY;                           /* 패들 y */
 
-/* 점수 및 목숨 관련 변수 */
+/* 제한시간, 점수, 목숨 관련 변수 */
+const TOTALTIME = 300;              /* 제한 시간 */
+var gameTimer;                      /* 게임 시간 */
 var scoreboard;                     /* 점수판 */
-const MIN_SCORE = 0;                  /* 초기 점수 */
+const MIN_SCORE = 0;                /* 초기 점수 */
 var score;                          /* 점수 */
 var lifeboard;                      /* 목숨판 */
-const MAX_LIFE = 3;                   /* 최대목숨 */
+const MAX_LIFE = 3;                 /* 최대목숨 */
 var life;                           /* 목숨 */
 
 /* 블록 관련 변수 */
 let blockTimer;
 let activeBlock = null;             /* 활성화 된 블럭 */
-let activeBlocks = [];             /* 활성화 된 블럭 배열 */
-var brickSpeed = 0.5;               /* 블록 낙하 속도 */
+let activeBlocks = [];              /* 활성화 된 블럭 배열 */
+var brickFallSpeed = 0.5;           /* 블록 낙하 속도 */
 var brickWidth = 75;                /* 블록 너비 */
 var brickHeight = 20;               /* 블록 높이 */
 var brickPadding = 10;              /* 블록 사이 간격 */
@@ -122,7 +124,7 @@ function init(c, sb, lb, w){
     /* 마우스 컨틀롤 */
     canvas.addEventListener('mousemove', function(e){
         var relativeX = e.clientX - canvas.offsetLeft;
-        if(relativeX > + barWidth/2 && relativeX < canvas.width-barWidth/2) {
+        if(relativeX > + barWidth/2 && relativeX < canvas.width-barWidth/2){
             barX = relativeX - barWidth/2;
         }
     })
@@ -165,11 +167,11 @@ function draw(){
             drawGameover();
     }
     else{
-        bounce();
-        ballX += ballVx;
-        ballY += ballVy;
-        context.clearRect(0, 0, width, height);
-        howLife();          // 필요없으면 제거
+        bounce();                        
+        ballX += ballVx; 
+        ballY += ballVy; 
+        context.clearRect(0, 0, width, height); 
+        howLife();
         howScore();
         drawBall();
         drawBar();
@@ -178,7 +180,14 @@ function draw(){
     }
 }
 
-/* 블록 생성 */
+/*
+    블록 생성
+    - 블럭이 없는 칸 찾아서 좌표값 설정
+    - x: 격자 칸 왼쪽 위 x 좌표(gridX * gridSize) + 랜덤한 x 좌표 처리
+    - y: 화면 밖에서부터 시작
+    - activeBlock: 블럭 객체 생성 (x좌표, y좌표, stats, 색상(색상 배열 중 랜덤 색))
+    - 생성한 블럭 객체를 activeBlocks 배열에 추가
+*/
 function createNewBlock(){
     const emptyCell = findEmptyGridCell();
     const gridX = emptyCell.x;
@@ -187,15 +196,20 @@ function createNewBlock(){
     const y = -brickHeight;
     activeBlock = { x, y, status: 1, color: brickColor[Math.floor(Math.random() * brickColor.length)] };
     activeBlocks.push({ x, y, status: 1, color: brickColor[Math.floor(Math.random() * brickColor.length)] }); // newBlock 변수 제거
-    grid[gridX][gridY] = true;
+    grid[gridX][gridY] = true;      // 격자 활성화
 }
 
-/* 블록 그리기 */
+/*
+    블록 그리기
+    - activeBlocks 배열에서 활성화 블럭 찾기
+    - 활성화 블럭의 y좌표값을 낙하속도만큼 증가
+    - 블럭이 캔버스 아래로 내려가면 제거 처리 (격자 칸을 비움)
+*/
 var brickColor = ["red", "green",  "orange", "balck", "pink"];
 function drawBricks(){
     for (let i = 0; i < activeBlocks.length; i++){
         const block = activeBlocks[i];
-        block.y += brickSpeed; // 블록 아래로 이동
+        block.y += brickFallSpeed;                                  // 블록 아래로 이동
     
         if (block.y > canvas.height){
             // 블록이 화면 아래로 사라지면 제거
@@ -203,9 +217,8 @@ function drawBricks(){
             const gridY = Math.floor(block.y / gridSize);
             grid[gridX][gridY] = false;
             activeBlocks.splice(i, 1);
-            i--; // 배열 인덱스 조정
+            i--;                                                     // 배열 인덱스 조정
         } else {
-            // 블록 그리기
             context.beginPath();
             context.rect(block.x, block.y, brickWidth, brickHeight);
             context.fillStyle = block.color;
