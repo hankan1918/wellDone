@@ -21,29 +21,45 @@
             - 공 각도 튀는거 수정해야할 듯
 */
 
+/* 난이도 관련 변수 */
+var mode = 0;                       /* 0:EASY 1:NORMAL 2:HARD
+
+/* 사운드 관련 변수 */
+// var hitSound = new Audio("");
+// var breakSound = new Audio("");
+
+/* 캔버스 관련 변수 */
 var canvas;                         /* gameCanvas 참조 canvas */
 var context;                        /* 컨텍스트 객체 */    
 var timer;                          /* 타이머 객체 변수 setInterval과 clear를 연결 */
 var width;                          /* canvas 너비 */
 var height;                         /* canvas 높이 */
+
+/* 공 관련 변수 */
 var ballRadius = 5;                 /* 공 반지름 */
-var barWidth = 100;                 /* 패들 너비 */
-var barHeight = 15;                 /* 패들 높이 */
-var barX;                           /* 패들 x */
-var barY;                           /* 패들 y */
 var ballX;                          /* 공의 현재 x방향 위치 */
 var ballY;                          /* 공의 현재 y방향 위치 */
 var speed;                          /* 공의 속도 */
 var ballVx;                         /* 공의 현재 x방향 속도 */
 var ballVy;                         /* 공의 현재 y방향 속도 */
 var weight;                         /* 무게 */
+
+/* 패들 관련 변수 */
+var barWidth = 100;                 /* 패들 너비 */
+var barHeight = 15;                 /* 패들 높이 */
+var barX;                           /* 패들 x */
+var barY;                           /* 패들 y */
+
+/* 점수 및 목숨 관련 변수 */
 var scoreboard;                     /* 점수판 */
 var MIN_SCORE = 0;                  /* 초기 점수 */
 var score;                          /* 점수 */
 var lifeboard;                      /* 목숨판 */
 var MAX_LIFE = 3;                   /* 최대목숨 */
 var life;                           /* 목숨 */
-var brickY;                         /* 블록 현재 y방향 속도 */
+
+/* 블록 관련 변수 */
+var brickSpeed = 0.5;               /* 블록 낙하 속도 */
 var brickRowCount = 5;              /* 블록 배열의 행 */
 var brickColumnCount = 9;           /* 블록 배열의 열 */
 var brickWidth = 75;                /* 블록 너비 */
@@ -88,7 +104,7 @@ function init(c, sb, lb, w){
     
     /* 패들 */
     barX = width/2 - (barWidth/2);      // 패들 x축 초기 위치
-    barY = height - barHeight*2;          // 패들 y축 초기 위치
+    barY = height - barHeight*2;        // 패들 y축 초기 위치
 
     /* 공 */
     ballX = width/2;                    // 공 x축 초기 위치
