@@ -107,6 +107,7 @@
         <div id="cards"></div>
     </div>
 
+    <!-- game page -->
     <div class="page" id="game" style="display: none;">
         <button onclick="showPage('main', 'game')" id="game-back-button">Back</button>
         <label for="game-back-button" class="sub-button-label">
@@ -116,14 +117,11 @@
             </div>
         </label>
         <h1>Game</h1>
-        <!--
-            - 24/05/03 gmae화면 div 추
-            
-        -->
-        <h1 id="scoreboard"></h1>
-        <h1 id="lifeboard"></h1>
-        <input type="button" onclick="init(document.getElementById('gameCanvas'), document.getElementById('scoreboard'), document.getElementById('lifeboard'),0.05);" value="START">
-        <input type="button" onclick="newGame(document.getElementById('gameCanvas'), document.getElementById('scoreboard'), document.getElementById('lifeboard'),0.05);" value="REPLAY">
+        <h1 id="timeboard" style="display: inline-block;"></h1>
+        <h1 id="lifeboard" style="display: inline-block;"></h1>
+        <h1 id="scoreboard" style="display: inline-block;"></h1>
+        <input type="button" onclick="init(document.getElementById('gameCanvas'), document.getElementById('scoreboard'), document.getElementById('lifeboard'), document.getElementById('timeboard'), 0.05);" value="START">
+        <input type="button" onclick="newGame(document.getElementById('gameCanvas'), document.getElementById('scoreboard'), document.getElementById('lifeboard'), document.getElementById('timeboard'), 0.05);" value="REPLAY">
         <canvas id="gameCanvas" width="800" height="400" style="border: 1px solid black;"></canvas>
     </div>
     
