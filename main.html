@@ -23,7 +23,7 @@
                     <img src="./img/button/game-start-hover.png" alt="game start">
                 </div>
             </label>
-            <button class="main-button" id="settings" onclick="showPage('setting', 'main')"></button>
+            <button class="main-button" id="settings" onclick="showPage('setting', 'main'); showSetting();"></button>
             <label for="settings" class="sub-button-label" id="settings-label">
                 <div class="button-box">
                     <img src="./img/button/settings.png" alt="settings">
@@ -61,7 +61,7 @@
             - 배경 음악
          -->
         <div class="picker" id="char">
-            <h3>Character</h3>
+            <h2>Character</h2>
             <div id="charMenu">
                 <div onclick="selectChar(this);">
                     <img src="img/char/char001.png" alt="A">
@@ -75,10 +75,24 @@
             </div>
         </div>
         <div class="picker" id="bgi">
-            <h3>Theme</h3>
+            <h2>Theme</h2>
+            <div class="carouselMenu">
+                <!-- <button onclick="carouselMenuPrev();" style="display: block;">prev</button>
+                <div class="cmContainer">
+                    <div class="cmItems">
+                        <div class="cmItem">Theme A</div>
+                        <div class="cmItem">Theme B</div>
+                        <div class="cmItem">Theme C</div>
+                    </div>
+                </div>
+                <button onclick="carouselMenuNext();" style="display: block;">next</button> -->
+            </div>
         </div>
         <div class="picker" id="bgm">
-            <h3>BGM</h3>
+            <h2>BGM</h2>
+            <div class="carouselMenu">
+
+            </div>
         </div>
     </div>
     <div class="page" id="chellenge">

@@ -6,14 +6,10 @@
     width: 900px;
 }
 
-.picker>h3{
+.picker>h2{
     margin: 10px;
     height: 50px;
     line-height: 50px;
-    display: inline;
-}
-
-.picker>div{
     display: inline;
 }
 
@@ -44,4 +40,26 @@
 #charMenu>div>img{
     width: 100%; height: 100%;
     object-fit: cover;
+}
+
+.carouselMenu{
+    display: flex;
+}
+.cmContainer{
+    overflow: hidden;
+    width: 300px;
+}
+.cmItems{
+    display: flex;
+    flex-wrap: nowrap;
+    transition: all 0.3s;
+}
+.cmItem{
+    display: inline-block;
+    flex-shrink: 0;
+    width: 300px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    /* background-color: aquamarine; */
 }
