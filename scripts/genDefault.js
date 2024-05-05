@@ -355,7 +355,16 @@ function whatScore(){
 
 /* 목숨 출력 */
 function whatLife(){
-    lifeboard.innerText = "남은 목숨: " + life;
+    var parentElement = document.getElementById("lifeboard");
+    lifeboard.innerHTML = "";                                     // 이전 하트 이미지 제거
+    for(var i = 0; i<life; i++){
+        var imgElement = document.createElement("img");
+        imgElement.src = "./img/etc/heart.png";
+        imgElement.style.width = "50px";
+        imgElement.style.height = "50px";
+        imgElement.alt = "하트";
+        parentElement.appendChild(imgElement);
+    }
 }
 
 /* newgame replay 처리 */
