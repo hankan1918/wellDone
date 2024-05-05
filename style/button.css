@@ -31,7 +31,9 @@
 }
 
 .back-button {
-    left: 0;
+    position: absolute;
+    top: 30px;
+    left: 30px;
 }
 
 .button-box img:first-child {
