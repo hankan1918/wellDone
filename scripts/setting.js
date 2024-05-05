@@ -26,7 +26,8 @@ function createCarouselMenu(pos, content, val){
 
     parent = document.querySelector(`#${pos} .carouselMenu`);
     prev = document.createElement('div');
-    // prev.classList.add('button-box');
+    prev.classList.add('button-box');
+
     img = document.createElement('img');
     img.src = 'img/button/prev.png';
     prev.appendChild(img);
@@ -53,8 +54,8 @@ function createCarouselMenu(pos, content, val){
 
     next = document.createElement('div');
     parent.appendChild(next);
+    next.classList.add('button-box');
 
-    // prev.classList.add('button-box');
     img = document.createElement('img');
     img.src = 'img/button/next.png';
     next.appendChild(img);
