@@ -69,6 +69,7 @@ const MAX_LIFE = 3;                 /* 최대목숨 */
 var life;                           /* 목숨 */
 
 /* 재료 관련 변수 */
+loadImage.cache = {};               /* 이미지 캐시 객체 */
 let ingredientTimer;
 let activeingredients = [];         /* 활성화 된 재료 배열 */
 var ingredientFallSpeed = 0.5;      /* 재료 낙하 속도 */
@@ -247,7 +248,12 @@ function drawIngredients(){
     }
 }
 
-/* 이미지 로드 */
+/*
+    이미지 로드
+    - 이미지 캐시 객체 생성: 이미지 재사용
+    - 캐시 이미지가 존재하면 바로 콜백
+    - 존재하지 않으면 이미지 생성
+*/
 function loadImage(src, callback) {
     if (loadImage.cache[src]) {
         callback(loadImage.cache[src]);
@@ -260,8 +266,6 @@ function loadImage(src, callback) {
         ingredientImg.src = src;
     }
 }
-
-loadImage.cache = {}; // 이미지 캐시 객체
 
 /* 
     재료 충돌 감지
