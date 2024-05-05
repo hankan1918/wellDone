@@ -1,6 +1,6 @@
 /*
     - 기능:
-        - 블럭:
+        - 재료:
             - 위에서 아래로 내려오도록
             - easy -> 메뉴에 따른 우선순위
             - 
@@ -16,11 +16,11 @@
             - 제한 시간 안에 못하면 목숨 -1
         - 추가
             - 일정 점수 -> 난이도 상승 (목숨, 점수 초기화)
-            - 제한시간 구현
-            - 블록 아래로 떨어지게
             - 공 각도 튀는거 수정해야할 듯
             - start 버튼 누를 때 동작 수정
 */
+/* 프레임 */
+const FRAME_RATE = 1000 / 60; // 60 FPS (1 frame per 16.67 milliseconds)
 
 /* 난이도 관련 변수 */
 var mode = 0;                       /* 0:EASY 1:NORMAL 2:HARD
@@ -68,15 +68,15 @@ var lifeboard;                      /* 목숨판 */
 const MAX_LIFE = 3;                 /* 최대목숨 */
 var life;                           /* 목숨 */
 
-/* 블록 관련 변수 */
-let blockTimer;
-let activeBlocks = [];              /* 활성화 된 블럭 배열 */
-var brickFallSpeed = 0.5;           /* 블록 낙하 속도 */
-var brickWidth = 75;                /* 블록 너비 */
-var brickHeight = 20;               /* 블록 높이 */
-var brickPadding = 10;              /* 블록 사이 간격 */
-var brickOffsetTop = 30;            /* 윗쪽 벽과 간격 */
-var brickOffsetLeft = 20;           /* 좌우 벽과 간격 */
+/* 재료 관련 변수 */
+let ingredientTimer;
+let activeingredients = [];         /* 활성화 된 재료 배열 */
+var ingredientFallSpeed = 0.5;      /* 재료 낙하 속도 */
+var ingredientWidth = 50;           /* 재료 너비 */
+var ingredientHeight = 50;          /* 재료 높이 */
+var ingredientPadding = 10;         /* 재료 사이 간격 */
+var ingredientOffsetTop = 30;       /* 윗쪽 벽과 간격 */
+var ingredientOffsetLeft = 20;      /* 좌우 벽과 간격 */
 
 /* 메뉴 선택 시 게임 화면 보여주기 */
 function showGame(){
@@ -86,7 +86,7 @@ function showGame(){
 /* init */
 function init(c, sb, lb, tb, w){
     clearInterval(timer);
-    clearInterval(blockTimer);
+    clearInterval(ingredientTimer);
     clearInterval(gTimer);
     canvas = c;
     weight = w;
@@ -134,7 +134,7 @@ function init(c, sb, lb, tb, w){
     console.log(`speed: ${speed}`);
     console.log(`x: ${ballX}`, `y: ${ballY}`);
 
-    blockTimer = setInterval(createNewBlock, 2000);
+    ingredientTimer = setInterval(createNewingredient, 2000);
     timer = setInterval(draw, 10);
     gTimer = setInterval(gameTimer, 1000);
 }
@@ -167,7 +167,7 @@ function bounce(){
 function draw(){
     if(ballY>=height-ballRadius){
         /*
-            바닥에 떨어지면 공의 위치 초기화
+            공이 바닥에 떨어지면 공의 위치 초기화
             목숨 -1
         */
         ballX = width/2;                    
@@ -175,7 +175,7 @@ function draw(){
         ballVy *= -1;
         life -= 1;
         drawBall();
-        whatLife();
+        updateLife();
         if(life <= 0)
             drawGameover();
     }
@@ -184,87 +184,99 @@ function draw(){
         ballX += ballVx; 
         ballY += ballVy; 
         context.clearRect(0, 0, width, height); 
-        whatTime();
-        whatLife();
-        whatScore();
+        updateTime();
+        updateLife();
+        updateScore();
         drawBall();
         drawBar();
-        drawBricks();
+        drawIngredients();
         collisionDetection();
     }
 }
 
+
 /*
-    블록 생성
-    - 블럭이 없는 칸 찾아서 좌표값 설정
+    재료 생성
+    - 재료가 없는 칸 찾아서 좌표값 설정
     - x: 격자 칸 왼쪽 위 x 좌표(gridX * gridSize) + 랜덤한 x 좌표 처리
     - y: 화면 밖에서부터 시작
-    - activeBlock: 블럭 객체 생성 (x좌표, y좌표, stats, 색상(색상 배열 중 랜덤 색))
-    - 생성한 블럭 객체를 activeBlocks 배열에 추가
+    - activeingredient: 재료 객체 생성 (x좌표, y좌표, stats, 재료 타입, 이미지 경로)
+    - 생성한 재료 객체를 activeingredients 배열에 추가
 */
-var brickColor = ["red", "green",  "orange", "black", "pink"];
-function createNewBlock(){
+// var ingredientColor = ["red", "green",  "orange", "black", "pink"];
+var ingredientType = ["top-bun", "bottom-bun", "cheese", "lettuce","patty", "tomato"];
+function createNewingredient(){
     const emptyCell = findEmptyGridCell();
     const gridX = emptyCell.x;
     const gridY = emptyCell.y;
-    const x = gridX * gridSize + Math.random() * (gridSize - brickWidth);
-    const y = -brickHeight;
-    const color = brickColor[Math.floor(Math.random() * brickColor.length)];
-    const activeBlock = { x, y, status: 1, color: color };
-    activeBlocks.push(activeBlock);
+    const x = gridX * gridSize + Math.random() * (gridSize - ingredientWidth);
+    const y = -ingredientHeight;
+    const type = ingredientType[Math.floor(Math.random() * ingredientType.length)];
+    // const color = ingredientColor[Math.floor(Math.random() * ingredientColor.length)];
+    const ingredientName = type + ".png";
+    const ingredientIMGSrc = "./img/ingredient/" + ingredientName;
+    const activeingredient = { x, y, status: 1, type, image: ingredientIMGSrc };
+    activeingredients.push(activeingredient);
     grid[gridX][gridY] = true;      // 격자 활성화
 }
 
 /*
-    블록 그리기
-    - activeBlocks 배열에서 활성화 블럭 찾기
-    - 활성화 블럭의 y좌표값을 낙하속도만큼 증가
-    - 블럭이 캔버스 아래로 내려가면 제거 처리 (격자 칸을 비움)
+    재료 그리기
+    - activeingredients 배열에서 활성화 재료 찾기
+    - 활성화 재료의 y좌표값을 낙하속도만큼 증가
+    - 재료가 캔버스 아래로 내려가면 제거 처리 (격자 칸을 비움)
 */
-function drawBricks(){
-    for (let i = 0; i < activeBlocks.length; i++){
-        const block = activeBlocks[i];
-        block.y += brickFallSpeed;                                  // 블록 아래로 이동
-    
-        if (block.y > canvas.height){
-            // 블록이 화면 아래로 사라지면 제거
-            const gridX = Math.floor(block.x / gridSize);
-            const gridY = Math.floor(block.y / gridSize);
-            grid[gridX][gridY] = false;
-            activeBlocks.splice(i, 1);
+function drawIngredients(){
+    for (var i = 0; i < activeingredients.length; i++){
+        const ingredient = activeingredients[i];
+        ingredient.y += ingredientFallSpeed;                                  // 재료 아래로 이동
+        console.log(ingredient);
+        if (ingredient.y > canvas.height){
+            // 재료가 화면 아래로 사라지면 제거
+            updateGrid(ingredient.x, ingredient.y);
+            activeingredients.splice(i, 1);
             i--;                                                     // 배열 인덱스 조정
         } else {
-            context.beginPath();
-            context.rect(block.x, block.y, brickWidth, brickHeight);
-            context.fillStyle = block.color;
-            context.fill();
-            context.closePath();
+            loadImage(ingredient.image, function(img){
+                context.beginPath();
+                context.drawImage(img, ingredient.x, ingredient.y, ingredientWidth, ingredientHeight);
+                context.closePath();
+            });
         }
     }
 }
 
+/* 이미지 로드 */
+function loadImage(src, callback){
+    var ingredientImg = new Image();
+    ingredientImg.onload = function(){
+      callback(ingredientImg);
+    };
+    ingredientImg.src = src;
+  }
+
 /* 
-    블록 충돌 감지
-    - 공과 블록 충돌 감지 후 처리
-    - activeBlocks: 활성화 된 블록 순회 status가 1인 경우에만 충돌 검사
-    - 충돌 블럭의 범위에 들어오는지(반지름 고려)
-    - y방향 속도 반전, status 0으로 변경(블록 삭제), 점수 증가,
-      블록이 있던 격자 지우기, 배열에서 활성화였던 블럭 비활성화(인덱스 조정)
+    재료 충돌 감지
+    - 공과 재료 충돌 감지 후 처리
+    - activeingredients: 활성화 된 재료 순회 status가 1인 경우에만 충돌 검사
+    - 충돌 재료의 범위에 들어오는지(반지름 고려)
+    - y방향 속도 반전, status 0으로 변경(재료 삭제), 점수 증가,
+      재료가 있던 격자 지우기, 배열에서 활성화였던 재료 비활성화(인덱스 조정)
 */
 function collisionDetection(){
-    for (let i = 0; i < activeBlocks.length; i++){
-        const b = activeBlocks[i];
+    for (let i = 0; i < activeingredients.length; i++){
+        const b = activeingredients[i];
         if (b.status === 1){
-            if ((ballY >= b.y - ballRadius) && (ballY <= b.y + brickHeight + ballRadius) &&(ballX >= b.x - ballRadius) && (ballX <= b.x + brickWidth + ballRadius)) {
+            if ((ballY >= b.y - ballRadius) && (ballY <= b.y + ingredientHeight + ballRadius) &&(ballX >= b.x - ballRadius) && (ballX <= b.x + ingredientWidth + ballRadius)) {
                 ballVy *= -1;
                 b.status = 0;
                 score++;
 
-                updateGrid(b.x, b.y);   // 격자 업데이트 (블록이 있던 칸 비우기)
+                updateGrid(b.x, b.y);   // 격자 업데이트 (재료가 있던 칸 비우기)
   
-                // 파괴된 블록 제거
-                activeBlocks.splice(i, 1);      // activeBlocks.splice(제거 시작할 인덱스, 제거할 요소의 개수)
-                i--;                            // splice로 요소 제거하면 인덱스가 하나씩 앞으로 당겨지므로 -1 해야함
+                // 파괴된 재료 제거
+                activeingredients.splice(i, 1);      // activeingredients.splice(제거 시작할 인덱스, 제거할 요소의 개수)
+                i--;                                // splice로 요소 제거하면 인덱스가 하나씩 앞으로 당겨지므로 -1 해야함
             }
         }
     }
@@ -289,8 +301,8 @@ function drawBar(){
 
 /*
     격자 초기화 함수 
-    - 사용하는 이유: 블럭이 겹쳐서 생성되는 문제 해결, 충돌 감지, 블럭 위치 관리
-    - 게임 화면을 격자로 나눔. 격자에 블럭이 존재하는지(있을 때 true, 없을 때 false)
+    - 사용하는 이유: 재료가 겹쳐서 생성되는 문제 해결, 충돌 감지, 재료 위치 관리
+    - 게임 화면을 격자로 나눔. 격자에 재료가 존재하는지(있을 때 true, 없을 때 false)
 */
 function initGrid() {
     for (let i = 0; i < Math.ceil(width / gridSize); i++) {
@@ -303,7 +315,7 @@ function initGrid() {
   
 /*
     격자에서 랜덤한 빈 공간 찾기 함수
-    - 블록이 존재하지 않는 격자 칸 찾기
+    - 재료가 존재하지 않는 격자 칸 찾기
     - 좌표값 gridX, gridY 반환
 */
 function findEmptyGridCell(){
@@ -316,15 +328,15 @@ function findEmptyGridCell(){
 }
    
 /*
-    블록 파괴 시 격자 업데이트 함수
-    - 블럭이 충돌하면(파괴) 해당 격자 칸 비움
-    - brickX, brickY: 블록의 실제 좌표
-    - gridX, gridY: 블록이 위치한 격자 좌표
-    - brickX = 120, brickY = 80, gridSize = 80이면 격자(1,1)
+    재료 파괴 시 격자 업데이트 함수
+    - 재료가 충돌하면(파괴) 해당 격자 칸 비움
+    - ingredientX, ingredientkY: 재료의 실제 좌표
+    - gridX, gridY: 재료가 위치한 격자 좌표
+    - ingredientX = 120, ingredientY = 80, gridSize = 80이면 격자(1,1)
 */
-function updateGrid(brickX, brickY){
-    const gridX = Math.floor(brickX / gridSize);
-    const gridY = Math.floor(brickY / gridSize);
+function updateGrid(ingredientX, ingredientY){
+    const gridX = Math.floor(ingredientX / gridSize);
+    const gridY = Math.floor(ingredientY / gridSize);
     grid[gridX][gridY] = false;                     // 격자 비움 표시
 }
 
@@ -333,8 +345,8 @@ function gameTimer(){
     remainingTime--;
     if (remainingTime <= 0){
         life -= 1;
-        whatTime();
-        whatLife();
+        updateTime();
+        updateLife();
         remainingTime = TOTALTIME;
         if(life <= 0){
             drawGameover();
@@ -344,19 +356,19 @@ function gameTimer(){
 }
 
 /* 제한 시간 출력 */
-function whatTime(){
+function updateTime(){
     timeboard.innerText = "시간: " + remainingTime;
 }
 
 /* 점수 출력 */
-function whatScore(){
+function updateScore(){
     scoreboard.innerText = "점수: " + score;
 }
 
 /* 목숨 출력 */
-function whatLife(){
+function updateLife(){
     var parentElement = document.getElementById("lifeboard");
-    lifeboard.innerHTML = "";                                     // 이전 하트 이미지 제거
+    lifeboard.innerHTML = ""; // 이전 하트 이미지 제거
     for(var i = 0; i<life; i++){
         var imgElement = document.createElement("img");
         imgElement.src = "./img/etc/heart.png";
@@ -366,6 +378,7 @@ function whatLife(){
         parentElement.appendChild(imgElement);
     }
 }
+
 
 /* newgame replay 처리 */
 function newGame(c, sb, lb, tb, w){
@@ -385,10 +398,10 @@ function newGame(c, sb, lb, tb, w){
     ballX = width/2;                    
     ballY = height/2;
     
-    // 블럭 초기화
-    activeBlocks = [];
-    clearInterval(blockTimer);
-    createNewBlock();
+    // 재료 초기화
+    activeingredients = [];
+    clearInterval(ingredientTimer);
+    createNewingredient();
     init(rc, rsb, rlb, rtb, rw);
 
     // 격자 초기화
@@ -408,10 +421,10 @@ function resetGame(){
     ballX = width/2;                    
     ballY = height/2;
     
-    // 블럭 초기화
-    activeBlocks = [];
-    clearInterval(blockTimer);
-    createNewBlock();
+    // 재료 초기화
+    activeingredients = [];
+    clearInterval(ingredientTimer);
+    createNewingredient();
 
     // 격자 초기화
     initGrid();
@@ -424,6 +437,6 @@ function drawGameover(msg="게임오버"){
     context.font = '50px serif';
     context.fillText(msg, 100, 100);
     clearInterval(timer);
-    clearInterval(blockTimer);
+    clearInterval(ingredientTimer);
     clearInterval(gTimer);
 }
