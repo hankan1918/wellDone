@@ -72,8 +72,8 @@ var life;                           /* 목숨 */
 let ingredientTimer;
 let activeingredients = [];         /* 활성화 된 재료 배열 */
 var ingredientFallSpeed = 0.5;      /* 재료 낙하 속도 */
-var ingredientWidth = 50;           /* 재료 너비 */
-var ingredientHeight = 50;          /* 재료 높이 */
+var ingredientWidth = 60;           /* 재료 너비 */
+var ingredientHeight = 30;          /* 재료 높이 */
 var ingredientPadding = 10;         /* 재료 사이 간격 */
 var ingredientOffsetTop = 30;       /* 윗쪽 벽과 간격 */
 var ingredientOffsetLeft = 20;      /* 좌우 벽과 간격 */
