@@ -22,12 +22,18 @@ function selectChar(event){
 var cmMenuWidth = 300;
 
 function createCarouselMenu(pos, content, val){
-    var prev, next, container, cmItems, cmItem, parent;
+    var prev, next, container, cmItems, cmItem, parent,img;
 
     parent = document.querySelector(`#${pos} .carouselMenu`);
-    prev = document.createElement('button');
-    prev.style.display = 'block';
-    prev.innerHTML = 'prev';
+    prev = document.createElement('div');
+    // prev.classList.add('button-box');
+    img = document.createElement('img');
+    img.src = 'img/button/prev.png';
+    prev.appendChild(img);
+    img = document.createElement('img');
+    img.src = 'img/button/prev-hover.png';
+    prev.appendChild(img);
+
     parent.appendChild(prev);
 
     container = document.createElement('div');
@@ -45,10 +51,16 @@ function createCarouselMenu(pos, content, val){
         cmItems.appendChild(cmItem);
     }
 
-    next = document.createElement('button');
-    next.style.display = 'block';
-    next.innerHTML = 'next';
+    next = document.createElement('div');
     parent.appendChild(next);
+
+    // prev.classList.add('button-box');
+    img = document.createElement('img');
+    img.src = 'img/button/next.png';
+    next.appendChild(img);
+    img = document.createElement('img');
+    img.src = 'img/button/next-hover.png';
+    next.appendChild(img);
 
     if(val == "THEME"){
         prev.addEventListener('click', function(){
