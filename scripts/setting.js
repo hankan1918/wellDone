@@ -1,8 +1,6 @@
 function showSetting(){
     // console.log(document.getElementById('charMenu').children[CHAR], CHAR);
     selectChar(document.getElementById('charMenu').children[CHAR]);
-    createCarouselMenu('bgm', BGM_LIST, "BGM");
-    createCarouselMenu('bgi', THEME_LIST, "THEME");
 }
 
 function selectChar(event){

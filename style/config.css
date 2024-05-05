@@ -16,6 +16,15 @@
     src:url('//cdn.df.nexon.com/img/common/font/DNFBitBit-Regular.woff'),url('//cdn.df.nexon.com/img/common/font/DNFBitBit-Regular.woff2') ;
 }
 
+@keyframes hovering{
+    0%{
+        transform: translateY(0px);
+    }
+    100% {
+        transform: translateY(-10px);
+    }
+}
+
 * {
     color: #022D3E;
     margin: 0;
