@@ -248,13 +248,20 @@ function drawIngredients(){
 }
 
 /* 이미지 로드 */
-function loadImage(src, callback){
-    var ingredientImg = new Image();
-    ingredientImg.onload = function(){
-      callback(ingredientImg);
-    };
-    ingredientImg.src = src;
-  }
+function loadImage(src, callback) {
+    if (loadImage.cache[src]) {
+        callback(loadImage.cache[src]);
+    } else {
+        var ingredientImg = new Image();
+        ingredientImg.onload = function () {
+            loadImage.cache[src] = ingredientImg;
+            callback(ingredientImg);
+        };
+        ingredientImg.src = src;
+    }
+}
+
+loadImage.cache = {}; // 이미지 캐시 객체
 
 /* 
     재료 충돌 감지
