@@ -5,16 +5,16 @@
 }
 
 .button-box {
-    margin: 0 auto;
+    display: table;
 }
 
 .main-button {
-    display: table;
+    margin: 0 auto;
     margin-bottom: 50px;
 }
 
 .sub-button {
-    display: table;
+    margin: 0 auto;
     margin-bottom: 30px;
 }
 
@@ -28,6 +28,10 @@
     justify-content: center;
     align-items: center;
     height: 100px;
+}
+
+.back-button {
+    left: 0;
 }
 
 .button-box img:first-child {
