@@ -79,6 +79,7 @@ var ingredientOffsetTop = 30;       /* 윗쪽 벽과 간격 */
 var ingredientOffsetLeft = 20;      /* 좌우 벽과 간격 */
 
 /* 메뉴 선택 시 게임 화면 보여주기 */
+// 필요 없어보임
 function showGame(){
     document.getElementById("game").style = "display: block: border: 2px solid black";
 }

@@ -16,7 +16,7 @@
         <img src="./img/background/main-background.png" alt="bg" id="background-image">
         <h1>This is title</h1>
         <div class="button-div">
-            <div class="button-box main-button" onclick="showPage('game', 'main')" id="game-start-button">
+            <div class="button-box main-button" onclick="showPage('game', 'main'); showBurgerRecipe();" id="game-start-button">
                 <img src="./img/button/game-start.png" alt="game start">
                 <img src="./img/button/game-start-hover.png" alt="game start">
             </div>
@@ -34,7 +34,7 @@
             </div>
         </div>
     </div>
-    <div class="page" id="setting" style="display: none;">
+    <div class="page" id="setting">
         <div class="button-box back-button" onclick="showPage('main', 'setting')">
             <img src="./img/button/back.png" alt="back">
             <img src="./img/button/back-hover.png" alt="back">
@@ -90,7 +90,7 @@
     </div>
 
     <!-- game page -->
-    <div class="page" id="game" style="display: none;">
+    <div class="page" id="game">
         <div class="button-box back-button" onclick="showPage('main', 'game')">
             <img src="./img/button/back.png" alt="back">
             <img src="./img/button/back-hover.png" alt="back">
@@ -111,6 +111,7 @@
     <script type="text/javascript" src="scripts/pageLoad.js"></script>
     <script type="text/javascript" src="scripts/setting.js"></script>
     <script type="text/javascript" src="scripts/challenge.js"></script>
+    <script type="text/javascript" src="scripts/stackBurger.js"></script>
     <script type="text/javascript" src="scripts/genDefault.js"></script>
 </body>
 </html>
