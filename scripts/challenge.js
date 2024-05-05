@@ -57,8 +57,13 @@ function createCards(name, dec, imgUrl, have = true) {
         handleMouseMovement(container, overlay);
 }
 
-var tasks = ["Clear Easy", "Clear Normal", "Clear Hard"];
-var taskDescrptions = ["Easy 모드 클리어 완료", "Normal 모드 클리어 완료", "Hard 모드 클리어 완료"];
+var tasks = [
+    "재료를 잘못 넣어도 그냥 드시는 손님", "재료를 잘못 넣으니 돈을 덜 주는 손님", "재료를 잘못 넣으니… 어디가셨지?", "세상을 구한 버거",
+    "이제 좀 알 것 같아요", "행운 버거", "버거? 눈 감고도 만듭니다", "아 그 버거요?"
+];
+var taskDescrptions = [
+    "Easy 모드 클리어", "Normal 모드 클리어", "Hard 모드 클리어", "모든 모드 클리어",
+    "버거 25개 판매", "버거 77개 판매", "버거 100개 판매", "모든 레시피의 버거를 판매하기"];
 var challengeState;
 const TASK_KEY = 'challenge';
 

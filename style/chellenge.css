@@ -1,26 +1,27 @@
 :root{
-    --cardSize: 
-}
-
-#chellenge h4 {
-    font-family: 'Chosunilbo_myungjo';
+/* 220 * 310 */
+    --cWidth: 220*0.9;
+    --cHeight: 310*0.9;
 }
 
 #cards {
+    font-family: "DungGeunMo";
     display: flex;
-    margin: 60px 0 0 0;
+    margin: 60px auto 0 auto;
     padding: 40px;
     overflow: hidden;
     place-items: center;
     gap: 20px;
     justify-content: center;
+    flex-wrap: wrap;
+    width: 1000px;
 }
 
 .title-card {
     align-items: center;
     text-align: center;
-    width: 260px;
-    height: 390px;
+    width: calc((var(--cWidth)+40) * 1px);
+    height: calc((var(--cHeight)+86) * 1px);
     margin-bottom: 15px;
     transition: all 0.2s;
 }
@@ -32,12 +33,14 @@
 
 .container {
     padding: 15px;
-    width: 220px; height: 310px; transition: all 0.1s;
+    width: calc(var(--cWidth) * 1px);
+    height: calc(var(--cHeight) * 1px);
+    transition: all 0.1s;
 }
 .overlay{
     position: absolute;
-    width: 220px;
-    height: 310px;
+    width: calc(var(--cWidth) * 1px);
+    height: calc(var(--cHeight) * 1px);
     background: linear-gradient(105deg,
     transparent 40%,
     rgba(255, 219, 112, 0.8) 45%,
@@ -52,13 +55,13 @@
 }
 .card {
     object-fit: cover;
-    width: 220px;
-    height: 310px;
+    width: calc(var(--cWidth) * 1px);
+    height: calc(var(--cHeight) * 1px);
     background-image: url(img/001.png);
     background-size: cover;
     border-radius: 5%;
 }
 #chellenge p {
-    font-family: 'TTHakgyoansimYeohaengR';
-    font-size: large;
+    font-size: x-large;
+
 }
