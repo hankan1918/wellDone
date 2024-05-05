@@ -21,6 +21,11 @@
     src: url("ARCADECLASSIC.TTF") format("truetype");
 }
 
+@font-face {
+    font-family: 'DungGeunMo';
+    src: url("DungGeunMo.ttf") format("truetype");
+}
+
 @keyframes hovering{
     0%{
         transform: translateY(0px);
@@ -31,6 +36,7 @@
 }
 
 * {
+    font-family: 'arcade' 'DungGeunMo';
     color: #022D3E;
     margin: 0;
     padding: 0;
