@@ -14,7 +14,6 @@
     gap: 20px;
     justify-content: center;
     flex-wrap: wrap;
-    width: 1000px;
 }
 
 #cards h1{
@@ -70,4 +69,21 @@
 #chellenge p {
     font-size: x-large;
 
+}
+
+#challenge-box {
+    border: 10px solid burlywood;
+    background-color: #f5f4df;
+    width: 50%;
+    height: 95vh;
+    margin: auto auto;
+    border-radius: 30px;
+}
+
+#achievements-title {
+    margin: 0;
+    font-size: 100px;
+    line-height: 100px;
+    text-align: center;
+    border-bottom: 10px solid burlywood;
 }
