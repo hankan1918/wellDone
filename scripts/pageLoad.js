@@ -5,6 +5,7 @@ function showPage(nxt='', cur=''){
 
 function bodyOnLoad(){
     showPage('main');
+    bgmPlayer.pause();
     createCarouselMenu('bgm', BGM_LIST, 'BGM');
     createCarouselMenu('bgi', THEME_LIST, 'THEME');
 }

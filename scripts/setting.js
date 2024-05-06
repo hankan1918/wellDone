@@ -85,6 +85,7 @@ function createCarouselMenu(pos, content, val){
                 BGM-=1;
                 cmItems.style.transform = `translateX(-${BGM*cmMenuWidth}px)`;
                 console.log(BGM);
+                playBGM();
             }
         });
         next.addEventListener('click', function(){
@@ -92,7 +93,13 @@ function createCarouselMenu(pos, content, val){
                 BGM+=1;
                 cmItems.style.transform = `translateX(-${BGM*cmMenuWidth}px)`;
                 console.log(BGM);
+                playBGM();
             }
         });
     }
+}
+
+function playBGM(){
+    bgmPlayer.src = `bgm/${BGM_LIST[BGM]}.mp3`;
+    bgmPlayer.play();
 }

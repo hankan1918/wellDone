@@ -36,6 +36,15 @@
     left: 30px;
 }
 
+.mute-button{
+    position: absolute;
+    left: 30px;
+    bottom: 30px;
+    background-color: aqua;
+    width: 30px;
+    height: 30px;
+}
+
 .button-box img:first-child {
     display: block;
 }

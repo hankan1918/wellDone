@@ -13,6 +13,7 @@
 
 </head>
 <body onload="bodyOnLoad();">
+    <audio autoplay loop controls id="bgmPlayer" style="display: none;"></audio>
     <div class="page" id="main">
         <img src="./img/background/main-background.png" alt="bg" id="background-image">
         <h1>This is title</h1>
@@ -34,6 +35,7 @@
                 <img src="./img/button/highscores-hover.png" alt="highscores">
             </div>
         </div>
+        <div class="mute-button" onclick="changeMuteState()">mute</div>
     </div>
     <div class="page" id="setting">
         <div class="button-box back-button" onclick="showPage('main', 'setting')">
