@@ -3,7 +3,6 @@
     align-items: center;
     justify-content: center;
     margin: 0 auto;
-    width: 900px;
     border-bottom: 10px solid burlywood;
 }
 
@@ -12,7 +11,7 @@
 }
 
 .picker>h2{
-    /*margin: 10px;*/
+    margin: 10px;
     height: 50px;
     line-height: 50px;
     display: inline;
