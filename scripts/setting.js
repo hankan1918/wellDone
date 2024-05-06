@@ -86,7 +86,8 @@ function createCarouselMenu(pos, content, val){
                 BGM-=1;
                 cmItems.style.transform = `translateX(-${BGM*cmMenuWidth}px)`;
                 console.log(BGM);
-                playBGM();
+                if(!isMuted)
+                    playBGM();
             }
         });
         next.addEventListener('click', function(){
@@ -94,7 +95,8 @@ function createCarouselMenu(pos, content, val){
                 BGM+=1;
                 cmItems.style.transform = `translateX(-${BGM*cmMenuWidth}px)`;
                 console.log(BGM);
-                playBGM();
+                if(!isMuted)
+                    playBGM();
             }
         });
     }
