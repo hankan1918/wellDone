@@ -36,7 +36,6 @@ function createCards(name, dec, imgUrl, have = true) {
     
     var card = document.createElement('div')
     var title = document.createElement('h1');
-    title.style="position: absolute; bottom: 60px; font-size: 15px; text-align: center; width: 210px;";
     title.innerHTML = name;
     card.appendChild(title);
     card.classList.add('card');

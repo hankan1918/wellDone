@@ -17,6 +17,12 @@
     width: 1000px;
 }
 
+#cards h1{
+    width: calc(var(--cWidth) * 1px);
+    margin: 0;
+    position: absolute; bottom: 63px; font-size: 15px; text-align: center;
+}
+
 .title-card {
     align-items: center;
     text-align: center;
