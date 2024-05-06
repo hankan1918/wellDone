@@ -52,7 +52,7 @@ function isComplete(){
     return false;
 }
 
-function appendIngredient(i, mode){
+function appendIngredient(i){
     // i : genDefault에서 전달받는 재료의 type
     // 추후 mode별 기능 차이를 두기 위해 인자 추가
 

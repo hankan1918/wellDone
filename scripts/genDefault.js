@@ -289,7 +289,7 @@ function collisionDetection(){
 
                 updateGrid(b.x, b.y);   // 격자 업데이트 (재료가 있던 칸 비우기)
 
-                appendIngredient(b.type,mode);
+                appendIngredient(b.type);
   
                 // 파괴된 재료 제거
                 activeingredients.splice(i, 1);      // activeingredients.splice(제거 시작할 인덱스, 제거할 요소의 개수)
