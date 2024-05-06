@@ -52,7 +52,10 @@ function isComplete(){
     return false;
 }
 
-function appendIngredient(i, level){
+function appendIngredient(i, mode){
+    // i : genDefault에서 전달받는 재료의 type
+    // 추후 mode별 기능 차이를 두기 위해 인자 추가
+
     //난이도 별로 판정이 달라서 판정 후에 본 함수를 호출하여 추가하면 됨.
     var ingredient;
     var answerRecipe = BURGER_LIST[BURGER];
