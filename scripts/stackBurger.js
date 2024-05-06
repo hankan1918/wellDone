@@ -52,7 +52,7 @@ function isComplete(){
     return false;
 }
 
-function appendIngredient(){
+function appendIngredient(i, level){
     //난이도 별로 판정이 달라서 판정 후에 본 함수를 호출하여 추가하면 됨.
     var ingredient;
     var answerRecipe = BURGER_LIST[BURGER];
@@ -68,7 +68,7 @@ function appendIngredient(){
     currentIngredient += 1;
 
     ingredient = document.createElement('img');
-    ingredient.src = `img/ingredient/${answerRecipe[currentIngredient]}.png`;
+    ingredient.src = `img/ingredient/${i}.png`;
     ingredient.style.position = 'absolute';
     ingredient.style.width = `${BURGER_WIDTH}px`;
     if(answerRecipe[currentIngredient] === 'cheese') {

@@ -139,6 +139,9 @@ function init(c, sb, lb, tb, w){
     ingredientTimer = setInterval(createNewingredient, 2000);
     timer = setInterval(draw, 10);
     gTimer = setInterval(gameTimer, 1000);
+
+    /*currentBurger Div 초기화*/
+    $("#currentBurger").empty();
 }
 
 /*
