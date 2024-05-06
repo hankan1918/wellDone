@@ -78,7 +78,9 @@ function changeState(achieve){
     }
 }
 
-function load_chellenge(){
+function showChellenge(){
+    showPage('chellenge', 'main'); 
+
     var get = localStorage.getItem(TASK_KEY);
     if(get == null || get == ""){
         challengeState = '0'.repeat(tasks.length);

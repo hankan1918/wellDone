@@ -1,5 +1,5 @@
 function showSetting(){
-    // console.log(document.getElementById('charMenu').children[CHAR], CHAR);
+    showPage('setting', 'main'); 
     selectChar(document.getElementById('charMenu').children[CHAR]);
 }
 

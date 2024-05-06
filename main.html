@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="style/main.css">
 
 </head>
-<body onload="showPage('main'); createCarouselMenu('bgm', BGM_LIST, 'BGM'); createCarouselMenu('bgi', THEME_LIST, 'THEME');">
+<body onload="bodyOnLoad();">
     <div class="page" id="main">
         <img src="./img/background/main-background.png" alt="bg" id="background-image">
         <h1>This is title</h1>
@@ -21,11 +21,11 @@
                 <img src="./img/button/game-start.png" alt="game start">
                 <img src="./img/button/game-start-hover.png" alt="game start">
             </div>
-            <div class="button-box sub-button" onclick="showPage('setting', 'main'); showSetting();" id="settings-button">
+            <div class="button-box sub-button" onclick="showSetting();" id="settings-button">
                 <img src="./img/button/settings.png" alt="settings">
                 <img src="./img/button/settings-hover.png" alt="settings">
             </div>
-            <div class="button-box sub-button" onclick="showPage('chellenge', 'main'); load_chellenge();" id="achievement-button">
+            <div class="button-box sub-button" onclick="showChellenge();" id="achievement-button">
                 <img src="./img/button/achievements.png" alt="achievements">
                 <img src="./img/button/achievements-hover.png" alt="achievements">
             </div>
