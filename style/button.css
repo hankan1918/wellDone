@@ -36,13 +36,15 @@
     left: 30px;
 }
 
-.mute-button{
+#mute-button {
     position: absolute;
-    left: 30px;
     bottom: 30px;
-    background-color: aqua;
-    width: 30px;
-    height: 30px;
+    left: 30px;
+}
+
+#mute-button img {
+    width: 75px;
+    height: 75px;
 }
 
 .button-box img:first-child {

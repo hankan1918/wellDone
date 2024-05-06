@@ -9,12 +9,20 @@ var BGM = 0; //현재 선택된 배경음악
 var bgmPlayer = document.getElementById('bgmPlayer');
 var isMuted = true;
 
+var button = document.getElementById("mute-button");
+var normalButton = button.children[0];
+var hoverButton = button.children[1];
+
 function changeMuteState(){
     if(isMuted){
         isMuted = false;
+        normalButton.src = "./img/button/unmute.png"
+        hoverButton.src = "./img/button/unmute-hover.png"
         playBGM();
     } else {
         isMuted = true;
+        normalButton.src = "./img/button/mute.png"
+        hoverButton.src = "./img/button/mute-hover.png"
         bgmPlayer.pause();
     }
 }
