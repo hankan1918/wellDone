@@ -49,6 +49,7 @@ function createCarouselMenu(pos, content, val){
         cmItem = document.createElement('div');
         cmItem.classList.add('cmItem');
         cmItem.innerHTML = content[i];
+        cmItem.style.fontSize = "50px";
         cmItems.appendChild(cmItem);
     }
 

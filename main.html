@@ -15,7 +15,7 @@
 <body onload="bodyOnLoad();">
     <audio autoplay loop controls id="bgmPlayer" style="display: none;"></audio>
     <div class="page" id="main">
-        <img src="./img/background/main-background.png" alt="bg" id="background-image">
+        <img src="./img/background/main-background.png" alt="bg" class="background-image">
         <h1>This is title</h1>
         <div class="button-div">
             <div class="button-box main-button" onclick="showPage('game', 'main'); showBurgerRecipe();" id="game-start-button">
@@ -38,48 +38,50 @@
         <div class="mute-button" onclick="changeMuteState()">mute</div>
     </div>
     <div class="page" id="setting">
-        <div class="button-box back-button" onclick="showPage('main', 'setting')">
-            <img src="./img/button/back.png" alt="back">
-            <img src="./img/button/back-hover.png" alt="back">
-        </div>
-        <h1>Setting</h1>
-        <!-- 
-            - 알바생 디자인 바꾸기
-            - 배경 그림
-            - 배경 음악
-         -->
-        <div class="picker" id="char">
-            <h2>Character</h2>
-            <div id="charMenu">
-                <div onclick="selectChar(this);">
-                    <img src="img/char/char001.png" alt="A">
-                </div>
-                <div onclick="selectChar(this);">
-                    <img src="img/char/char001.png" alt="B">
-                </div>
-                <div onclick="selectChar(this);">
-                    <img src="img/char/char001.png" alt="C">
-                </div>
+        <img src="./img/background/main-background.png" alt="bg" class="background-image">
+        <div id="settings-box">
+            <div class="button-box back-button" onclick="showPage('main', 'setting')">
+                <img src="./img/button/back.png" alt="back">
+                <img src="./img/button/back-hover.png" alt="back">
             </div>
-        </div>
-        <div class="picker" id="bgi">
-            <h2>Theme</h2>
-            <div class="carouselMenu">
-                <!-- <button onclick="carouselMenuPrev();" style="display: block;">prev</button>
-                <div class="cmContainer">
-                    <div class="cmItems">
-                        <div class="cmItem">Theme A</div>
-                        <div class="cmItem">Theme B</div>
-                        <div class="cmItem">Theme C</div>
+            <h1 id="settings-title">Setting</h1>
+            <!--
+                - 알바생 디자인 바꾸기
+                - 배경 그림
+                - 배경 음악
+             -->
+            <h2 class="settings-sub-title">Character</h2>
+            <div class="picker" id="char">
+                <div id="charMenu">
+                    <div onclick="selectChar(this);">
+                        <img src="img/char/char001.png" alt="A">
+                    </div>
+                    <div onclick="selectChar(this);">
+                        <img src="img/char/char001.png" alt="B">
+                    </div>
+                    <div onclick="selectChar(this);">
+                        <img src="img/char/char001.png" alt="C">
                     </div>
                 </div>
-                <button onclick="carouselMenuNext();" style="display: block;">next</button> -->
             </div>
-        </div>
-        <div class="picker" id="bgm">
-            <h2>BGM</h2>
-            <div class="carouselMenu">
-
+            <h2 class="settings-sub-title">Theme</h2>
+            <div class="picker" id="bgi">
+                <div class="carouselMenu">
+                    <!-- <button onclick="carouselMenuPrev();" style="display: block;">prev</button>
+                    <div class="cmContainer">
+                        <div class="cmItems">
+                            <div class="cmItem">Theme A</div>
+                            <div class="cmItem">Theme B</div>
+                            <div class="cmItem">Theme C</div>
+                        </div>
+                    </div>
+                    <button onclick="carouselMenuNext();" style="display: block;">next</button> -->
+                </div>
+            </div>
+            <h2 class="settings-sub-title">BGM</h2>
+            <div class="picker" id="bgm">
+                <div class="carouselMenu">
+                </div>
             </div>
         </div>
     </div>

@@ -4,10 +4,15 @@
     justify-content: center;
     margin: 0 auto;
     width: 900px;
+    border-bottom: 10px solid burlywood;
+}
+
+.picker:last-of-type {
+    border: 0;
 }
 
 .picker>h2{
-    margin: 10px;
+    /*margin: 10px;*/
     height: 50px;
     line-height: 50px;
     display: inline;
@@ -24,7 +29,7 @@
     clip-path: polygon(30% 0, 100% 0, 70% 100%, 0 100%);
     width: 150px; height: 150px;
     transition: all 0.3s;
-    margin: auto -20px;
+    /*margin: auto -20px;*/
     padding: 30px;
 }
 
@@ -61,5 +66,32 @@
     height: 50px;
     line-height: 50px;
     text-align: center;
+    margin-bottom: 10px;
     /* background-color: aquamarine; */
+}
+.picker {
+    padding-bottom: 20px;
+}
+
+#settings-box {
+    border: 10px solid burlywood;
+    background-color: #f5f4df;
+    width: 50%;
+    height: 100%;
+    margin: auto auto;
+    border-radius: 30px;
+}
+
+#settings-title {
+    margin: 0;
+    font-size: 100px;
+    line-height: 100px;
+    text-align: center;
+    border-bottom: 10px solid burlywood;
+}
+
+.settings-sub-title {
+    text-align: center;
+    font-size: 75px;
+    line-height: 100px;
 }
