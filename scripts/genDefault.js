@@ -1,97 +1,62 @@
-/*
-    - 기능:
-        - 재료:
-            - 위에서 아래로 내려오도록
-            - easy -> 메뉴에 따른 우선순위
-            - 
-        - 공: 
-            - 바닥에 떨어지면 목숨 -1
-        - 패들:
-        - 점수(돈):
-        - 목숨: 
-            - 총 3목숨
-        - 만들어야하는 햄버거:
-            - 만들기 성공 -> 완성도에 따른 점수 -> 다음 햄버거
-        - 제한시간
-            - 제한 시간 안에 못하면 목숨 -1
-        - 추가
-            - 일정 점수 -> 난이도 상승 (목숨, 점수 초기화)
-            - 공 각도 튀는거 수정해야할 듯
-            - start 버튼 누를 때 동작 수정
-*/
-/* 프레임 */
-const FRAME_RATE = 1000 / 60; // 60 FPS (1 frame per 16.67 milliseconds)
-
 /* 난이도 관련 변수 */
-var mode = 0;                       /* 0:EASY 1:NORMAL 2:HARD
-
-/* 사운드 관련 변수 */
-// var hitSound = new Audio("");
-// var breakSound = new Audio("");
+var mode = 0;                                               /* 0:EASY 1:NORMAL 2:HARD
 
 /* 캔버스 관련 변수 */
-var canvas;                         /* gameCanvas 참조 canvas */
-var context;                        /* 컨텍스트 객체 */    
-var timer;                          /* 타이머 객체 변수 setInterval과 clear를 연결 */
-var width;                          /* canvas 너비 */
-var height;                         /* canvas 높이 */
+var canvas = document.getElementById("gameCanvas");         /* gameCanvas 참조 canvas */
+var context = canvas.getContext('2d');                      /* 컨텍스트 객체 */    
+const CWIDTH = canvas.width;                                /* canvas 너비 */
+const CHEIGHT = canvas.height;                              /* canvas 높이 */
+var timer;                                                  /* 타이머 객체 변수 setInterval과 clear를 연결 */
 
 /* 격자 관련 변수 */
-var gridSize = 80;
+const GRIDSIZE = 80;
 var grid = [];
 
 
 /* 공 관련 변수 */
-var ballRadius = 5;                 /* 공 반지름 */
-var ballX;                          /* 공의 현재 x방향 위치 */
-var ballY;                          /* 공의 현재 y방향 위치 */
-var speed;                          /* 공의 속도 */
-var ballVx;                         /* 공의 현재 x방향 속도 */
-var ballVy;                         /* 공의 현재 y방향 속도 */
-var weight;                         /* 무게 */
+const BALLRADIUS = 5;                                       /* 공 반지름 */
+var ballX;                                                  /* 공의 현재 x방향 위치 */
+var ballY;                                                  /* 공의 현재 y방향 위치 */
+const BALL_SPEED = 5;                                       /* 공의 초기 속도 */
+var speed;                                                  /* 공의 속도 */
+var ballVx;                                                 /* 공의 현재 x방향 속도 */
+var ballVy;                                                 /* 공의 현재 y방향 속도 */
+const WEIGHT = 0.08;                                        /* 바운스 */
 
 /* 패들 관련 변수 */
-var barWidth = 100;                 /* 패들 너비 */
-var barHeight = 10;                 /* 패들 높이 */
-var barX;                           /* 패들 x */
-var barY;                           /* 패들 y */
+const BARWIDTH = 80;                                        /* 패들 너비 */
+const BARHEIGHT = 10;                                       /* 패들 높이 */
+var barX;                                                   /* 패들 x 위치 */
+var barY;                                                   /* 패들 y 위치 */
 
 /* 제한시간, 점수, 목숨 관련 변수 */
 var gTimer;
-const TOTALTIME = 10;               /* 제한 시간 */
-var remainingTime;                  /* 남은 시간 */
-var timeboard;                      /* 게임 시간판 */
-var scoreboard;                     /* 점수판 */
-const MIN_SCORE = 0;                /* 초기 점수 */
-var score;                          /* 점수 */
-var lifeboard;                      /* 목숨판 */
-const MAX_LIFE = 3;                 /* 최대목숨 */
-var life;                           /* 목숨 */
+const TOTALTIME = 60;                                       /* 제한 시간 */
+var remainingTime;                                          /* 남은 시간 */
+var timeboard;                                              /* 게임 시간판 */
+const MIN_SCORE = 0;                                        /* 초기 점수 */
+var score;                                                  /* 점수 */
+var scoreboard;                                             /* 점수판 */
+var lifeboard;                                              /* 목숨판 */
+const MAX_LIFE = 3;                                         /* 최대목숨 */
+var life;                                                   /* 목숨 */
 
 /* 재료 관련 변수 */
-loadImage.cache = {};               /* 이미지 캐시 객체 */
+loadImage.cache = {};                                       /* 이미지 캐시 객체 */
 let ingredientTimer;
-let activeingredients = [];         /* 활성화 된 재료 배열 */
-var ingredientFallSpeed = 0.5;      /* 재료 낙하 속도 */
-var ingredientWidth = 60;           /* 재료 너비 */
-var ingredientHeight = 30;          /* 재료 높이 */
-var ingredientPadding = 10;         /* 재료 사이 간격 */
-var ingredientOffsetTop = 30;       /* 윗쪽 벽과 간격 */
-var ingredientOffsetLeft = 20;      /* 좌우 벽과 간격 */
-
-/* 메뉴 선택 시 게임 화면 보여주기 */
-// 필요 없어보임
-function showGame(){
-    document.getElementById("game").style = "display: block: border: 2px solid black";
-}
+let activeingredients = [];                                 /* 활성화 된 재료 배열 */
+var FALLSPEED = 0.5;                                        /* 재료 낙하 속도 */
+const INGREDIENTW = 60;                                     /* 재료 너비 */
+const INGREDIENTH = 30;                                     /* 재료 높이 */
+// const INGREDIENTP = 10;                                  /* 재료 사이 간격 */
+// const INGREDIENTOT = 30;                                 /* 윗쪽 벽과 간격 */
+// const INGREDIENTOL = 20;                                 /* 좌우 벽과 간격 */
 
 /* init */
-function init(c, sb, lb, tb, w){
+function init(sb, lb, tb){
     clearInterval(timer);
     clearInterval(ingredientTimer);
     clearInterval(gTimer);
-    canvas = c;
-    weight = w;
     scoreboard = sb;
     lifeboard = lb;
     timeboard = tb;
@@ -104,37 +69,30 @@ function init(c, sb, lb, tb, w){
     scoreboard.innerText = score;
     life = MAX_LIFE
     lifeboard.innerText = life;
-    
-    
-    /* 캔버스 */
-    context = canvas.getContext('2d');
-    width = canvas.width;
-    height = canvas.height;
-    console.log(width, height);
 
     /* 격자 */
     initGrid();
     
-    /* 패들 */
-    barX = width/2 - (barWidth/2);      // 패들 x축 초기 위치
-    barY = height - barHeight*2;        // 패들 y축 초기 위치
-
-    /* 공 */
-    ballX = width/2;                    // 공 x축 초기 위치
-    ballY = height/2;                   // 공 y축 초기 위치
-    speed = 5;
-    ballVx = 0;                         // 공 x축 초기 속도 0
-    ballVy = -speed;                    // 공 y축 초기 속도 -5
+    /* 공 초기화 */
+    ballX = CWIDTH/2;                                       // 공 x축 초기 위치
+    ballY = CHEIGHT/2;                                      // 공 y축 초기 위치
+    speed = BALL_SPEED;
+    ballVx = 0;                                             // 공 x축 초기 속도 0
+    ballVy = -speed;                                        // 공 y축 초기 속도 -5
+    
+    /* 패들 초기화 */
+    barX = CWIDTH/2 - (BARWIDTH/2);                         // 패들 x축 초기 위치
+    barY = CHEIGHT - BARHEIGHT*2;                           // 패들 y축 초기 위치
 
     /* 마우스 컨틀롤 */
     canvas.addEventListener('mousemove', function(e){
         var relativeX = e.clientX - canvas.offsetLeft;
-        if(relativeX > + barWidth/2 && relativeX < canvas.width-barWidth/2){
-            barX = relativeX - barWidth/2;
+        if(relativeX > BARWIDTH/2 && relativeX < CWIDTH-BARWIDTH/2){
+            barX = relativeX - BARWIDTH/2;
         }
     })
-    console.log(`speed: ${speed}`);
-    console.log(`x: ${ballX}`, `y: ${ballY}`);
+    // console.log(`speed: ${speed}`);
+    // console.log(`x: ${ballX}`, `y: ${ballY}`);
 
     ingredientTimer = setInterval(createNewingredient, 2000);
     timer = setInterval(draw, 10);
@@ -151,32 +109,34 @@ function init(c, sb, lb, tb, w){
         - Math.max(): 가장 큰 값 반환, Math.min(): 가장 작은 값 반환
 */
 function bounce(){
-    if((ballY >= barY - ballRadius) && (ballY <= barY + barHeight + ballRadius) && (ballX >= barX - ballRadius) && (ballX <= (barX + barWidth + ballRadius))){
-        var distanceFromCenter = ballX - (barX + barWidth / 2);
-        ballVx = distanceFromCenter* weight;
+    if((ballY >= barY - BALLRADIUS) &&
+        (ballY <= barY + BARHEIGHT + BALLRADIUS) && 
+        (ballX >= barX - BALLRADIUS) && 
+        (ballX <= (barX + BARWIDTH + BALLRADIUS))){
+        var distanceFromCenter = ballX - (barX + BARWIDTH / 2);
+        ballVx = distanceFromCenter* WEIGHT;
         ballVy = Math.sqrt(speed**2 - ballVx**2);
         ballVy *= -1;
-        console.log(`ballVx: ${ballVx}, ballvy: ${ballVy}`);
+        // console.log(`ballVx: ${ballVx}, ballvy: ${ballVy}`);
     }
-    else if(ballX <= ballRadius || ballX >= width-ballRadius){
+    else if(ballX <= BALLRADIUS || ballX >= CWIDTH-BALLRADIUS){
         ballVx *= -1;
-        ballX = Math.max(ballRadius, Math.min(width - ballRadius, ballX)); // 벽끼임 문제 해결.겹친 영역만큼 공의 위치를 밖으로 이동
+        ballX = Math.max(BALLRADIUS, Math.min(CWIDTH - BALLRADIUS, ballX));     // 벽끼임 문제 해결.겹친 영역만큼 공의 위치를 밖으로 이동
     }
-    else if(ballY <= ballRadius){
+    else if(ballY <= BALLRADIUS){
         ballVy *= -1;
-        ballY = Math.max(ballRadius, ballY);
+        ballY = Math.max(BALLRADIUS, ballY);
     }
 }
 
 /* 그리기 */
 function draw(){
-    if(ballY>=height-ballRadius){
+    if(ballY>=CHEIGHT-BALLRADIUS){
         /*
-            공이 바닥에 떨어지면 공의 위치 초기화
-            목숨 -1
+            목숨 사라지면 GAMEOVER
         */
-        ballX = width/2;                    
-        ballY = height/2;                   
+        ballX = CWIDTH/2;                    
+        ballY = CHEIGHT/2;                   
         ballVy *= -1;
         life -= 1;
         drawBall();
@@ -188,7 +148,7 @@ function draw(){
         bounce();                        
         ballX += ballVx; 
         ballY += ballVy; 
-        context.clearRect(0, 0, width, height); 
+        context.clearRect(0, 0, CWIDTH, CHEIGHT); 
         updateTime();
         updateLife();
         updateScore();
@@ -214,14 +174,14 @@ function createNewingredient(){
     const emptyCell = findEmptyGridCell();
     const gridX = emptyCell.x;
     const gridY = emptyCell.y;
-    const x = gridX * gridSize + Math.random() * (gridSize - ingredientWidth);
-    const y = -ingredientHeight;
+    const x = gridX * GRIDSIZE + Math.random() * (GRIDSIZE - INGREDIENTW);
+    const y = -INGREDIENTH;
     const type = ingredientType[Math.floor(Math.random() * ingredientType.length)];
     // const color = ingredientColor[Math.floor(Math.random() * ingredientColor.length)];
-    const ingredientName = type + ".png";
-    const ingredientIMGSrc = "./img/ingredient/" + ingredientName;
-    const activeingredient = { x, y, status: 1, type, image: ingredientIMGSrc };
-    activeingredients.push(activeingredient);
+    const IINGREDIENTNAME = type + ".png";
+    const INGREDIENTSRC = "./img/ingredient/" + IINGREDIENTNAME;
+    const ACTIVEINGREDIENT = { x, y, status: 1, type, src: INGREDIENTSRC };
+    activeingredients.push(ACTIVEINGREDIENT);
     grid[gridX][gridY] = true;      // 격자 활성화
 }
 
@@ -233,18 +193,18 @@ function createNewingredient(){
 */
 function drawIngredients(){
     for (var i = 0; i < activeingredients.length; i++){
-        const ingredient = activeingredients[i];
-        ingredient.y += ingredientFallSpeed;                                  // 재료 아래로 이동
-        console.log(ingredient);
-        if (ingredient.y > canvas.height){
+        const INGRED = activeingredients[i];
+        INGRED.y += FALLSPEED;                                          // 재료 아래로 이동
+        // console.log(INGRED);
+        if (INGRED.y > CHEIGHT){
             // 재료가 화면 아래로 사라지면 제거
-            updateGrid(ingredient.x, ingredient.y);
+            updateGrid(INGRED.x, INGRED.y);
             activeingredients.splice(i, 1);
-            i--;                                                     // 배열 인덱스 조정
+            i--;                                                        // 배열 인덱스 조정
         } else {
-            loadImage(ingredient.image, function(img){
+            loadImage(INGRED.src, function(img){
                 context.beginPath();
-                context.drawImage(img, ingredient.x, ingredient.y, ingredientWidth, ingredientHeight);
+                context.drawImage(img, INGRED.x, INGRED.y, INGREDIENTW, INGREDIENTH);
                 context.closePath();
             });
         }
@@ -282,7 +242,10 @@ function collisionDetection(){
     for (let i = 0; i < activeingredients.length; i++){
         const b = activeingredients[i];
         if (b.status === 1){
-            if ((ballY >= b.y - ballRadius) && (ballY <= b.y + ingredientHeight + ballRadius) &&(ballX >= b.x - ballRadius) && (ballX <= b.x + ingredientWidth + ballRadius)) {
+            if ((ballY >= b.y - BALLRADIUS) &&
+                (ballY <= b.y + INGREDIENTH + BALLRADIUS) &&
+                (ballX >= b.x - BALLRADIUS) &&
+                (ballX <= b.x + INGREDIENTW + BALLRADIUS)) {
                 ballVy *= -1;
                 b.status = 0;
                 score++;
@@ -292,8 +255,8 @@ function collisionDetection(){
                 appendIngredient(b.type);
   
                 // 파괴된 재료 제거
-                activeingredients.splice(i, 1);      // activeingredients.splice(제거 시작할 인덱스, 제거할 요소의 개수)
-                i--;                                // splice로 요소 제거하면 인덱스가 하나씩 앞으로 당겨지므로 -1 해야함
+                activeingredients.splice(i, 1);         // activeingredients.splice(제거 시작할 인덱스, 제거할 요소의 개수)
+                i--;                                    // splice로 요소 제거하면 인덱스가 하나씩 앞으로 당겨지므로 -1 해야함
             }
         }
     }
@@ -302,7 +265,7 @@ function collisionDetection(){
 /* 공 그리기 */
 function drawBall(){
     context.beginPath();
-    context.arc(ballX, ballY, ballRadius, 0, 2.0*Math.PI);
+    context.arc(ballX, ballY, BALLRADIUS, 0, 2.0*Math.PI);
     context.fillStyle = 'red';
     context.fill();
 }
@@ -310,7 +273,7 @@ function drawBall(){
 /* 패들 그리기 */
 function drawBar(){
     context.beginPath();
-    context.rect(barX, barY, barWidth, barHeight);
+    context.rect(barX, barY, BARWIDTH, BARHEIGHT);
     context.fillStyle = "blue";
     context.fill();
     context.closePath();
@@ -322,9 +285,9 @@ function drawBar(){
     - 게임 화면을 격자로 나눔. 격자에 재료가 존재하는지(있을 때 true, 없을 때 false)
 */
 function initGrid() {
-    for (let i = 0; i < Math.ceil(width / gridSize); i++) {
+    for (let i = 0; i < Math.ceil(CWIDTH / GRIDSIZE); i++) {
         grid[i] = [];
-        for (let j = 0; j < Math.ceil(height / gridSize); j++) {
+        for (let j = 0; j < Math.ceil(CHEIGHT / GRIDSIZE); j++) {
             grid[i][j] = false;
         }
     }
@@ -349,11 +312,11 @@ function findEmptyGridCell(){
     - 재료가 충돌하면(파괴) 해당 격자 칸 비움
     - ingredientX, ingredientkY: 재료의 실제 좌표
     - gridX, gridY: 재료가 위치한 격자 좌표
-    - ingredientX = 120, ingredientY = 80, gridSize = 80이면 격자(1,1)
+    - ingredientX = 120, ingredientY = 80, GRIDSIZE = 80이면 격자(1,1)
 */
 function updateGrid(ingredientX, ingredientY){
-    const gridX = Math.floor(ingredientX / gridSize);
-    const gridY = Math.floor(ingredientY / gridSize);
+    const gridX = Math.floor(ingredientX / GRIDSIZE);
+    const gridY = Math.floor(ingredientY / GRIDSIZE);
     grid[gridX][gridY] = false;                     // 격자 비움 표시
 }
 
@@ -398,10 +361,8 @@ function updateLife(){
 
 
 /* newgame replay 처리 */
-function newGame(c, sb, lb, tb, w){
+function newGame(sb, lb, tb){
     // init에 보낼 인수
-    rc = c;         // canvas
-    rw = w;         // weight
     rsb = sb;       // scoreboard
     rlb = lb;       // lifeboard
     rtb = tb;       // timeboard
@@ -412,31 +373,38 @@ function newGame(c, sb, lb, tb, w){
     remainingTime = TOTALTIME;
 
     // 공 위치 초기화
-    ballX = width/2;                    
-    ballY = height/2;
+    ballX = CWIDTH/2;                    
+    ballY = CHEIGHT/2;
     
     // 재료 초기화
     activeingredients = [];
     clearInterval(ingredientTimer);
     createNewingredient();
-    init(rc, rsb, rlb, rtb, rw);
-
     // 격자 초기화
     initGrid();
+
+    init(rsb, rlb, rtb);
 }
 
 /*
     init함수를 부르는 거 제외 한 초기화
 */
 function resetGame(){
+    // 공 초기화
+    ballX = CWIDTH/2;                    
+    ballY = CHEIGHT/2;
+    speed = BALL_SPEED;
+    ballVx = 0;                         // 공 x축 초기 속도 0
+    ballVy = -speed;                    // 공 y축 초기 속도 -5
+    
+    /* 패들 위치 초기화 */
+    barX = CWIDTH/2 - (BARWIDTH/2);      // 패들 x축 초기 위치
+    barY = CHEIGHT - BARHEIGHT*2;        // 패들 y축 초기 위치
+
     // 점수, 목숨 초기화
     life = MAX_LIFE;
     score = MIN_SCORE;
     remainingTime = TOTALTIME;
-
-    // 공 위치 초기화
-    ballX = width/2;                    
-    ballY = height/2;
     
     // 재료 초기화
     activeingredients = [];
@@ -449,7 +417,7 @@ function resetGame(){
 
 /* 게임 오버 */
 function drawGameover(msg="게임오버"){
-    context.clearRect(0, 0, width, height);
+    context.clearRect(0, 0, CWIDTH, CHEIGHT);
     context.fillStyle = "red"
     context.font = '50px serif';
     context.fillText(msg, 100, 100);
