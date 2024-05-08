@@ -393,7 +393,7 @@ function resetGame(){
     // 공 초기화
     ballX = CWIDTH/2;                    
     ballY = CHEIGHT/2;
-    speed = BALL_SPEED;
+    speed = 0;
     ballVx = 0;                         // 공 x축 초기 속도 0
     ballVy = -speed;                    // 공 y축 초기 속도 -5
     
@@ -407,11 +407,11 @@ function resetGame(){
     remainingTime = TOTALTIME;
     
     // 재료 초기화
+
     activeingredients = [];
     clearInterval(ingredientTimer);
-    createNewingredient();
-
-    // 격자 초기화
+    clearInterval(timer);
+    clearInterval(gTimer);
     initGrid();
 }
 
