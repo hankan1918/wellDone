@@ -19,7 +19,7 @@
         <img src="./img/background/main-background.png" alt="bg" class="background-image">
         <h1>This is title</h1>
         <div class="button-div">
-            <div class="button-box main-button" onclick="showPage('game', 'main'); showBurgerRecipe();" id="game-start-button">
+            <div class="button-box main-button" onclick="showPage('game', 'main'); showBurgerRecipe(); init(document.getElementById('scoreboard'), document.getElementById('lifeboard'), document.getElementById('timeboard'));" id="game-start-button">
                 <img src="./img/button/game-start.png" alt="game start">
                 <img src="./img/button/game-start-hover.png" alt="game start">
             </div>
@@ -103,7 +103,7 @@
 
     <!-- game page -->
     <div class="page" id="game">
-        <div class="button-box back-button" onclick="showPage('main', 'game')">
+        <div class="button-box back-button" onclick="showPage('main', 'game'); resetGame();">
             <img src="./img/button/back.png" alt="back">
             <img src="./img/button/back-hover.png" alt="back">
         </div>
@@ -119,7 +119,7 @@
         <input type="button" onclick="easyMode();" value="EASY">
         <input type="button" onclick="normalMode();" value="NORMAL">
         <input type="button" onclick="hardMode();" value="HARD">
-        <canvas id="gameCanvas" width="800" height="400" style="border: 1px solid black;"></canvas>
+        <canvas id="gameCanvas" width="1000" height="500"></canvas>
         <div id="burgerRecipe"></div>
         <div id="currentBurger"></div>
 
