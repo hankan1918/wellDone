@@ -1,8 +1,16 @@
 var SCORE_KEY = "scoreList";
-var scoreList;
 
 function showScoreboard(){
-    
+    showPage('scoreboard', 'main');
+    var child;
+    var div = document.getElementById('scoreboardList');
+    div.innerHTML = "";
+    var scoreList = getScores();
+    for(var i = 0; i<scoreList.length; i++){
+        child = document.createElement('div');
+        child.innerHTML = `${scoreList[i].char} ${scoreList[i].nickname} ${scoreList[i].score}`;
+        div.appendChild(child);
+    }
 }
 
 function resetScoreStorage(){
@@ -19,7 +27,7 @@ function appendScore(char, nickname, score) {
 
         savedData.sort((a,b) => b.score - a.score)
         if(savedData.length >10){
-            console.log("개수 조정")
+            // console.log("개수 조정")
             savedData = savedData.slice(0,10)
         }
         // 로컬 스토리지에 저장
