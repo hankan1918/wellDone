@@ -4,8 +4,8 @@ var mode = 0;                                               /* 0:EASY 1:NORMAL 2
 /* 캔버스 관련 변수 */
 var canvas = document.getElementById("gameCanvas");         /* gameCanvas 참조 canvas */
 var context = canvas.getContext('2d');                      /* 컨텍스트 객체 */    
-const CWIDTH = canvas.width;                                /* canvas 너비 */
-const CHEIGHT = canvas.height;                              /* canvas 높이 */
+var CWIDTH = canvas.width;                                /* canvas 너비 */
+var CHEIGHT = canvas.height;                              /* canvas 높이 */
 var timer;                                                  /* 타이머 객체 변수 setInterval과 clear를 연결 */
 
 /* 격자 관련 변수 */
@@ -425,3 +425,25 @@ function drawGameover(msg="게임오버"){
     clearInterval(ingredientTimer);
     clearInterval(gTimer);
 }
+
+// Canvas Resizing
+// Get the canvas element
+// Resize the canvas to maintain aspect ratio
+function resizeCanvas(){
+    var aspectRatio = 1000 / 500; // Width / Height
+    var targetWidth = window.innerWidth * 0.7;
+    var targetHeight = targetWidth / aspectRatio;
+
+    var maxHeight = window.innerHeight * 0.7;
+    if (targetHeight > maxHeight) {
+        targetHeight = maxHeight;
+        targetWidth = targetHeight * aspectRatio;
+    }
+
+    canvas.width = targetWidth;
+    canvas.height = targetHeight;
+    CWIDTH = canvas.width;
+    CHEIGHT = canvas.height;    
+}
+
+window.addEventListener('resize', resizeCanvas);
