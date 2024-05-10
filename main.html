@@ -31,7 +31,7 @@
                 <img src="./img/button/achievements.png" alt="achievements">
                 <img src="./img/button/achievements-hover.png" alt="achievements">
             </div>
-            <div class="button-box sub-button" id="highscores-button">
+            <div class="button-box sub-button" onclick="showScoreboard()" id="highscores-button">
                 <img src="./img/button/highscores.png" alt="highscores">
                 <img src="./img/button/highscores-hover.png" alt="highscores">
             </div>
@@ -98,6 +98,18 @@
                 <img src="./img/button/back-hover.png" alt="back">
             </div>
             <div id="cards"></div>
+        </div>
+    </div>
+    <div class="page" id="scoreboard">
+        <div>
+            <h1>scoreboard</h1>
+            <div id="scoreboardList">
+
+            </div>
+            <div class="button-box back-button" onclick="showPage('main', 'scoreboard')">
+                <img src="./img/button/back.png" alt="back">
+                <img src="./img/button/back-hover.png" alt="back">
+            </div>
         </div>
     </div>
 
