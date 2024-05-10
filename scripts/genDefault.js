@@ -4,8 +4,8 @@ var mode = 0;                                               /* 0:EASY 1:NORMAL 2
 /* 캔버스 관련 변수 */
 var canvas = document.getElementById("gameCanvas");         /* gameCanvas 참조 canvas */
 var context = canvas.getContext('2d');                      /* 컨텍스트 객체 */    
-var CWIDTH = canvas.width;                                /* canvas 너비 */
-var CHEIGHT = canvas.height;                              /* canvas 높이 */
+var CWIDTH;                                                 /* canvas 너비 */
+var CHEIGHT;                                                /* canvas 높이 */
 var timer;                                                  /* 타이머 객체 변수 setInterval과 clear를 연결 */
 
 /* 격자 관련 변수 */
@@ -21,10 +21,10 @@ const BALL_SPEED = 5;                                       /* 공의 초기 속
 var speed;                                                  /* 공의 속도 */
 var ballVx;                                                 /* 공의 현재 x방향 속도 */
 var ballVy;                                                 /* 공의 현재 y방향 속도 */
-const WEIGHT = 0.08;                                        /* 바운스 */
+const WEIGHT = 0.07;                                        /* 바운스 */
 
 /* 패들 관련 변수 */
-const BARWIDTH = 80;                                        /* 패들 너비 */
+const BARWIDTH = 120;                                        /* 패들 너비 */
 const BARHEIGHT = 10;                                       /* 패들 높이 */
 var barX;                                                   /* 패들 x 위치 */
 var barY;                                                   /* 패들 y 위치 */
@@ -45,12 +45,12 @@ var life;                                                   /* 목숨 */
 loadImage.cache = {};                                       /* 이미지 캐시 객체 */
 let ingredientTimer;
 let activeingredients = [];                                 /* 활성화 된 재료 배열 */
-var FALLSPEED = 0.5;                                        /* 재료 낙하 속도 */
+var FALLSPEED = 0.6;                                        /* 재료 낙하 속도 */
 const INGREDIENTW = 60;                                     /* 재료 너비 */
 const INGREDIENTH = 30;                                     /* 재료 높이 */
 // const INGREDIENTP = 10;                                  /* 재료 사이 간격 */
 // const INGREDIENTOT = 30;                                 /* 윗쪽 벽과 간격 */
-// const INGREDIENTOL = 20;                                 /* 좌우 벽과 간격 */
+// const INGREDIENTOL = 20;                                    /* 좌우 벽과 간격 */
 
 /* init */
 function init(sb, lb, tb){
@@ -94,7 +94,7 @@ function init(sb, lb, tb){
     // console.log(`speed: ${speed}`);
     // console.log(`x: ${ballX}`, `y: ${ballY}`);
 
-    ingredientTimer = setInterval(createNewingredient, 2000);
+    ingredientTimer = setInterval(createNewingredient, 1500);
     timer = setInterval(draw, 10);
     gTimer = setInterval(gameTimer, 1000);
 
@@ -283,9 +283,10 @@ function drawBar(){
     격자 초기화 함수 
     - 사용하는 이유: 재료가 겹쳐서 생성되는 문제 해결, 충돌 감지, 재료 위치 관리
     - 게임 화면을 격자로 나눔. 격자에 재료가 존재하는지(있을 때 true, 없을 때 false)
+    - 화면 너비 끝에 이미지가 짤리는 문제 -> Math.floor로 해결
 */
 function initGrid() {
-    for (let i = 0; i < Math.ceil(CWIDTH / GRIDSIZE); i++) {
+    for (let i = 0; i < Math.floor(CWIDTH / GRIDSIZE); i++) {
         grid[i] = [];
         for (let j = 0; j < Math.ceil(CHEIGHT / GRIDSIZE); j++) {
             grid[i][j] = false;
