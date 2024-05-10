@@ -1,5 +1,5 @@
 var SCORE_KEY = "scoreList";
-var SCORE_SHOW_FORM = ['score', 'nickname', 'char'];
+var SCORE_SHOW_FORM = ['rank', 'char', 'name', 'score'];
 
 function showScoreboard(){
     showPage('scoreboard', 'main');
@@ -19,6 +19,7 @@ function showScoreboard(){
 
     for(var i = 0; i<scoreList.length; i++){
         tr = document.createElement('tr');
+        tr.setAttribute('border-radius', '30px');
         for(var j = 0; j<SCORE_SHOW_FORM.length; j++){
             td=document.createElement('td');
             td.setAttribute('align', 'right');

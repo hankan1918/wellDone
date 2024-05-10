@@ -75,7 +75,7 @@
     border: 10px solid burlywood;
     background-color: #f5f4df;
     width: 50%;
-    height: 95vh;
+    height: calc(100vh - 20px);
     margin: auto auto;
     border-radius: 30px;
 }

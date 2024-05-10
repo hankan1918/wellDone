@@ -1,3 +1,36 @@
+#scoreboard-box {
+    border: 10px solid burlywood;
+    background-color: #f5f4df;
+    width: 65%;
+    height: calc(100vh - 20px);
+    margin: auto auto;
+    border-radius: 30px;
+}
+
 table{
+    margin: 0 auto;
+    margin-top: 5vh;
     font-size: 50px;
+    border-collapse: collapse;
+}
+
+table tr {
+    border: 10px solid burlywood;
+    border-radius: 30px;
+}
+
+table tr th {
+    padding: 10px 40px;
+    font-size: 75px;
+    text-align: center;
+}
+
+table tr td{
+    padding: 50px 40px;
+}
+
+#scoreboard-title {
+    margin: 0;
+    font-size: 110px;
+    border-bottom: 10px solid burlywood;
 }
