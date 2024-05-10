@@ -9,3 +9,9 @@ function bodyOnLoad(){
     createCarouselMenu('bgm', BGM_LIST, 'BGM');
     createCarouselMenu('bgi', THEME_LIST, 'THEME');
 }
+
+function showGamePage(){
+    resizeCanvas();
+    showBurgerRecipe();
+    init(document.getElementById('scoreboard'), document.getElementById('lifeboard'), document.getElementById('timeboard'));
+}
