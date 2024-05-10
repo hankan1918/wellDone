@@ -28,8 +28,6 @@
     clip-path: polygon(30% 0, 100% 0, 70% 100%, 0 100%);
     width: 150px; height: 150px;
     transition: all 0.3s;
-    /*margin: auto -20px;*/
-    padding: 30px;
 }
 
 #charMenu>div:hover{

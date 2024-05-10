@@ -1,29 +1,47 @@
 var SCORE_KEY = "scoreList";
+var SCORE_SHOW_FORM = ['score', 'nickname', 'char'];
 
 function showScoreboard(){
     showPage('scoreboard', 'main');
-    var child;
-    var div = document.getElementById('scoreboardList');
-    div.innerHTML = "";
+    var td, tr, th;
+    var parent = document.getElementById('scoreboardList');
     var scoreList = getScores();
-    for(var i = 0; i<scoreList.length; i++){
-        child = document.createElement('div');
-        child.innerHTML = `${scoreList[i].char} ${scoreList[i].nickname} ${scoreList[i].score}`;
-        div.appendChild(child);
+    parent.innerHTML = "";
+    parent = document.createElement('table');
+
+    tr = document.createElement('tr');
+    for(var j = 0; j<SCORE_SHOW_FORM.length; j++){
+        th=document.createElement('th');
+        th.innerHTML = SCORE_SHOW_FORM[j];
+        tr.appendChild(th);
     }
+    parent.appendChild(tr);
+
+    for(var i = 0; i<scoreList.length; i++){
+        tr = document.createElement('tr');
+        for(var j = 0; j<SCORE_SHOW_FORM.length; j++){
+            td=document.createElement('td');
+            td.setAttribute('align', 'right');
+            td.innerHTML = scoreList[i][SCORE_SHOW_FORM[j]];
+            tr.appendChild(td);
+        }
+        parent.appendChild(tr);
+    }
+
+    document.getElementById('scoreboardList').appendChild(parent);
 }
 
 function resetScoreStorage(){
     localStorage.setItem(SCORE_KEY,null);
 }
 
-function appendScore(char, nickname, score) {
+function appendScore(score, nickname, char=CHAR_LIST[CHAR]) {
     try {
         // 기존에 로컬 스토리지에 저장된 데이터 불러오기
         let savedData = JSON.parse(localStorage.getItem(SCORE_KEY)) || [];
         
         // 새로운 데이터 추가
-        savedData.push({ char, nickname, score });
+        savedData.push({ score, nickname, char });
 
         savedData.sort((a,b) => b.score - a.score)
         if(savedData.length >10){
