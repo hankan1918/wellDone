@@ -116,6 +116,7 @@
 
     <!-- game page -->
     <div class="page" id="game">
+        <img src="./img/background/main-background.png" alt="bg" class="background-image">
         <div class="button-box back-button" onclick="showPage('main', 'game'); resetGame();">
             <img src="./img/button/back.png" alt="back">
             <img src="./img/button/back-hover.png" alt="back">
@@ -123,17 +124,20 @@
         <div id="difficulty"></div>
         <h1>Game</h1>
         <!--<h1 id="lifeboard" style="display: inline-block;"></h1>-->
-        <h1 id="timeboard" style="display: inline-block;"></h1>
-        <h1 id="gscoreboard" style="display: inline-block;"></h1>
-        <input type="button" onclick="replay();" value="REPLAY">
-        <input type="button" onclick="easyMode();" value="EASY">
-        <input type="button" onclick="normalMode();" value="NORMAL">
-        <input type="button" onclick="hardMode();" value="HARD">
-        <canvas id="gameCanvas" width="1000" height="500"></canvas>
+        <div id="board">
+            <h1 id="timeboard"></h1>
+            <h1 id="gscoreboard"></h1>
+        </div>
+        <canvas id="gameCanvas"></canvas>
         <div id="charImage"></div>
         <div id="burgerRecipe"></div>
         <div id="currentBurger"></div>
-
+        <div id="gamebutton">
+        <input type="button" onclick="replay();" value="REPLAY">
+            <input type="button" onclick="easyMode();" value="EASY">
+            <input type="button" onclick="normalMode();" value="NORMAL">
+            <input type="button" onclick="hardMode();" value="HARD">
+        </div>
     </div>
     
     <script type="text/javascript" src="scripts/config.js"></script>
