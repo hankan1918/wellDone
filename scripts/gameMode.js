@@ -17,7 +17,7 @@
 function easyMode(){
     mode = MODE.EASY;
     console.log("easy: ", mode);
-    newGame(document.getElementById('gscoreboard'), document.getElementById('lifeboard'), document.getElementById('timeboard'));
+    newGame(document.getElementById('gscoreboard'), document.getElementById('timeboard'));
     removeModeImage();
     changeModeImage();
 }
@@ -25,7 +25,7 @@ function easyMode(){
 function normalMode(){
     mode = MODE.NORMAL;
     console.log("normal: ", mode);
-    newGame(document.getElementById('gscoreboard'), document.getElementById('lifeboard'), document.getElementById('timeboard'));
+    newGame(document.getElementById('gscoreboard'), document.getElementById('timeboard'));
     removeModeImage();
     changeModeImage();
 }
@@ -34,7 +34,7 @@ function hardMode(){
     mode = MODE.HARD;
     console.log("hard: ", mode);
     console.log("bur1: ", burgerCount);
-    newGame(document.getElementById('gscoreboard'), document.getElementById('lifeboard'), document.getElementById('timeboard'));
+    newGame(document.getElementById('gscoreboard'), document.getElementById('timeboard'));
     removeModeImage();
     changeModeImage();
 }
