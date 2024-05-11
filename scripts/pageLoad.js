@@ -13,7 +13,7 @@ function bodyOnLoad(){
 function showGamePage(){
     resizeCanvas();
     pickBurgerRecipe();
-    init(document.getElementById('gscoreboard'), document.getElementById('lifeboard'), document.getElementById('timeboard'));
+    init(document.getElementById('gscoreboard'), document.getElementById('timeboard'));
     changeModeImage();
     changeChar();
 }
