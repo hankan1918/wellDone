@@ -12,11 +12,17 @@
 #charImage {
     width: 300px;
     height: 300px;
-    border: 3px black solid;
+    border-top: 3px black solid;
+    border-left: 3px black solid;
+    border-right: 3px black solid;
     position: absolute;
     right: 0;
     bottom: 303px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
 
 #currentBurger {
     width: 300px;
