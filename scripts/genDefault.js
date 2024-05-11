@@ -102,7 +102,7 @@ function init(sb, lb, tb){
     ingredientTimer = setInterval(createNewingredient, 1500);
     timer = setInterval(draw, 10);
     gTimer = setInterval(gameTimer, 1000);
-
+    
     /*currentBurger Div 초기화*/
     $("#currentBurger").empty();
 }
@@ -265,12 +265,15 @@ function collisionDetection(){
         console.log("burgerCount", burgerCount);
         completeEasy();
         setTimeout(normalMode,1500);
+        removeModeImage();
+        changeModeImage();
     }
     if (mode == MODE.NORMAL && score >= 100 && burgerCount >= 1){
         mode = MODE.HARD
         console.log("mode change", mode);
         completeNormal();
         setTimeout(hardMode,1500);
+        changeModeImage();
     }
     // HARD: 버거 완성 개수가 1이상, 목숨이 0, 남은 시간이 있는 경우 --> 땅에 공이 떨어져서 죽은 경우 -->draw()함수 참고
     // 시간이 다 되어서 목숨이 0이 된 경우는 --> gameTimer()함수 참고
@@ -481,6 +484,7 @@ function resetGame(){
     clearInterval(timer);
     clearInterval(gTimer);
     initGrid();
+    removeModeImage();
 }
 
 /* 게임 오버 */
