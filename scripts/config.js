@@ -1,4 +1,5 @@
 var CHAR_LIST = ['JIM', 'CEO', 'BENJAMIN']; //캐릭터 파일 이름.
+var CHAR_SRC_LIST = ['character1', 'character2', 'character3', 'character4']; //캐릭터 파일 이름.
 var CHAR = 0; //현재 선택된 캐릭터 인덱스
 
 var THEME_LIST = ['Theme A', 'Theme B', 'Theme C']; //테마 파일 이름.
