@@ -5,6 +5,8 @@ function showPage(nxt='', cur=''){
 
 function bodyOnLoad(){
     showPage('main');
+    challengeState = localStorage.getItem(TASK_KEY) || '0'.repeat(tasks.length);
+    localStorage.setItem(TASK_KEY, challengeState);
     bgmPlayer.pause();
     createCarouselMenu('bgm', BGM_LIST, 'BGM');
     createCarouselMenu('bgi', THEME_LIST, 'THEME');

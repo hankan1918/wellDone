@@ -68,6 +68,7 @@ var taskDescrptions = [
 var challengeState;
 const TASK_KEY = 'challenge';
 const BURGER_COUNT_KEY = 'totalBurger';
+const BURGER_RECIPE_HISTORY_KEY = 'recipeHistory';
 
 function changeState(achieve){
     var t;
@@ -81,17 +82,9 @@ function changeState(achieve){
     }
 }
 
-function showChellenge(){
-    showPage('chellenge', 'main'); 
-
-    var get = localStorage.getItem(TASK_KEY);
-    if(get == null || get == ""){
-        challengeState = '0'.repeat(tasks.length);
-        localStorage.setItem(TASK_KEY, challengeState);
-        get = localStorage.getItem(TASK_KEY);
-    }
-    
-    challengeState = get;
+function showChallenge(){
+    showPage('challenge', 'main');  
+    get = localStorage.getItem(TASK_KEY);
     var container = document.querySelector('#cards');
     container.innerHTML = "";
 
@@ -114,4 +107,16 @@ function setTotalBurger(count = burgerCount){
     if(total>=100) changeState('버거? 눈 감고도 만듭니다');
 
     localStorage.setItem(BURGER_COUNT_KEY, total);
+}
+
+function setBurgerRecipeHistory(recipe = BURGER){
+    var history = localStorage.getItem(BURGER_RECIPE_HISTORY_KEY) || '0'.repeat(BURGER_LIST.length);
+    console.log('before: ', history);
+
+    history = history.substring(0, recipe) + '1' + history.substring(recipe+1, history.length);
+    console.log('after: ', history);
+
+    if(history==('1'.repeat(BURGER_LIST.length))) changeState('아 그 버거요?');
+
+    localStorage.setItem(BURGER_RECIPE_HISTORY_KEY, history);
 }

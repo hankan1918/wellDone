@@ -72,6 +72,7 @@ function appendIngredient(i){
     //수정 필요해 보임. 
     //완성이 되었으면 새로운 레시피 선택하도록 함. 현재의 완성품은 없앰.
     if(isComplete()){
+        setBurgerRecipeHistory();
         setTotalBurger();
         burgerCount++;
         console.log("complete:", burgerCount);
