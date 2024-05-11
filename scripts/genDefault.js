@@ -412,6 +412,7 @@ function newGame(sb, lb, tb){
     
     // 재료 초기화
     currentIngredient = -1;
+    burgerCount = 0;
     activeingredients = [];
     clearInterval(ingredientTimer);
     createNewingredient();
@@ -445,6 +446,7 @@ function resetGame(){
     
     // 재료 초기화
     currentIngredient = -1;
+    burgerCount = 0;
     activeingredients = [];
     clearInterval(ingredientTimer);
     clearInterval(timer);
