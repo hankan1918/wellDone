@@ -250,8 +250,11 @@ function collisionDetection(){
         completeEasy();
         setTimeout(normalMode,1500);
     }
-    if (mode == MODE.NORMAL && score >= 100){
-
+    if (mode == MODE.NORMAL && score >= 100 && burgerCount >= 1){
+        mode = MODE.HARD
+        console.log("mode change", mode);
+        completeNormal();
+        setTimeout(hardMode,1500);
     }
     for (let i = 0; i < activeingredients.length; i++){
         const b = activeingredients[i];
@@ -374,14 +377,30 @@ function updateLife(){
     }
 }
 
+/* replay 버튼 이벤트 처리 */
+function replay(){
+    console.log("replay", mode);
+    switch (mode) {
+        case MODE.NORMAL:
+            normalMode();
+            break;
+        case MODE.HARD:
+            hardMode();
+            break;
+        case MODE.EASY:
+        default:
+            easyMode();
+            break;
+    }
+}
 
-/* newgame replay 처리 */
+/* newgame newgame 처리 */
 function newGame(sb, lb, tb){
     // init에 보낼 인수
     rsb = sb;       // scoreboard
     rlb = lb;       // lifeboard
     rtb = tb;       // timeboard
-
+    console.log("re mode", mode);
     // 점수, 목숨 초기화
     life = MAX_LIFE;
     score = MIN_SCORE;
@@ -392,6 +411,7 @@ function newGame(sb, lb, tb){
     ballY = CHEIGHT/2;
     
     // 재료 초기화
+    currentIngredient = -1;
     activeingredients = [];
     clearInterval(ingredientTimer);
     createNewingredient();
@@ -424,7 +444,7 @@ function resetGame(){
     remainingTime = TOTALTIME;
     
     // 재료 초기화
-
+    currentIngredient = -1;
     activeingredients = [];
     clearInterval(ingredientTimer);
     clearInterval(timer);
