@@ -22,18 +22,13 @@ function easyMode(){
 
 function normalMode(){
     mode = MODE.NORMAL;
-    currentIngredient = -1;
-    burgerCount = 0;
     console.log("normal: ", mode);
     newGame(document.getElementById('gscoreboard'), document.getElementById('lifeboard'), document.getElementById('timeboard'));
 }
 
-
 function hardMode(){
     mode = MODE.HARD;
-    currentIngredient = -1;
-    burgerCount = 0;
     console.log("hard: ", mode);
+    console.log("bur1: ", burgerCount);
     newGame(document.getElementById('gscoreboard'), document.getElementById('lifeboard'), document.getElementById('timeboard'));
 }
-
