@@ -9,23 +9,20 @@
         - 우선 순위 없음
         - 잘못 쌓으면 게임오버
 */
-const MODE = {
-    EASY: 0,
-    NORMAL: 1,
-    HARD: 2
-};
-
 function easyMode(){
     mode = MODE.EASY;
     console.log("easy: ", mode);
+    newGame(document.getElementById('gscoreboard'), document.getElementById('lifeboard'), document.getElementById('timeboard'));
 }
 
 function normalMode(){
     mode = MODE.NORMAL;
     console.log("normal: ", mode);
+    newGame(document.getElementById('gscoreboard'), document.getElementById('lifeboard'), document.getElementById('timeboard'));
 }
 
 function hardMode(){
     mode = MODE.HARD;
     console.log("hard: ", mode);
+    newGame(document.getElementById('gscoreboard'), document.getElementById('lifeboard'), document.getElementById('timeboard'));
 }
