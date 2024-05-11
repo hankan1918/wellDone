@@ -42,9 +42,9 @@ var timeboard;                                              /* 게임 시간판 
 const MIN_SCORE = 0;                                        /* 초기 점수 */
 var score;                                                  /* 점수 */
 var gscoreboard;                                            /* 점수판 */
-var lifeboard;                                              /* 목숨판 */
-const MAX_LIFE = 3;                                         /* 최대목숨 */
-var life;                                                   /* 목숨 */
+// var lifeboard;                                              /* 목숨판 */
+// const MAX_LIFE = 3;                                         /* 최대목숨 */
+// var life;                                                   /* 목숨 */
 
 /* 재료 관련 변수 */
 loadImage.cache = {};                                       /* 이미지 캐시 객체 */
@@ -58,12 +58,12 @@ const INGREDIENTH = 30;                                     /* 재료 높이 */
 // const INGREDIENTOL = 20;                                 /* 좌우 벽과 간격 */
 
 /* init */
-function init(sb, lb, tb){
+function init(sb, tb){
     clearInterval(timer);
     clearInterval(ingredientTimer);
     clearInterval(gTimer);
     gscoreboard = sb;
-    lifeboard = lb;
+    // lifeboard = lb;
     timeboard = tb;
 
     console.log("starting mode", mode);
@@ -72,8 +72,8 @@ function init(sb, lb, tb){
     timeboard.innerText = remainingTime;
     score = MIN_SCORE;
     gscoreboard.innerText = score;
-    life = MAX_LIFE
-    lifeboard.innerText = life;
+    // life = MAX_LIFE
+    // lifeboard.innerText = life;
 
     /* 격자 */
     initGrid();
@@ -137,9 +137,11 @@ function bounce(){
 /* 그리기 */
 function draw(){
     if(ballY>=CHEIGHT-BALLRADIUS){
+        // 떨어지면 게임 오버
+        drawGameover();
         /*
             목숨 사라지면 GAMEOVER
-        */
+        
         ballX = CWIDTH/2;                    
         ballY = CHEIGHT/2;                   
         ballVy *= -1;
@@ -163,6 +165,7 @@ function draw(){
                 }
             }
         }
+        */
     }
     else{
         bounce();                        
@@ -170,7 +173,7 @@ function draw(){
         ballY += ballVy; 
         context.clearRect(0, 0, CWIDTH, CHEIGHT); 
         updateTime();
-        updateLife();
+        //updateLife();
         updateScore();
         drawBall();
         drawBar();
@@ -259,7 +262,7 @@ function loadImage(src, callback) {
       재료가 있던 격자 지우기, 배열에서 활성화였던 재료 비활성화(인덱스 조정)
 */
 function collisionDetection(){
-    if (mode == MODE.EASY && score >= 10){
+    if (mode == MODE.EASY && score >= 100){
         mode = MODE.NORMAL
         console.log("mode change", mode);
         console.log("burgerCount", burgerCount);
@@ -363,6 +366,22 @@ function updateGrid(ingredientX, ingredientY){
 function gameTimer(){
     remainingTime--;
     if (remainingTime <= 0){
+        updateTime();
+        // 목숨제 안할 경우
+        if(mode != MODE.HARD){ // hard가 아닌 경우
+            drawGameover();
+            resetGame();
+        }
+        // mode == MODE.HARD인 경우만, 버거 완성 개수가 1 이상이면 컴플릿, 아니면 게임오버
+        if(burgerCount >= 1){
+            completeHard();
+            // 스코어 보드 기록
+        }
+        else{
+            drawGameover();
+            resetGame();
+        }
+        /* 목숨제
         life -= 1;
         updateTime();
         updateLife();
@@ -382,6 +401,7 @@ function gameTimer(){
                 resetGame();
             }
         }
+        */
     }
 }
 
@@ -395,7 +415,7 @@ function updateScore(){
     gscoreboard.innerText = "점수: " + score;
 }
 
-/* 목숨 출력 */
+/* 목숨 출력 
 function updateLife(){
     var parentElement = document.getElementById("lifeboard");
     lifeboard.innerHTML = ""; // 이전 하트 이미지 제거
@@ -407,7 +427,7 @@ function updateLife(){
         imgElement.alt = "하트";
         parentElement.appendChild(imgElement);
     }
-}
+}*/
 
 /* replay 버튼 이벤트 처리 */
 function replay(){
@@ -427,14 +447,14 @@ function replay(){
 }
 
 /* newgame newgame 처리 */
-function newGame(sb, lb, tb){
+function newGame(sb, tb){
     // init에 보낼 인수
     rsb = sb;       // scoreboard
-    rlb = lb;       // lifeboard
+    // rlb = lb;       // lifeboard
     rtb = tb;       // timeboard
     console.log("re mode", mode);
-    // 점수, 목숨 초기화
-    life = MAX_LIFE;
+    // 점수 초기화
+    // life = MAX_LIFE;
     score = MIN_SCORE;
     remainingTime = TOTALTIME;
 
@@ -451,7 +471,7 @@ function newGame(sb, lb, tb){
     // 격자 초기화
     initGrid();
 
-    init(rsb, rlb, rtb);
+    init(rsb, rtb);
 }
 
 /*
@@ -472,7 +492,7 @@ function resetGame(){
     barY = CHEIGHT - BARHEIGHT*2;        // 패들 y축 초기 위치
 
     // 점수, 목숨 초기화
-    life = MAX_LIFE;
+    // life = MAX_LIFE;
     score = MIN_SCORE;
     remainingTime = TOTALTIME;
     
