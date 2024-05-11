@@ -485,6 +485,7 @@ function resetGame(){
     clearInterval(gTimer);
     initGrid();
     removeModeImage();
+    removeChar();
 }
 
 /* 게임 오버 */
@@ -549,3 +550,28 @@ function resizeCanvas(){
 }
 
 window.addEventListener('resize', resizeCanvas);
+
+/*
+   캐릭터 이미지 생성
+   - config.js의 CHAR_SRC_LIST, CHAR(현재 선택한 캐릭터 인덱스)
+ */
+function changeChar(){
+    var parent = document.getElementById("charImage");
+    var child = document.createElement("img");
+    charimg = CHAR_SRC_LIST[CHAR]
+        child.src = "./img/char/" + charimg + ".png";
+        child.alt = "CHAR";
+        parent.appendChild(child);
+
+}
+/*
+    캐릭터 이미지 제거
+    resetGame에서 사용
+ */
+function removeChar(){
+    var parent = document.getElementById("charImage");
+    var child = parent.querySelector("img");
+    if (child) {
+        parent.removeChild(child);
+    }
+}
