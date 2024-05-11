@@ -23,7 +23,8 @@ function showScoreboard(){
         for(var j = 0; j<SCORE_SHOW_FORM.length; j++){
             td=document.createElement('td');
             td.setAttribute('align', 'right');
-            td.innerHTML = scoreList[i][SCORE_SHOW_FORM[j]];
+            if(j == 0) td.innerHTML = i+1;
+            else td.innerHTML = scoreList[i][SCORE_SHOW_FORM[j]];
             tr.appendChild(td);
         }
         parent.appendChild(tr);
