@@ -245,7 +245,7 @@ function loadImage(src, callback) {
 */
 function collisionDetection(){
     if (mode == MODE.EASY && score >= 100){
-        mode == MODE.NORMAL
+        mode = MODE.NORMAL
         console.log("mode change", mode);
     }
     for (let i = 0; i < activeingredients.length; i++){
