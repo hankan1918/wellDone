@@ -244,9 +244,14 @@ function loadImage(src, callback) {
       재료가 있던 격자 지우기, 배열에서 활성화였던 재료 비활성화(인덱스 조정)
 */
 function collisionDetection(){
-    if (mode == MODE.EASY && score >= 100){
+    if (mode == MODE.EASY && score >= 10){
         mode = MODE.NORMAL
         console.log("mode change", mode);
+        completeEasy();
+        setTimeout(normalMode,1500);
+    }
+    if (mode == MODE.NORMAL && score >= 100){
+
     }
     for (let i = 0; i < activeingredients.length; i++){
         const b = activeingredients[i];
@@ -400,6 +405,8 @@ function newGame(sb, lb, tb){
     init함수를 부르는 거 제외 한 초기화
 */
 function resetGame(){
+    mode = MODE.EASY;
+
     // 공 초기화
     ballX = CWIDTH/2;                    
     ballY = CHEIGHT/2;
@@ -427,6 +434,36 @@ function resetGame(){
 
 /* 게임 오버 */
 function drawGameover(msg="게임오버"){
+    context.clearRect(0, 0, CWIDTH, CHEIGHT);
+    context.fillStyle = "red"
+    context.font = '50px serif';
+    context.fillText(msg, 100, 100);
+    clearInterval(timer);
+    clearInterval(ingredientTimer);
+    clearInterval(gTimer);
+}
+
+function completeEasy(msg="COMPLETE EASY MODE"){
+    context.clearRect(0, 0, CWIDTH, CHEIGHT);
+    context.fillStyle = "red"
+    context.font = '50px serif';
+    context.fillText(msg, 100, 100);
+    clearInterval(timer);
+    clearInterval(ingredientTimer);
+    clearInterval(gTimer);
+}
+
+function completeNormal(msg="COMPLETE NORMAL MODE"){
+    context.clearRect(0, 0, CWIDTH, CHEIGHT);
+    context.fillStyle = "red"
+    context.font = '50px serif';
+    context.fillText(msg, 100, 100);
+    clearInterval(timer);
+    clearInterval(ingredientTimer);
+    clearInterval(gTimer);
+}
+
+function completeHard(msg="COMPLETE HARD MODE"){
     context.clearRect(0, 0, CWIDTH, CHEIGHT);
     context.fillStyle = "red"
     context.font = '50px serif';
