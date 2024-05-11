@@ -18,12 +18,16 @@ function easyMode(){
     mode = MODE.EASY;
     console.log("easy: ", mode);
     newGame(document.getElementById('gscoreboard'), document.getElementById('lifeboard'), document.getElementById('timeboard'));
+    removeModeImage();
+    changeModeImage();
 }
 
 function normalMode(){
     mode = MODE.NORMAL;
     console.log("normal: ", mode);
     newGame(document.getElementById('gscoreboard'), document.getElementById('lifeboard'), document.getElementById('timeboard'));
+    removeModeImage();
+    changeModeImage();
 }
 
 function hardMode(){
@@ -31,4 +35,26 @@ function hardMode(){
     console.log("hard: ", mode);
     console.log("bur1: ", burgerCount);
     newGame(document.getElementById('gscoreboard'), document.getElementById('lifeboard'), document.getElementById('timeboard'));
+    removeModeImage();
+    changeModeImage();
+}
+
+function changeModeImage(){
+    console.log(mode)
+    var parent = document.getElementById("difficulty");
+    var child = document.createElement("img");
+        if (mode == MODE.EASY)        child.src = "./img/button/easy.png";
+        else if (mode == MODE.NORMAL) child.src = "./img/button/normal.png";
+        else if (mode == MODE.HARD)   child.src = "./img/button/hard.png";
+        child.alt = "MODE";
+        parent.appendChild(child);
+
+}
+
+function removeModeImage(){
+    var parent = document.getElementById("difficulty");
+    var child = parent.querySelector("img");
+    if (child) {
+        parent.removeChild(child);
+    }
 }
