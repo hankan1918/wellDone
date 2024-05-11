@@ -13,5 +13,5 @@ function bodyOnLoad(){
 function showGamePage(){
     resizeCanvas();
     showBurgerRecipe();
-    init(document.getElementById('scoreboard'), document.getElementById('lifeboard'), document.getElementById('timeboard'));
+    init(document.getElementById('gscoreboard'), document.getElementById('lifeboard'), document.getElementById('timeboard'));
 }
