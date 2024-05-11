@@ -22,7 +22,7 @@ var grid = [];
 const BALLRADIUS = 5;                                       /* 공 반지름 */
 var ballX;                                                  /* 공의 현재 x방향 위치 */
 var ballY;                                                  /* 공의 현재 y방향 위치 */
-const BALL_SPEED = 5;                                       /* 공의 초기 속도 */
+const BALL_SPEED = 6;                                       /* 공의 초기 속도 */
 var speed;                                                  /* 공의 속도 */
 var ballVx;                                                 /* 공의 현재 x방향 속도 */
 var ballVy;                                                 /* 공의 현재 y방향 속도 */
@@ -534,10 +534,10 @@ function completeHard(msg="COMPLETE HARD MODE"){
 // Resize the canvas to maintain aspect ratio
 function resizeCanvas(){
     var aspectRatio = 1000 / 500; // Width / Height
-    var targetWidth = window.innerWidth * 0.7;
+    var targetWidth = window.innerWidth * 0.6;
     var targetHeight = targetWidth / aspectRatio;
 
-    var maxHeight = window.innerHeight * 0.7;
+    var maxHeight = window.innerHeight * 0.6;
     if (targetHeight > maxHeight) {
         targetHeight = maxHeight;
         targetWidth = targetHeight * aspectRatio;
