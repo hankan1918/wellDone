@@ -1,5 +1,10 @@
 /* 난이도 관련 변수 */
-var mode = 0;                                               /* 0:EASY 1:NORMAL 2:HARD
+const MODE = {
+    EASY: 0,
+    NORMAL: 1,
+    HARD: 2
+};
+var mode = MODE.EASY;                                                   /* 0:EASY 1:NORMAL 2:HARD
 
 /* 캔버스 관련 변수 */
 var canvas = document.getElementById("gameCanvas");         /* gameCanvas 참조 canvas */
@@ -60,8 +65,8 @@ function init(sb, lb, tb){
     gscoreboard = sb;
     lifeboard = lb;
     timeboard = tb;
-    
 
+    console.log("starting mode", mode);
     /* 제한시간, 점수, 목숨세팅 */
     remainingTime = TOTALTIME;
     timeboard.innerText = remainingTime;
@@ -239,6 +244,10 @@ function loadImage(src, callback) {
       재료가 있던 격자 지우기, 배열에서 활성화였던 재료 비활성화(인덱스 조정)
 */
 function collisionDetection(){
+    if (mode == MODE.EASY && score >= 100){
+        mode == MODE.NORMAL
+        console.log("mode change", mode);
+    }
     for (let i = 0; i < activeingredients.length; i++){
         const b = activeingredients[i];
         if (b.status === 1){
@@ -248,7 +257,7 @@ function collisionDetection(){
                 (ballX <= b.x + INGREDIENTW + BALLRADIUS)) {
                 ballVy *= -1;
                 b.status = 0;
-                score++;
+                score += 10;
 
                 updateGrid(b.x, b.y);   // 격자 업데이트 (재료가 있던 칸 비우기)
 
