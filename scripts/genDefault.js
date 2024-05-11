@@ -4,7 +4,7 @@ const MODE = {
     NORMAL: 1,
     HARD: 2
 };
-var mode = MODE.EASY;                                                   /* 0:EASY 1:NORMAL 2:HARD
+var mode = MODE.EASY;                                       /* 0:EASY 1:NORMAL 2:HARD
 
 /* 캔버스 관련 변수 */
 var canvas = document.getElementById("gameCanvas");         /* gameCanvas 참조 canvas */
@@ -29,19 +29,19 @@ var ballVy;                                                 /* 공의 현재 y�
 const WEIGHT = 0.07;                                        /* 바운스 */
 
 /* 패들 관련 변수 */
-const BARWIDTH = 120;                                        /* 패들 너비 */
+const BARWIDTH = 120;                                       /* 패들 너비 */
 const BARHEIGHT = 10;                                       /* 패들 높이 */
 var barX;                                                   /* 패들 x 위치 */
 var barY;                                                   /* 패들 y 위치 */
 
 /* 제한시간, 점수, 목숨 관련 변수 */
 var gTimer;
-const TOTALTIME = 60;                                       /* 제한 시간 */
+const TOTALTIME = 30;                                       /* 제한 시간 */
 var remainingTime;                                          /* 남은 시간 */
 var timeboard;                                              /* 게임 시간판 */
 const MIN_SCORE = 0;                                        /* 초기 점수 */
 var score;                                                  /* 점수 */
-var gscoreboard;                                             /* 점수판 */
+var gscoreboard;                                            /* 점수판 */
 var lifeboard;                                              /* 목숨판 */
 const MAX_LIFE = 3;                                         /* 최대목숨 */
 var life;                                                   /* 목숨 */
@@ -55,7 +55,7 @@ const INGREDIENTW = 60;                                     /* 재료 너비 */
 const INGREDIENTH = 30;                                     /* 재료 높이 */
 // const INGREDIENTP = 10;                                  /* 재료 사이 간격 */
 // const INGREDIENTOT = 30;                                 /* 윗쪽 벽과 간격 */
-// const INGREDIENTOL = 20;                                    /* 좌우 벽과 간격 */
+// const INGREDIENTOL = 20;                                 /* 좌우 벽과 간격 */
 
 /* init */
 function init(sb, lb, tb){
@@ -146,8 +146,23 @@ function draw(){
         life -= 1;
         drawBall();
         updateLife();
-        if(life <= 0)
-            drawGameover();
+        if(life <= 0){
+            if(mode != MODE.HARD){ // 하드 모드가 아닌 경우 땅에 떨어져서 목숨이 0이면 게임 오버
+                drawGameover();
+            }
+            // 하드인 경우 땅에 떨어져서 목숨이 0이 되었는데
+            else{
+                // 버거 완성 개수가 0보다 크면 성공
+                if(burgerCount >= 1){
+                    completeHard();
+                    // 스코어 기록
+                }
+                // 아니면 게임 오버
+                else{
+                    drawGameover();
+                }
+            }
+        }
     }
     else{
         bounce();                        
@@ -247,6 +262,7 @@ function collisionDetection(){
     if (mode == MODE.EASY && score >= 10){
         mode = MODE.NORMAL
         console.log("mode change", mode);
+        console.log("burgerCount", burgerCount);
         completeEasy();
         setTimeout(normalMode,1500);
     }
@@ -256,6 +272,8 @@ function collisionDetection(){
         completeNormal();
         setTimeout(hardMode,1500);
     }
+    // HARD: 버거 완성 개수가 1이상, 목숨이 0, 남은 시간이 있는 경우 --> 땅에 공이 떨어져서 죽은 경우 -->draw()함수 참고
+    // 시간이 다 되어서 목숨이 0이 된 경우는 --> gameTimer()함수 참고
     for (let i = 0; i < activeingredients.length; i++){
         const b = activeingredients[i];
         if (b.status === 1){
@@ -347,8 +365,19 @@ function gameTimer(){
         updateLife();
         remainingTime = TOTALTIME;
         if(life <= 0){
-            drawGameover();
-            resetGame();
+            if(mode != MODE.HARD){ // hard가 아닌 경우
+                drawGameover();
+                resetGame();
+            }
+            // mode == MODE.HARD인 경우만, 버거 완성 개수가 1 이상이면 컴플릿, 아니면 게임오버
+            if(burgerCount >= 1){
+                completeHard();
+                // 스코어 보드 기록
+            }
+            else{
+                drawGameover();
+                resetGame();
+            }
         }
     }
 }
