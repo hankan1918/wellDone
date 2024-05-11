@@ -62,9 +62,12 @@ var tasks = [
 ];
 var taskDescrptions = [
     "Easy 모드 클리어", "Normal 모드 클리어", "Hard 모드 클리어", "모든 모드 클리어",
-    "버거 25개 판매", "버거 77개 판매", "버거 100개 판매", "모든 레시피의 버거를 판매하기"];
+    "버거 25개 판매", "버거 77개 판매", "버거 100개 판매", "모든 레시피의 버거를 판매하기"
+];
+
 var challengeState;
 const TASK_KEY = 'challenge';
+const BURGER_COUNT_KEY = 'totalBurger';
 
 function changeState(achieve){
     var t;
@@ -101,4 +104,14 @@ function showChellenge(){
             createCards(tasks[i],taskDescrptions[i],"chellenge/001"+'.png', false);
         }
     }
+}
+
+function setTotalBurger(count = burgerCount){
+    var total = Number(localStorage.getItem(BURGER_COUNT_KEY)) || 0;
+    total += count;
+    if(total>=25) changeState('이제 좀 알 것 같아요');
+    if(total>=77) changeState('행운 버거');
+    if(total>=100) changeState('버거? 눈 감고도 만듭니다');
+
+    localStorage.setItem(BURGER_COUNT_KEY, total);
 }
