@@ -10,11 +10,12 @@ var BURGER = 3;//현재 만들어야하는 버거
 const cheeseMargin = 30;
 var ingredientNexth;
 var currentIngredient;
-
+var answerRecipe;
 function pickBurgerRecipe(){
     BURGER = Math.floor(Math.random() * BURGER_LIST.length);
     ingredientNexth = 30;//초기화
     currentIngredient = -1;
+    answerRecipe = BURGER_LIST[BURGER];
     document.getElementById('currentBurger').innerHTML = '';
     showBurgerRecipe();
 }
@@ -44,9 +45,19 @@ function showBurgerRecipe(){
 }
 
 function isComplete(){
-    var answerRecipe = BURGER_LIST[BURGER];
-    if(currentIngredient == answerRecipe.length-1)
-        return true;
+    answerRecipe = BURGER_LIST[BURGER];
+    switch(mode){
+        case MODE.EASY: //todo 구현 필요 
+            break;
+        case MODE.NORMAL:
+            if(currentIngredient == answerRecipe.length-1)
+                return true;
+            else
+                return false;
+        case MODE.HARD: //todo 구현 필요
+            break;    
+    }
+
     return false;
 }
 
@@ -55,9 +66,6 @@ function appendIngredient(i){
     // 추후 mode별 기능 차이를 두기 위해 인자 추가
 
     //난이도 별로 판정이 달라서 판정 후에 본 함수를 호출하여 추가하면 됨.
-    var ingredient;
-    var answerRecipe = BURGER_LIST[BURGER];
-    var div = document.getElementById('currentBurger');
 
     //수정 필요해 보임. 
     //완성이 되었으면 새로운 레시피 선택하도록 함. 현재의 완성품은 없앰.
@@ -65,9 +73,27 @@ function appendIngredient(i){
         pickBurgerRecipe();
         return;
     }
+    console.log(mode);
+    switch(mode){
+        case MODE.EASY : appendIngredientEasy(i); break;
+        case MODE.NORMAL: appendIngredientNormal(i); break;
+        case MODE.HARD: appendIngredientHard(i); break;
+    }
 
+}
+
+function appendIngredientEasy(i){
+    // todo 구현 필요
+}
+function appendIngredientNormal(i){
+    var ingredient;
+    
+    var div = document.getElementById('currentBurger');
+    console.log(i+" "+answerRecipe[currentIngredient+1]+" "+currentIngredient);
+    if(i != answerRecipe[currentIngredient+1]){
+        return;
+    }
     currentIngredient += 1;
-
     ingredient = document.createElement('img');
     ingredient.src = `img/ingredient/${i}.png`;
     ingredient.style.position = 'absolute';
@@ -83,6 +109,9 @@ function appendIngredient(i){
     div.appendChild(ingredient);
 }
 
+function appendIngredientHard(i){
+    // todo 구현 필요
+}
 function removeIngredient(){
     var answerRecipe = BURGER_LIST[BURGER];
     var div = document.getElementById('currentBurger');
