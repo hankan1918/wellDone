@@ -12,43 +12,52 @@
 #charImage {
     width: 300px;
     height: 300px;
-    border: 3px black solid;
+    border: 10px solid burlywood;
+    border-radius: 30px;
     position: absolute;
     right: 10px;
-    top: 220px;
+    top: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: wheat;
+    background-color: #f5f4df;
 }
 
 #currentBurger {
     width: 300px;
     height: 300px;
-    border: 3px black solid;
+    border: 10px solid burlywood;
+    border-radius: 30px;
     position: absolute;
     right: 10px;
-    top: 530px;
-    background-color: wheat;
+    top: 610px;
+    background-color: #f5f4df;
 }
 
 #burgerRecipe {
     width: 300px;
     height: 300px;
-    border: 3px black solid;
+    border: 10px solid burlywood;
+    border-radius: 30px;
     position: absolute;
     left: 10px;
-    top: 220px;
-    background-color: gray;
+    top: 300px;
+    background-color: #f5f4df;
 }
 
 canvas{
-    background-color: wheat;
+    background-color: #f5f4df;
 }
 
-#game h1{
-    color: orangered;
-    text-shadow: 5px 5px black;
+#game-title h1{
+    border: 10px solid burlywood;
+    border-radius: 30px;
+    margin: 0 auto;
+    margin-top: 20px;
+    width: 1000px;
+    font-size: 100px;
+    line-height: 100px;
+    background-color: #f5f4df;
 }
 
 #board{
@@ -58,24 +67,43 @@ canvas{
 }
 
 #timeboard{
+    padding: 20px;
+    font-size: 75px;
+    background-color: #f5f4df;
+    border: 10px solid burlywood;
+    border-radius: 30px;
     position: absolute;
     width: 500px;
-    text-align: left;
+    text-align: center;
     display: inline-block;
     left: 0;
 }
 
 #gscoreboard{
+    padding: 20px;
+    font-size: 75px;
+    margin-bottom: 20px;
+    background-color: #f5f4df;
+    border: 10px solid burlywood;
+    border-radius: 30px;
     position: absolute;
-    text-align: right;
+    text-align: center;
     width: 500px;
     display: inline-block;
     right: 0;
 }
 
+#gameCanvas {
+    margin-top: 80px;
+    background-color: #f5f4df;
+    border: 10px solid burlywood;
+}
+
 #gamebutton{
     position: absolute;
-    left: 10px; top: 530px;
+    background-color: #f5f4df;
+    left: 10px; top: 610px;
     width: 300px; height: 300px;
-    border: 3px solid black;
+    border: 10px solid burlywood;
+    border-radius: 30px;
 }
