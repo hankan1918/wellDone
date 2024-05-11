@@ -59,7 +59,8 @@ canvas{
 
 #timeboard{
     position: absolute;
-    width: 300px;
+    width: 500px;
+    text-align: left;
     display: inline-block;
     left: 0;
 }
