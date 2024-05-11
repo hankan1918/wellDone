@@ -9,11 +9,19 @@
     width: auto;
 }
 
+#charImage {
+    width: 300px;
+    height: 300px;
+    border: 3px black solid;
+    position: absolute;
+    right: 0;
+    bottom: 303px;
+}
 
 #currentBurger {
     width: 300px;
     height: 300px;
-    border: 1px black solid;
+    border: 3px black solid;
     position: absolute;
     right: 0;
     bottom: 0;
@@ -22,7 +30,7 @@
 #burgerRecipe {
     width: 300px;
     height: 300px;
-    border: 1px black solid;
+    border: 3px black solid;
     position: absolute;
     left: 0;
     bottom: 0;
