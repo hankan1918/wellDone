@@ -1,5 +1,5 @@
 var SCORE_KEY = "scoreList";
-var SCORE_SHOW_FORM = ['rank', 'char', 'name', 'score'];
+var SCORE_SHOW_FORM = ['rank', 'character', 'name', 'score'];
 
 function showScoreboard(){
     showPage('scoreboard', 'main');

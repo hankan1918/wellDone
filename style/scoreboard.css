@@ -16,17 +16,22 @@ table{
 
 table tr {
     border: 10px solid burlywood;
-    border-radius: 30px;
 }
 
 table tr th {
     padding: 10px 40px;
-    font-size: 75px;
+    font-size: 50px;
     text-align: center;
 }
 
 table tr td{
-    padding: 50px 40px;
+    padding: 30px 40px;
+    font-size: 50px;
+    text-align: center;
+}
+
+table tr td:first-of-type {
+    font-size: 100px;
 }
 
 #scoreboard-title {
