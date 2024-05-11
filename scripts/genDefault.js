@@ -36,7 +36,7 @@ var remainingTime;                                          /* 남은 시간 */
 var timeboard;                                              /* 게임 시간판 */
 const MIN_SCORE = 0;                                        /* 초기 점수 */
 var score;                                                  /* 점수 */
-var scoreboard;                                             /* 점수판 */
+var gscoreboard;                                             /* 점수판 */
 var lifeboard;                                              /* 목숨판 */
 const MAX_LIFE = 3;                                         /* 최대목숨 */
 var life;                                                   /* 목숨 */
@@ -57,7 +57,7 @@ function init(sb, lb, tb){
     clearInterval(timer);
     clearInterval(ingredientTimer);
     clearInterval(gTimer);
-    scoreboard = sb;
+    gscoreboard = sb;
     lifeboard = lb;
     timeboard = tb;
     
@@ -66,7 +66,7 @@ function init(sb, lb, tb){
     remainingTime = TOTALTIME;
     timeboard.innerText = remainingTime;
     score = MIN_SCORE;
-    scoreboard.innerText = score;
+    gscoreboard.innerText = score;
     life = MAX_LIFE
     lifeboard.innerText = life;
 
@@ -343,7 +343,7 @@ function updateTime(){
 
 /* 점수 출력 */
 function updateScore(){
-    scoreboard.innerText = "점수: " + score;
+    gscoreboard.innerText = "점수: " + score;
 }
 
 /* 목숨 출력 */
