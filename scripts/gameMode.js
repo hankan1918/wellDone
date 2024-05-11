@@ -22,6 +22,7 @@ function easyMode(){
 
 function normalMode(){
     mode = MODE.NORMAL;
+    currentIngredient = -1;
     console.log("normal: ", mode);
     newGame(document.getElementById('gscoreboard'), document.getElementById('lifeboard'), document.getElementById('timeboard'));
 }
