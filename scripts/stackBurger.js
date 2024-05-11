@@ -11,6 +11,8 @@ const cheeseMargin = 30;
 var ingredientNexth;
 var currentIngredient;
 var answerRecipe;
+var burgerCount = 0; //완성된 버거 개수
+
 function pickBurgerRecipe(){
     BURGER = Math.floor(Math.random() * BURGER_LIST.length);
     ingredientNexth = 30;//초기화
@@ -70,6 +72,8 @@ function appendIngredient(i){
     //수정 필요해 보임. 
     //완성이 되었으면 새로운 레시피 선택하도록 함. 현재의 완성품은 없앰.
     if(isComplete()){
+        burgerCount++;
+        console.log("complete:", burgerCount);
         pickBurgerRecipe();
         return;
     }
@@ -87,9 +91,9 @@ function appendIngredientEasy(i){
 }
 function appendIngredientNormal(i){
     var ingredient;
-    
     var div = document.getElementById('currentBurger');
     console.log(i+" "+answerRecipe[currentIngredient+1]+" "+currentIngredient);
+    console.log("currnt", currentIngredient);
     if(i != answerRecipe[currentIngredient+1]){
         return;
     }
