@@ -110,9 +110,24 @@ function appendIngredient(i){
     }
 }
 
+// 충돌한 재료의 type을 받음
+// 충돌한 재료를 currentBurger에 그림
 function appendIngredientEasy(i){
-    // todo 구현 필요
+    var ingredient;
+    var div = document.getElementById('currentBurger');
+    ingredient = document.createElement('img');
+    div.innerHTML = "";
+    console.log("current: "+ i + ": answer " + answerIngredient + currentIngredient);
+    ingredient.src = `img/ingredient/${i}.png`;
+    ingredient.style.position = 'absolute';
+    ingredient.style.left = "50%"
+    ingredient.style.top = "40%"
+    ingredient.style.transform = "translateX(-50%)";
+    ingredient.style.width = `${BURGER_WIDTH}px`;
+    console.log("ingred", ingredient);
+    div.appendChild(ingredient);
 }
+
 function appendIngredientNormal(i){
     var ingredient;
     var div = document.getElementById('currentBurger');
