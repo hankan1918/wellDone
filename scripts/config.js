@@ -17,13 +17,13 @@ var hoverButton = button.children[1];
 function changeMuteState(){
     if(isMuted){
         isMuted = false;
-        normalButton.src = "./img/button/unmute.png"
-        hoverButton.src = "./img/button/unmute-hover.png"
+        normalButton.src = "./img/button/main-button/unmute/unmute.png"
+        hoverButton.src = "./img/button/main-button/unmute/unmute-hover.png"
         playBGM();
     } else {
         isMuted = true;
-        normalButton.src = "./img/button/mute.png"
-        hoverButton.src = "./img/button/mute-hover.png"
+        normalButton.src = "./img/button/main-button/mute/mute.png"
+        hoverButton.src = "./img/button/main-button/mute/mute-hover.png"
         bgmPlayer.pause();
     }
 }

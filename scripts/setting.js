@@ -29,10 +29,10 @@ function createCarouselMenu(pos, content, val){
     prev.classList.add('button-box');
 
     img = document.createElement('img');
-    img.src = 'img/button/prev.png';
+    img.src = 'img/button/sub-button/prev/prev.png';
     prev.appendChild(img);
     img = document.createElement('img');
-    img.src = 'img/button/prev-hover.png';
+    img.src = 'img/button/sub-button/prev/prev-hover.png';
     prev.appendChild(img);
 
     parent.appendChild(prev);
@@ -58,10 +58,10 @@ function createCarouselMenu(pos, content, val){
     next.classList.add('button-box');
 
     img = document.createElement('img');
-    img.src = 'img/button/next.png';
+    img.src = 'img/button/sub-button/next/next.png';
     next.appendChild(img);
     img = document.createElement('img');
-    img.src = 'img/button/next-hover.png';
+    img.src = 'img/button/sub-button/next/next-hover.png';
     next.appendChild(img);
 
     if(val == "THEME"){

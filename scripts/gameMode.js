@@ -43,9 +43,9 @@ function changeModeImage(){
     console.log(mode)
     var parent = document.getElementById("difficulty");
     var child = document.createElement("img");
-        if (mode == MODE.EASY)        child.src = "./img/button/easy.png";
-        else if (mode == MODE.NORMAL) child.src = "./img/button/normal.png";
-        else if (mode == MODE.HARD)   child.src = "./img/button/hard.png";
+        if (mode == MODE.EASY)        child.src = "./img/button/sub-button/easy/easy.png";
+        else if (mode == MODE.NORMAL) child.src = "./img/button/sub-button/normal/normal.png";
+        else if (mode == MODE.HARD)   child.src = "./img/button/sub-button/hard/hard.png";
         child.alt = "MODE";
         parent.appendChild(child);
 
