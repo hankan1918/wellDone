@@ -70,6 +70,7 @@ function createCarouselMenu(pos, content, val){
                 THEME-=1;
                 cmItems.style.transform = `translateX(-${THEME*cmMenuWidth}px)`;
                 console.log(THEME);
+                applyTheme()
             }
         });
         next.addEventListener('click', function(){
@@ -77,7 +78,7 @@ function createCarouselMenu(pos, content, val){
                 THEME+=1;
                 cmItems.style.transform = `translateX(-${THEME*cmMenuWidth}px)`;
                 console.log(THEME);
-
+                applyTheme()
             }
         });
     } else if(val == "BGM"){
@@ -105,4 +106,9 @@ function createCarouselMenu(pos, content, val){
 function playBGM(){
     bgmPlayer.src = `bgm/${BGM_LIST[BGM]}.mp3`;
     bgmPlayer.play();
+}
+
+function applyTheme(){
+    var themeName = THEME_LIST[THEME].replaceAll(' ', '')
+    document.body.style.backgroundImage = `url('img/background/${themeName}.png')`;
 }
