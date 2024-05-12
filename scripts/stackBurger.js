@@ -32,9 +32,6 @@ function showBurgerRecipe(){
     for(var i = 0; i < answerRecipe.length; i++){
         ingredient = document.createElement('img');
         ingredient.src = `img/ingredient/${answerRecipe[i]}.png`;
-        ingredient.style.position = 'absolute';
-        ingredient.style.left = "50%"
-        ingredient.style.transform = "translateX(-50%)";
         ingredient.style.width = `${BURGER_WIDTH}px`;
         if(answerRecipe[i] === 'cheese') {
             h -= cheeseMargin; // 치즈 마진 추가
@@ -101,9 +98,6 @@ function appendIngredientNormal(i){
     currentIngredient += 1;
     ingredient = document.createElement('img');
     ingredient.src = `img/ingredient/${i}.png`;
-    ingredient.style.position = 'absolute';
-    ingredient.style.left = "50%"
-    ingredient.style.transform = "translateX(-50%)";
     ingredient.style.width = `${BURGER_WIDTH}px`;
     if(answerRecipe[currentIngredient] === 'cheese') {
         ingredientNexth -= cheeseMargin; // 치즈 마진 추가
