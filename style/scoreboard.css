@@ -39,3 +39,7 @@ table tr td:first-of-type {
     font-size: 110px;
     border-bottom: 10px solid burlywood;
 }
+
+td>img{
+    width: 100px;
+}

@@ -1,13 +1,15 @@
 var SCORE_KEY = "scoreList";
-var SCORE_SHOW_FORM = ['rank', 'character', 'name', 'score'];
+var SCORE_SHOW_FORM = ['rank', 'char', 'name', 'score'];
 
 function showScoreboard(){
     showPage('scoreboard', 'main');
     var td, tr, th, img;
     var parent = document.getElementById('scoreboardList');
+    // start test code
     resetScoreStorage();
     appendScore(10000, "asdf", "JIM");
     appendScore(1000, "er", "CEO");
+    // end test code
     var scoreList = getScores();
     parent.innerHTML = "";
     parent = document.createElement('table');
@@ -22,32 +24,23 @@ function showScoreboard(){
 
     for(var i = 0; i<scoreList.length; i++){
         tr = document.createElement('tr');
-        tr.setAttribute('border-radius', '30px');
         for(var j = 0; j<SCORE_SHOW_FORM.length; j++){
             td=document.createElement('td');
             td.setAttribute('align', 'right');
-            if(j === 0) {
+            if(j == 0) {
                 td.innerHTML = i+1;
-                tr.appendChild(td);
-                continue;
             }
-            if(j === 1) {
-                img = document.createElement('img');
-                img.setAttribute("src", "./img/char/" + scoreList[i]["char"] + ".png");
-                td.appendChild(img);
-                tr.appendChild(td);
-                continue;
+            else{
+                if(SCORE_SHOW_FORM[j] == 'char'){
+                    img = document.createElement('img');
+                    console.log(scoreList[i].char);
+                    img.setAttribute('src', `img/char/${scoreList[i].char}.png`);
+                    td.appendChild(img);
+                }
+                else td.innerHTML = scoreList[i][SCORE_SHOW_FORM[j]];
+                console.log(scoreList[i][SCORE_SHOW_FORM[j]]);
             }
-            if(j === 2) {
-                td.innerHTML = scoreList[i]["nickname"];
-                tr.appendChild(td);
-                continue;
-            }
-            if(j === 3) {
-                td.innerHTML = scoreList[i]["score"];
-                tr.appendChild(td);
-                continue;
-            }
+            tr.appendChild(td);
         }
         parent.appendChild(tr);
     }
@@ -59,13 +52,13 @@ function resetScoreStorage(){
     localStorage.setItem(SCORE_KEY,null);
 }
 
-function appendScore(score, nickname, char=CHAR_LIST[CHAR]) {
+function appendScore(score, name, char=CHAR_LIST[CHAR]) {
     try {
         // 기존에 로컬 스토리지에 저장된 데이터 불러오기
         let savedData = JSON.parse(localStorage.getItem(SCORE_KEY)) || [];
         
         // 새로운 데이터 추가
-        savedData.push({ score, nickname, char });
+        savedData.push({ score, name, char });
 
         savedData.sort((a,b) => b.score - a.score)
         if(savedData.length >10){
