@@ -17,7 +17,6 @@
 <body onload="bodyOnLoad();">
     <audio autoplay loop controls id="bgmPlayer" style="display: none;"></audio>
     <div class="page" id="main">
-        <img src="./img/background/main-background.png" alt="bg" class="background-image">
         <h1>This is title</h1>
         <div class="button-div">
             <div class="button-box main-button" onclick="showPage('game', 'main'); showGamePage();" id="game-start-button">
@@ -43,7 +42,6 @@
         </div>
     </div>
     <div class="page" id="setting">
-        <img src="./img/background/main-background.png" alt="bg" class="background-image">
         <div id="settings-box">
             <div class="button-box back-button" onclick="showPage('main', 'setting')">
                 <img src="img/button/sub-button/back/back.png" alt="back">
@@ -72,15 +70,6 @@
             <h2 class="settings-sub-title">Theme</h2>
             <div class="picker" id="bgi">
                 <div class="carouselMenu">
-                    <!-- <button onclick="carouselMenuPrev();" style="display: block;">prev</button>
-                    <div class="cmContainer">
-                        <div class="cmItems">
-                            <div class="cmItem">Theme A</div>
-                            <div class="cmItem">Theme B</div>
-                            <div class="cmItem">Theme C</div>
-                        </div>
-                    </div>
-                    <button onclick="carouselMenuNext();" style="display: block;">next</button> -->
                 </div>
             </div>
             <h2 class="settings-sub-title">BGM</h2>
@@ -91,7 +80,6 @@
         </div>
     </div>
     <div class="page" id="challenge">
-        <img src="./img/background/main-background.png" alt="bg" class="background-image">
         <div id="challenge-box">
             <h1 id="achievements-title">Achievements</h1>
             <div class="button-box back-button" onclick="showPage('main', 'challenge')">
@@ -102,7 +90,6 @@
         </div>
     </div>
     <div class="page" id="scoreboard">
-        <img src="./img/background/main-background.png" alt="bg" class="background-image">
         <div id="scoreboard-box">
             <h1 id="scoreboard-title">scoreboard</h1>
             <div id="scoreboardList">
@@ -117,7 +104,6 @@
 
     <!-- game page -->
     <div class="page" id="game">
-        <img src="./img/background/main-background.png" alt="bg" class="background-image">
         <div class="button-box back-button" onclick="showPage('main', 'game'); resetGame();">
             <img src="img/button/sub-button/back/back.png" alt="back">
             <img src="img/button/sub-button/back/back-hover.png" alt="back">
