@@ -21,33 +21,33 @@
         <h1>This is title</h1>
         <div class="button-div">
             <div class="button-box main-button" onclick="showPage('game', 'main'); showGamePage();" id="game-start-button">
-                <img src="./img/button/game-start.png" alt="game start">
-                <img src="./img/button/game-start-hover.png" alt="game start">
+                <img src="img/button/main-button/game-start/game-start.png" alt="game start">
+                <img src="img/button/main-button/game-start/game-start-hover.png" alt="game start">
             </div>
             <div class="button-box sub-button" onclick="showSetting();" id="settings-button">
-                <img src="./img/button/settings.png" alt="settings">
-                <img src="./img/button/settings-hover.png" alt="settings">
+                <img src="img/button/main-button/settings/settings.png" alt="settings">
+                <img src="img/button/main-button/settings/settings-hover.png" alt="settings">
             </div>
             <div class="button-box sub-button" onclick="showChallenge();" id="achievement-button">
-                <img src="./img/button/achievements.png" alt="achievements">
-                <img src="./img/button/achievements-hover.png" alt="achievements">
+                <img src="img/button/main-button/achievements/achievements.png" alt="achievements">
+                <img src="img/button/main-button/achievements/achievements-hover.png" alt="achievements">
             </div>
             <div class="button-box sub-button" onclick="showScoreboard()" id="highscores-button">
-                <img src="./img/button/highscores.png" alt="highscores">
-                <img src="./img/button/highscores-hover.png" alt="highscores">
+                <img src="img/button/main-button/highscores/highscores.png" alt="highscores">
+                <img src="img/button/main-button/highscores/highscores-hover.png" alt="highscores">
             </div>
         </div>
         <div class="button-box" onclick="changeMuteState()" id="mute-button">
-            <img src="./img/button/mute.png" alt="sound" id="mute-normal">
-            <img src="./img/button/mute-hover.png" alt="sound">
+            <img src="img/button/main-button/mute/mute.png" alt="sound" id="mute-normal">
+            <img src="img/button/main-button/mute/mute-hover.png" alt="sound">
         </div>
     </div>
     <div class="page" id="setting">
         <img src="./img/background/main-background.png" alt="bg" class="background-image">
         <div id="settings-box">
             <div class="button-box back-button" onclick="showPage('main', 'setting')">
-                <img src="./img/button/back.png" alt="back">
-                <img src="./img/button/back-hover.png" alt="back">
+                <img src="img/button/sub-button/back/back.png" alt="back">
+                <img src="img/button/sub-button/back/back-hover.png" alt="back">
             </div>
             <h1 id="settings-title">Setting</h1>
             <!--
@@ -95,22 +95,22 @@
         <div id="challenge-box">
             <h1 id="achievements-title">Achievements</h1>
             <div class="button-box back-button" onclick="showPage('main', 'challenge')">
-                <img src="./img/button/back.png" alt="back">
-                <img src="./img/button/back-hover.png" alt="back">
+                <img src="img/button/sub-button/back/back.png" alt="back">
+                <img src="img/button/sub-button/back/back-hover.png" alt="back">
             </div>
             <div id="cards"></div>
         </div>
     </div>
     <div class="page" id="scoreboard">
-sco        <img src="./img/background/main-background.png" alt="bg" class="background-image">
+        <img src="./img/background/main-background.png" alt="bg" class="background-image">
         <div id="scoreboard-box">
             <h1 id="scoreboard-title">scoreboard</h1>
             <div id="scoreboardList">
 
             </div>
             <div class="button-box back-button" onclick="showPage('main', 'scoreboard')">
-                <img src="./img/button/back.png" alt="back">
-                <img src="./img/button/back-hover.png" alt="back">
+                <img src="img/button/sub-button/back/back.png" alt="back">
+                <img src="img/button/sub-button/back/back-hover.png" alt="back">
             </div>
         </div>
     </div>
@@ -119,8 +119,8 @@ sco        <img src="./img/background/main-background.png" alt="bg" class="backg
     <div class="page" id="game">
         <img src="./img/background/main-background.png" alt="bg" class="background-image">
         <div class="button-box back-button" onclick="showPage('main', 'game'); resetGame();">
-            <img src="./img/button/back.png" alt="back">
-            <img src="./img/button/back-hover.png" alt="back">
+            <img src="img/button/sub-button/back/back.png" alt="back">
+            <img src="img/button/sub-button/back/back-hover.png" alt="back">
         </div>
         <div id="difficulty"></div>
         <div id="game-title">
@@ -136,10 +136,22 @@ sco        <img src="./img/background/main-background.png" alt="bg" class="backg
         <div id="burgerRecipe"></div>
         <div id="currentBurger"></div>
         <div id="gamebutton">
-        <input type="button" onclick="replay();" value="REPLAY">
-            <input type="button" onclick="easyMode();" value="EASY">
-            <input type="button" onclick="normalMode();" value="NORMAL">
-            <input type="button" onclick="hardMode();" value="HARD">
+            <div class="button-box small-button" onclick="replay();">
+                <img src="img/button/sub-button/replay/replay.png" alt="replay">
+                <img src="img/button/sub-button/replay/replay-hover.png" alt="replay">
+            </div>
+            <div class="button-box small-button" onclick="easyMode();">
+                <img src="img/button/sub-button/easy/easy.png" alt="easy">
+                <img src="img/button/sub-button/easy/easy-hover.png" alt="easy">
+            </div>
+            <div class="button-box small-button" onclick="normalMode();">
+                <img src="img/button/sub-button/normal/normal.png" alt="normal">
+                <img src="img/button/sub-button/normal/normal-hover.png" alt="normal">
+            </div>
+            <div class="button-box small-button" onclick="hardMode();">
+                <img src="img/button/sub-button/hard/hard.png" alt="hard">
+                <img src="img/button/sub-button/hard/hard-hover.png" alt="hard">
+            </div>
         </div>
     </div>
     

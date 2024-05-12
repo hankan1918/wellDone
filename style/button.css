@@ -47,6 +47,13 @@
     height: 75px;
 }
 
+.small-button {
+    margin: 30px auto;
+}
+.small-button img{
+    height: 40px;
+}
+
 .button-box img:first-child {
     display: block;
 }
