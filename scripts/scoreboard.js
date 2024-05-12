@@ -3,8 +3,11 @@ var SCORE_SHOW_FORM = ['rank', 'character', 'name', 'score'];
 
 function showScoreboard(){
     showPage('scoreboard', 'main');
-    var td, tr, th;
+    var td, tr, th, img;
     var parent = document.getElementById('scoreboardList');
+    resetScoreStorage();
+    appendScore(10000, "asdf", "JIM");
+    appendScore(1000, "er", "CEO");
     var scoreList = getScores();
     parent.innerHTML = "";
     parent = document.createElement('table');
@@ -23,9 +26,43 @@ function showScoreboard(){
         for(var j = 0; j<SCORE_SHOW_FORM.length; j++){
             td=document.createElement('td');
             td.setAttribute('align', 'right');
-            if(j == 0) td.innerHTML = i+1;
-            else td.innerHTML = scoreList[i][SCORE_SHOW_FORM[j]];
-            tr.appendChild(td);
+            if(j === 0) {
+                td.innerHTML = i+1;
+                tr.appendChild(td);
+                continue;
+            }
+            if(j === 1) {
+                img = document.createElement('img');
+                switch (scoreList[i]["char"]) {
+                    case "JIM":
+                        img.setAttribute("src", "./img/char/character1.png");
+                        img.setAttribute("width", "100px");
+                        td.appendChild(img);
+                        break;
+                    case "CEO":
+                        img.setAttribute("src", "./img/char/character2.png");
+                        img.setAttribute("width", "100px");
+                        td.appendChild(img);
+                        break;
+                    case "BENJAMIN":
+                        img.setAttribute("src", "./img/char/character3.png");
+                        img.setAttribute("width", "100px");
+                        td.appendChild(img);
+                        break;
+                }
+                tr.appendChild(td);
+                continue;
+            }
+            if(j === 2) {
+                td.innerHTML = scoreList[i]["nickname"];
+                tr.appendChild(td);
+                continue;
+            }
+            if(j === 3) {
+                td.innerHTML = scoreList[i]["score"];
+                tr.appendChild(td);
+                continue;
+            }
         }
         parent.appendChild(tr);
     }
