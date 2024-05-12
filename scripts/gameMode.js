@@ -20,6 +20,8 @@ function easyMode(){
     newGame(document.getElementById('gscoreboard'), document.getElementById('timeboard'));
     removeModeImage();
     changeModeImage();
+    removeBuregerRecipe();
+    pickIngredient();
 }
 
 function normalMode(){
@@ -28,6 +30,8 @@ function normalMode(){
     newGame(document.getElementById('gscoreboard'), document.getElementById('timeboard'));
     removeModeImage();
     changeModeImage();
+    removeBuregerRecipe();
+    pickBurgerRecipe();
 }
 
 function hardMode(){
@@ -37,6 +41,8 @@ function hardMode(){
     newGame(document.getElementById('gscoreboard'), document.getElementById('timeboard'));
     removeModeImage();
     changeModeImage();
+    removeBuregerRecipe();
+    pickBurgerRecipe();
 }
 
 function changeModeImage(){
