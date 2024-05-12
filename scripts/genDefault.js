@@ -543,6 +543,8 @@ function drawGameover(msg="GAME OVER!"){
     context.fillStyle = "black"
     context.font = '150px arcade';
     context.fillText(msg, 210, 300);
+    removeIngredient();
+    removeBuregerRecipe();
     clearInterval(timer);
     clearInterval(ingredientTimer);
     clearInterval(gTimer);
@@ -553,6 +555,8 @@ function completeEasy(msg="COMPLETE EASY MODE"){
     context.fillStyle = "black";
     context.font = '100px arcade';
     context.fillText(msg, 100, 250);
+    removeIngredient();
+    removeBuregerRecipe();
     clearInterval(timer);
     clearInterval(ingredientTimer);
     clearInterval(gTimer);
@@ -563,6 +567,8 @@ function completeNormal(msg="COMPLETE NORMAL MODE"){
     context.fillStyle = "black";
     context.font = '100px arcade';
     context.fillText(msg, 60, 250);
+    removeIngredient();
+    removeBuregerRecipe();
     clearInterval(timer);
     clearInterval(ingredientTimer);
     clearInterval(gTimer);
@@ -573,10 +579,60 @@ function completeHard(msg="COMPLETE HARD MODE"){
     context.fillStyle = "black";
     context.font = '100px arcade';
     context.fillText(msg, 100, 250);
+    removeIngredient();
+    removeBuregerRecipe();
     clearInterval(timer);
     clearInterval(ingredientTimer);
     clearInterval(gTimer);
 }
+
+// Canvas Resizing
+// Get the canvas element
+// Resize the canvas to maintain aspect ratio
+function resizeCanvas(){
+    var aspectRatio = 1000 / 500; // Width / Height
+    var targetWidth = window.innerWidth * 0.6;
+    var targetHeight = targetWidth / aspectRatio;
+
+    var maxHeight = window.innerHeight * 0.6;
+    if (targetHeight > maxHeight) {
+        targetHeight = maxHeight;
+        targetWidth = targetHeight * aspectRatio;
+    }
+
+    canvas.width = targetWidth;
+    canvas.height = targetHeight;
+    CWIDTH = canvas.width;
+    CHEIGHT = canvas.height;    
+}
+
+window.addEventListener('resize', resizeCanvas);
+
+/*
+   캐릭터 이미지 생성
+   - config.js의 CHAR_LIST, CHAR(현재 선택한 캐릭터 인덱스)
+ */
+function changeChar(){
+    var parent = document.getElementById("charImage");
+    var child = document.createElement("img");
+    charimg = CHAR_LIST[CHAR];
+    console.log(charimg);
+    child.src = `img/char/${charimg}.png`;
+    child.alt = "CHAR";
+    parent.appendChild(child);
+}
+/*
+    캐릭터 이미지 제거
+    resetGame에서 사용
+ */
+function removeChar(){
+    var parent = document.getElementById("charImage");
+    var child = parent.querySelector("img");
+    if (child) {
+        parent.removeChild(child);
+    }
+}
+
 
 // Canvas Resizing
 // Get the canvas element
