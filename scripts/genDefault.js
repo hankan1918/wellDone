@@ -37,14 +37,14 @@ var ballVy;                                                 /* 공의 현재 y�
 const WEIGHT = 0.07;                                        /* 바운스 */
 
 /* 패들 관련 변수 */
-const BARWIDTH = 120;                                       /* 패들 너비 */
+const BARWIDTH = 140;                                       /* 패들 너비 */
 const BARHEIGHT = 10;                                       /* 패들 높이 */
 var barX;                                                   /* 패들 x 위치 */
 var barY;                                                   /* 패들 y 위치 */
 
 /* 제한시간, 점수, 목숨 관련 변수 */
 var gTimer;
-const TOTALTIME = 5;                                       /* 제한 시간 */
+const TOTALTIME = 30;                                       /* 제한 시간 */
 var remainingTime;                                          /* 남은 시간 */
 var timeboard;                                              /* 게임 시간판 */
 const MIN_SCORE = 0;                                        /* 초기 점수 */
