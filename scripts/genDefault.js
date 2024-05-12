@@ -17,6 +17,14 @@ var timer;                                                  /* 타이머 객체 
 const GRIDSIZE = 80;
 var grid = [];
 
+/* 캐릭터 관련 변수 */
+var charimg;                                                /* 현재 캐릭터 */
+const CEOABILITY = 3;                                       /* CEO의 능력 추가 점수 */
+const BENJAMINABILITY = {                                   /* BENJAMIN의 능력 추가 시간*/    
+    time: 5,
+    count: 1
+}
+var bencount;                                               /* BENJAMIN의 추가 시간 개수 카운트*/
 
 /* 공 관련 변수 */
 const BALLRADIUS = 5;                                       /* 공 반지름 */
@@ -36,7 +44,7 @@ var barY;                                                   /* 패들 y 위치 *
 
 /* 제한시간, 점수, 목숨 관련 변수 */
 var gTimer;
-const TOTALTIME = 180;                                       /* 제한 시간 */
+const TOTALTIME = 5;                                       /* 제한 시간 */
 var remainingTime;                                          /* 남은 시간 */
 var timeboard;                                              /* 게임 시간판 */
 const MIN_SCORE = 0;                                        /* 초기 점수 */
@@ -65,6 +73,12 @@ function init(sb, tb){
     gscoreboard = sb;
     // lifeboard = lb;
     timeboard = tb;
+    
+    /* 캐릭터 능력 */
+    charimg = CHAR_LIST[CHAR];
+    console.log("init char: ", charimg);
+    if (charimg == "BENJAMIN") bencount = BENJAMINABILITY.count;
+    console.log("bencount", bencount);
 
     console.log("starting mode", mode);
     /* 제한시간, 점수, 목숨세팅 */
@@ -279,6 +293,7 @@ function collisionDetection(){
         removeModeImage();
         changeModeImage();
     }
+    
     // HARD: 버거 완성 개수가 1이상, 목숨이 0, 남은 시간이 있는 경우 --> 땅에 공이 떨어져서 죽은 경우 -->draw()함수 참고
     // 시간이 다 되어서 목숨이 0이 된 경우는 --> gameTimer()함수 참고
     for (let i = 0; i < activeingredients.length; i++){
@@ -364,25 +379,7 @@ function updateGrid(ingredientX, ingredientY){
 }
 
 /* 시간 계산 */
-function gameTimer(){
-    remainingTime--;
-    if (remainingTime <= 0){
-        updateTime();
-        // 목숨제 안할 경우
-        if(mode != MODE.HARD){ // hard가 아닌 경우
-            drawGameover();
-            resetGame();
-        }
-        // mode == MODE.HARD인 경우만, 버거 완성 개수가 1 이상이면 컴플릿, 아니면 게임오버
-        if(burgerCount >= 1){
-            completeHard();
-            // 스코어 보드 기록
-        }
-        else{
-            drawGameover();
-            resetGame();
-        }
-        /* 목숨제
+/* 목숨제
         life -= 1;
         updateTime();
         updateLife();
@@ -402,9 +399,53 @@ function gameTimer(){
                 resetGame();
             }
         }
-        */
+*/
+
+function gameTimer(){
+    remainingTime--;
+    if (remainingTime <= 0){
+        if(charimg != "BENJAMIN"){
+            updateTime();
+            if(mode != MODE.HARD){ // hard가 아닌 경우
+                drawGameover();
+                resetGame();
+            }
+            // mode == MODE.HARD인 경우만, 버거 완성 개수가 1 이상이면 컴플릿, 아니면 게임오버
+            if(burgerCount >= 1){
+                completeHard();
+                // 스코어 보드 기록
+            }
+            else{
+                drawGameover();
+                resetGame();
+            }
+        } else {
+            // 캐릭터가 BENJAMIN인 경우 REMAINGTIME 0 일 때 추가 시간(BENJAMINABILITY) 제공
+            bencount--;
+            remainingTime = BENJAMINABILITY.time;
+            console.log(bencount);
+            if(bencount < 0){
+                remainingTime = 0;
+                updateTime();
+                if(mode != MODE.HARD){ // hard가 아닌 경우
+                    drawGameover();
+                    resetGame();
+                }
+                // mode == MODE.HARD인 경우만, 버거 완성 개수가 1 이상이면 컴플릿, 아니면 게임오버
+                if(burgerCount >= 1){
+                    completeHard();
+                    // 스코어 보드 기록
+                }
+                else{
+                    drawGameover();
+                    resetGame();
+                }
+            }
+
+        }
     }
 }
+
 
 /* 제한 시간 출력 */
 function updateTime(){
@@ -449,6 +490,10 @@ function replay(){
 
 /* newgame newgame 처리 */
 function newGame(sb, tb){
+    // 캐릭터별 처리
+    if(charimg == "BENJAMIN") bencount = BENJAMINABILITY.count;
+    console.log("a", bencount);
+    //if(charimg == "CEO") bencount = BENJAMINABILITY.count;
     // init에 보낼 인수
     rsb = sb;       // scoreboard
     // rlb = lb;       // lifeboard
@@ -480,7 +525,7 @@ function newGame(sb, tb){
 */
 function resetGame(){
     mode = MODE.EASY;
-
+    if(charimg == "BENJAMIN") bencount = BENJAMINABILITY.count;
     // 공 초기화
     ballX = CWIDTH/2;                    
     ballY = CHEIGHT/2;
