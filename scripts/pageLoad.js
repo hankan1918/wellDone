@@ -15,7 +15,7 @@ function bodyOnLoad(){
 
 function showGamePage(){
     resizeCanvas();
-    pickBurgerRecipe();
+    pickIngredient();
     init(document.getElementById('gscoreboard'), document.getElementById('timeboard'));
     changeModeImage();
     changeChar();
