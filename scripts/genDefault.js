@@ -306,6 +306,7 @@ function collisionDetection(){
                 ballVy *= -1;
                 b.status = 0;
                 score += 10;
+                if (charimg == "CEO") score += CEOABILITY;
 
                 updateGrid(b.x, b.y);   // 격자 업데이트 (재료가 있던 칸 비우기)
 
