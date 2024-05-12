@@ -6,12 +6,36 @@ const BURGER_LIST =[
 ]; //추후 추가 가능하도록
 const BURGER_WIDTH = 180;
 const INGREDIENT = {'bottom-bun': (7*BURGER_WIDTH)/30, 'lettuce':(3*BURGER_WIDTH)/30, 'tomato':(4*BURGER_WIDTH)/30, 'patty':(5*BURGER_WIDTH)/30, 'cheese':(7*BURGER_WIDTH)/30};
+const ingredientType = ["top-bun", "bottom-bun", "cheese", "lettuce","patty", "tomato"];
 var BURGER = 3;//현재 만들어야하는 버거
+var MAKEINGREDIENT; // 현재 만들어야 하는 재료
 const cheeseMargin = 30;
 var ingredientNexth;
 var currentIngredient;
 var answerRecipe;
 var burgerCount = 0; //완성된 버거 개수
+
+function pickIngredient(){
+    MAKEINGREDIENT = Math.floor(Math.random() * ingredientType.length);
+    currentIngredient = -1;
+    answerRecipe = ingredientType[MAKEINGREDIENT];
+    document.getElementById('currentBurger').innerHTML = '';
+    showIngredient();
+}
+
+function showIngredient(){
+    var ingredient;
+    var div = document.getElementById("burgerRecipe");
+    div.innerHTML = "";
+    ingredient = document.createElement('img');
+    ingredient.src = `img/ingredient/${answerRecipe}.png`
+    ingredient.style.position = 'absolute';
+    ingredient.style.left = "50%"
+    ingredient.style.top = "40%"
+    ingredient.style.transform = "translateX(-50%)";
+    ingredient.style.width = `${BURGER_WIDTH}px`;
+    div.appendChild(ingredient);
+}
 
 function pickBurgerRecipe(){
     BURGER = Math.floor(Math.random() * BURGER_LIST.length);
@@ -49,8 +73,11 @@ function isComplete(){
         case MODE.EASY: //todo 구현 필요 
             break;
         case MODE.NORMAL:
-            if(currentIngredient == answerRecipe.length-1)
+            if(currentIngredient == answerRecipe.length-1){
+                console.log("****complete*****");
+                burgerCount++;
                 return true;
+            }
             else
                 return false;
         case MODE.HARD: //todo 구현 필요
@@ -78,11 +105,10 @@ function appendIngredient(i){
         setBurgerRecipeHistory();
         setTotalBurger();
         console.log("complete:", burgerCount);
-        pickBurgerRecipe();
+        // removeBuregerRecipe();
         return;
     }
 }
-
 
 function appendIngredientEasy(i){
     // todo 구현 필요
@@ -90,12 +116,13 @@ function appendIngredientEasy(i){
 function appendIngredientNormal(i){
     var ingredient;
     var div = document.getElementById('currentBurger');
-    console.log(i+" "+answerRecipe[currentIngredient+1]+" "+currentIngredient);
-    console.log("currnt", currentIngredient);
+    console.log(i+", "+answerRecipe[currentIngredient+1]+", "+currentIngredient); 
+    console.log("burgerRecipe length: ", answerRecipe.length-1);
     if(i != answerRecipe[currentIngredient+1]){
         return;
     }
     currentIngredient += 1;
+    console.log("currnt", currentIngredient);
     ingredient = document.createElement('img');
     ingredient.src = `img/ingredient/${i}.png`;
     ingredient.style.width = `${BURGER_WIDTH}px`;
@@ -122,4 +149,12 @@ function removeIngredient(){
         ingredientNexth -= INGREDIENT[answerRecipe[currentIngredient]];
         currentIngredient -= 1;
     }
+}
+
+function removeBuregerRecipe(){
+    var parent = document.getElementById("burgerRecipe");
+    var children = parent.querySelectorAll("img");
+    children.forEach(function(child) {
+        parent.removeChild(child);
+    });
 }

@@ -44,7 +44,7 @@ var barY;                                                   /* 패들 y 위치 *
 
 /* 제한시간, 점수, 목숨 관련 변수 */
 var gTimer;
-const TOTALTIME = 30;                                       /* 제한 시간 */
+const TOTALTIME = 180;                                       /* 제한 시간 */
 var remainingTime;                                          /* 남은 시간 */
 var timeboard;                                              /* 게임 시간판 */
 const MIN_SCORE = 0;                                        /* 초기 점수 */
@@ -205,8 +205,7 @@ function draw(){
     - activeingredient: 재료 객체 생성 (x좌표, y좌표, stats, 재료 타입, 이미지 경로)
     - 생성한 재료 객체를 activeingredients 배열에 추가
 */
-// var ingredientColor = ["red", "green",  "orange", "black", "pink"];
-var ingredientType = ["top-bun", "bottom-bun", "cheese", "lettuce","patty", "tomato"];
+// const ingredientColor = ["red", "green",  "orange", "black", "pink"];
 function createNewingredient(){
     const emptyCell = findEmptyGridCell();
     const gridX = emptyCell.x;
@@ -475,13 +474,13 @@ function replay(){
 function newGame(sb, tb){
     // 캐릭터별 처리
     if(charimg == "BENJAMIN") bencount = BENJAMINABILITY.count;
-    console.log("a", bencount);
+    console.log("new game bencount: ", bencount);
     //if(charimg == "CEO") bencount = BENJAMINABILITY.count;
     // init에 보낼 인수
     rsb = sb;       // scoreboard
     // rlb = lb;       // lifeboard
     rtb = tb;       // timeboard
-    console.log("re mode", mode);
+    console.log("re mode: ", mode);
     // 점수 초기화
     // life = MAX_LIFE;
     score = MIN_SCORE;
@@ -533,6 +532,7 @@ function resetGame(){
     clearInterval(timer);
     clearInterval(gTimer);
     initGrid();
+    removeBuregerRecipe();
     removeModeImage();
     removeChar();
 }
@@ -612,7 +612,6 @@ function changeChar(){
     child.src = `img/char/${charimg}.png`;
     child.alt = "CHAR";
     parent.appendChild(child);
-
 }
 /*
     캐릭터 이미지 제거
