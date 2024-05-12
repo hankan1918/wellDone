@@ -578,10 +578,11 @@ window.addEventListener('resize', resizeCanvas);
 function changeChar(){
     var parent = document.getElementById("charImage");
     var child = document.createElement("img");
-    charimg = CHAR_SRC_LIST[CHAR]
-        child.src = "./img/char/" + charimg + ".png";
-        child.alt = "CHAR";
-        parent.appendChild(child);
+    charimg = CHAR_LIST[CHAR];
+    console.log(charimg);
+    child.src = `img/char/${charimg}.png`;
+    child.alt = "CHAR";
+    parent.appendChild(child);
 
 }
 /*
