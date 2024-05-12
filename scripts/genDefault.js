@@ -276,6 +276,7 @@ function collisionDetection(){
         console.log("mode change", mode);
         completeNormal();
         setTimeout(hardMode,1500);
+        removeModeImage();
         changeModeImage();
     }
     // HARD: 버거 완성 개수가 1이상, 목숨이 0, 남은 시간이 있는 경우 --> 땅에 공이 떨어져서 죽은 경우 -->draw()함수 참고
