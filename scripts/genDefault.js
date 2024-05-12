@@ -48,6 +48,7 @@ const TOTALTIME = 180;                                       /* 제한 시간 */
 var remainingTime;                                          /* 남은 시간 */
 var timeboard;                                              /* 게임 시간판 */
 const MIN_SCORE = 0;                                        /* 초기 점수 */
+const BONUS = 5;                                            /* 추가 점수 */
 var score;                                                  /* 점수 */
 var gscoreboard;                                            /* 점수판 */
 // var lifeboard;                                              /* 목숨판 */
