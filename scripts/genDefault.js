@@ -521,9 +521,9 @@ function drawGameover(msg="GAME OVER!"){
 
 function completeEasy(msg="COMPLETE EASY MODE"){
     context.clearRect(0, 0, CWIDTH, CHEIGHT);
-    context.fillStyle = "red"
-    context.font = '50px serif';
-    context.fillText(msg, 100, 100);
+    context.fillStyle = "black";
+    context.font = '100px arcade';
+    context.fillText(msg, 100, 250);
     clearInterval(timer);
     clearInterval(ingredientTimer);
     clearInterval(gTimer);
@@ -531,9 +531,9 @@ function completeEasy(msg="COMPLETE EASY MODE"){
 
 function completeNormal(msg="COMPLETE NORMAL MODE"){
     context.clearRect(0, 0, CWIDTH, CHEIGHT);
-    context.fillStyle = "red"
-    context.font = '50px serif';
-    context.fillText(msg, 100, 100);
+    context.fillStyle = "black";
+    context.font = '100px arcade';
+    context.fillText(msg, 60, 250);
     clearInterval(timer);
     clearInterval(ingredientTimer);
     clearInterval(gTimer);
@@ -541,9 +541,9 @@ function completeNormal(msg="COMPLETE NORMAL MODE"){
 
 function completeHard(msg="COMPLETE HARD MODE"){
     context.clearRect(0, 0, CWIDTH, CHEIGHT);
-    context.fillStyle = "red"
-    context.font = '50px serif';
-    context.fillText(msg, 100, 100);
+    context.fillStyle = "black";
+    context.font = '100px arcade';
+    context.fillText(msg, 100, 250);
     clearInterval(timer);
     clearInterval(ingredientTimer);
     clearInterval(gTimer);
