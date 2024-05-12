@@ -509,11 +509,11 @@ function resetGame(){
 }
 
 /* 게임 오버 */
-function drawGameover(msg="게임오버"){
+function drawGameover(msg="GAME OVER!"){
     context.clearRect(0, 0, CWIDTH, CHEIGHT);
-    context.fillStyle = "red"
-    context.font = '50px serif';
-    context.fillText(msg, 100, 100);
+    context.fillStyle = "black"
+    context.font = '150px arcade';
+    context.fillText(msg, 210, 300);
     clearInterval(timer);
     clearInterval(ingredientTimer);
     clearInterval(gTimer);
