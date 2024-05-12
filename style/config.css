@@ -42,6 +42,11 @@
     padding: 0;
 }
 
+body{
+    background-image: url("../img/background/main-background.png");
+    background-size: cover;
+}
+
 canvas {
     display: block;
     margin: auto;
