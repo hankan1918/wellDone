@@ -13,6 +13,7 @@ const cheeseMargin = 30;
 var ingredientNexth;
 var currentIngredient;
 var answerRecipe;
+var answerIngredient;
 var burgerCount = 0; //완성된 버거 개수
 
 function pickIngredient(){
