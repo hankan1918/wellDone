@@ -68,10 +68,18 @@ function showBurgerRecipe(){
     }
 }
 
-function isComplete(){
+function isComplete(i){
     answerRecipe = BURGER_LIST[BURGER];
+    answerIngredient = ingredientType[MAKEINGREDIENT];
     switch(mode){
         case MODE.EASY: //todo 구현 필요 
+        // anwerIngerdient랑 충돌한 재료가 같으면 보너스 점수
+        console.log("co", answerIngredient, i);
+        if(answerIngredient == i){
+            console.log("****complete*****");
+            score += BONUS;
+            pickIngredient();
+        }
             break;
         case MODE.NORMAL:
             if(currentIngredient == answerRecipe.length-1){
