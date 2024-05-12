@@ -573,7 +573,7 @@ window.addEventListener('resize', resizeCanvas);
 
 /*
    캐릭터 이미지 생성
-   - config.js의 CHAR_SRC_LIST, CHAR(현재 선택한 캐릭터 인덱스)
+   - config.js의 CHAR_LIST, CHAR(현재 선택한 캐릭터 인덱스)
  */
 function changeChar(){
     var parent = document.getElementById("charImage");
