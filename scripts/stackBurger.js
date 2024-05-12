@@ -64,29 +64,28 @@ function isComplete(){
 }
 
 function appendIngredient(i){
-    // i : genDefault에서 전달받는 재료의 type
+    // i : genDefault에서 전달받는 재료의 type ( 충돌한 재료의 type )
     // 추후 mode별 기능 차이를 두기 위해 인자 추가
 
     //난이도 별로 판정이 달라서 판정 후에 본 함수를 호출하여 추가하면 됨.
 
     //수정 필요해 보임. 
     //완성이 되었으면 새로운 레시피 선택하도록 함. 현재의 완성품은 없앰.
-    if(isComplete()){
-        setBurgerRecipeHistory();
-        setTotalBurger();
-        burgerCount++;
-        console.log("complete:", burgerCount);
-        pickBurgerRecipe();
-        return;
-    }
-    console.log(mode);
+    //console.log(mode);
     switch(mode){
         case MODE.EASY : appendIngredientEasy(i); break;
         case MODE.NORMAL: appendIngredientNormal(i); break;
         case MODE.HARD: appendIngredientHard(i); break;
     }
-
+    if(isComplete()){
+        setBurgerRecipeHistory();
+        setTotalBurger();
+        console.log("complete:", burgerCount);
+        pickBurgerRecipe();
+        return;
+    }
 }
+
 
 function appendIngredientEasy(i){
     // todo 구현 필요
