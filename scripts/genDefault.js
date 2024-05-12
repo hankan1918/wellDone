@@ -407,19 +407,10 @@ function gameTimer(){
     if (remainingTime <= 0){
         if(charimg != "BENJAMIN"){
             updateTime();
-            if(mode != MODE.HARD){ // hard가 아닌 경우
-                drawGameover();
-                resetGame();
-            }
+            if(mode != MODE.HARD) drawGameover();
             // mode == MODE.HARD인 경우만, 버거 완성 개수가 1 이상이면 컴플릿, 아니면 게임오버
-            if(burgerCount >= 1){
-                completeHard();
-                // 스코어 보드 기록
-            }
-            else{
-                drawGameover();
-                resetGame();
-            }
+            if(burgerCount >= 1){ completeHard(); }
+            else{ drawGameover();}
         } else {
             // 캐릭터가 BENJAMIN인 경우 REMAINGTIME 0 일 때 추가 시간(BENJAMINABILITY) 제공
             bencount--;
@@ -428,19 +419,10 @@ function gameTimer(){
             if(bencount < 0){
                 remainingTime = 0;
                 updateTime();
-                if(mode != MODE.HARD){ // hard가 아닌 경우
-                    drawGameover();
-                    resetGame();
-                }
+                if(mode != MODE.HARD) drawGameover();
                 // mode == MODE.HARD인 경우만, 버거 완성 개수가 1 이상이면 컴플릿, 아니면 게임오버
-                if(burgerCount >= 1){
-                    completeHard();
-                    // 스코어 보드 기록
-                }
-                else{
-                    drawGameover();
-                    resetGame();
-                }
+                if(burgerCount >= 1){ completeHard(); }
+                else{ drawGameover();}
             }
 
         }
