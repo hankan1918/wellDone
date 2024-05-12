@@ -33,23 +33,8 @@ function showScoreboard(){
             }
             if(j === 1) {
                 img = document.createElement('img');
-                switch (scoreList[i]["char"]) {
-                    case "JIM":
-                        img.setAttribute("src", "./img/char/character1.png");
-                        img.setAttribute("width", "100px");
-                        td.appendChild(img);
-                        break;
-                    case "CEO":
-                        img.setAttribute("src", "./img/char/character2.png");
-                        img.setAttribute("width", "100px");
-                        td.appendChild(img);
-                        break;
-                    case "BENJAMIN":
-                        img.setAttribute("src", "./img/char/character3.png");
-                        img.setAttribute("width", "100px");
-                        td.appendChild(img);
-                        break;
-                }
+                img.setAttribute("src", "./img/char/" + scoreList[i]["char"] + ".png");
+                td.appendChild(img);
                 tr.appendChild(td);
                 continue;
             }
