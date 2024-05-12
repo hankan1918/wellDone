@@ -19,7 +19,7 @@ var burgerCount = 0; //완성된 버거 개수
 function pickIngredient(){
     MAKEINGREDIENT = Math.floor(Math.random() * ingredientType.length);
     currentIngredient = -1;
-    answerRecipe = ingredientType[MAKEINGREDIENT];
+    answerIngredient = ingredientType[MAKEINGREDIENT];
     document.getElementById('currentBurger').innerHTML = '';
     showIngredient();
 }
@@ -29,7 +29,7 @@ function showIngredient(){
     var div = document.getElementById("burgerRecipe");
     div.innerHTML = "";
     ingredient = document.createElement('img');
-    ingredient.src = `img/ingredient/${answerRecipe}.png`
+    ingredient.src = `img/ingredient/${answerIngredient}.png`
     ingredient.style.position = 'absolute';
     ingredient.style.left = "50%"
     ingredient.style.top = "40%"
