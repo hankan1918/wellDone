@@ -7,8 +7,6 @@ function showScoreboard(){
     var parent = document.getElementById('scoreboardList');
     // start test code
     resetScoreStorage();
-    appendScore(10000, "asdf", "JIM");
-    appendScore(1000, "er", "CEO");
     // end test code
     var scoreList = getScores();
     parent.innerHTML = "";
