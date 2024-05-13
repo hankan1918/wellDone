@@ -6,8 +6,10 @@
 
 #cards {
     font-family: "DungGeunMo";
-    display: flex;
+    display: grid;
     margin: 60px auto 0 auto;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
     padding: 40px;
     overflow: hidden;
     place-items: center;
