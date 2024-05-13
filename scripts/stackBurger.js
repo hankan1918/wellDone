@@ -74,11 +74,11 @@ function isComplete(i){
     switch(mode){
         case MODE.EASY: //todo 구현 필요 
         // anwerIngerdient랑 충돌한 재료가 같으면 보너스 점수
-        console.log("co", answerIngredient, i);
-        if(answerIngredient == i){
-            console.log("****complete*****");
-            score += BONUS;
-            pickIngredient();
+            console.log("co", answerIngredient, i);
+            if(answerIngredient == i){
+                console.log("****complete*****");
+                score += BONUS;
+                pickIngredient();
         }
             break;
         case MODE.NORMAL:
@@ -90,6 +90,19 @@ function isComplete(i){
             else
                 return false;
         case MODE.HARD: //todo 구현 필요
+            if(currentIngredient == answerRecipe.length-1){
+                console.log("****burger complete*****");
+                pickBurgerRecipe();
+                // removeCurrentBurger();
+                burgerCount++;
+                score += BURGERBONUS;
+            }
+            if(answerRecipe[currentIngredient] != i){
+                console.log("****differnet ingredient*****", answerRecipe[currentIngredient], i, currentIngredient);
+                score -= PENALTY;
+            } else { /* console 찍으려고 생성 */
+                console.log("****correct ingredient*****");
+            }
             break;    
     }
 
@@ -110,7 +123,7 @@ function appendIngredient(i){
         case MODE.NORMAL: appendIngredientNormal(i); break;
         case MODE.HARD: appendIngredientHard(i); break;
     }
-    if(isComplete()){
+    if(isComplete(i)){
         setBurgerRecipeHistory();
         setTotalBurger();
         console.log("complete:", burgerCount);
@@ -126,14 +139,12 @@ function appendIngredientEasy(i){
     var div = document.getElementById('currentBurger');
     ingredient = document.createElement('img');
     div.innerHTML = "";
-    console.log("current: "+ i + ": answer " + answerIngredient + currentIngredient);
     ingredient.src = `img/ingredient/${i}.png`;
     ingredient.style.position = 'absolute';
     ingredient.style.left = "50%"
     ingredient.style.top = "40%"
     ingredient.style.transform = "translateX(-50%)";
     ingredient.style.width = `${BURGER_WIDTH}px`;
-    console.log("ingred", ingredient);
     div.appendChild(ingredient);
 }
 
@@ -160,19 +171,31 @@ function appendIngredientNormal(i){
 }
 
 function appendIngredientHard(i){
-    // todo 구현 필요
-}
-function removeIngredient(){
-    var answerRecipe = BURGER_LIST[BURGER];
+    var ingredient;
     var div = document.getElementById('currentBurger');
-    if(div.childElementCount>0){
-        div.removeChild(div.lastChild);
-        if(answerRecipe[currentIngredient] === 'cheese') {
-            ingredientNexth += cheeseMargin; // 치즈 마진 추가
-        }
-        ingredientNexth -= INGREDIENT[answerRecipe[currentIngredient]];
-        currentIngredient -= 1;
+    if(i != answerRecipe[currentIngredient+1]){
+        return;
     }
+    currentIngredient += 1;
+    console.log("currnt", currentIngredient);
+    ingredient = document.createElement('img');
+    ingredient.src = `img/ingredient/${i}.png`;
+    ingredient.style.width = `${BURGER_WIDTH}px`;
+    if(answerRecipe[currentIngredient] === 'cheese') {
+        ingredientNexth -= cheeseMargin; // 치즈 마진 추가
+    }
+    ingredient.style.bottom = `${ingredientNexth}px`;
+    ingredientNexth += INGREDIENT[answerRecipe[currentIngredient]];
+    
+    div.appendChild(ingredient);
+}
+
+function removeCurrentBurger(){
+    var parent = document.getElementById('currentBurger');
+    var children = parent.querySelectorAll("img");
+    children.forEach(function(child) {
+        parent.removeChild(child);
+    });
 }
 
 function removeBuregerRecipe(){
