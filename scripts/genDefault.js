@@ -30,7 +30,7 @@ var bencount;                                               /* BENJAMIN의 추�
 const BALLRADIUS = 8;                                       /* 공 반지름 */
 var ballX;                                                  /* 공의 현재 x방향 위치 */
 var ballY;                                                  /* 공의 현재 y방향 위치 */
-const BALL_SPEED = 6;                                       /* 공의 초기 속도 */
+const BALL_SPEED = 6.5;                                       /* 공의 초기 속도 */
 var speed;                                                  /* 공의 속도 */
 var ballVx;                                                 /* 공의 현재 x방향 속도 */
 var ballVy;                                                 /* 공의 현재 y방향 속도 */
