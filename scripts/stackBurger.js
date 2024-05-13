@@ -79,6 +79,7 @@ function isComplete(i){
                 console.log("****complete*****");
                 score += BONUS;
                 pickIngredient();
+                return true;
         }
             break;
         case MODE.NORMAL:
@@ -90,18 +91,18 @@ function isComplete(i){
             else
                 return false;
         case MODE.HARD: //todo 구현 필요
-            if(currentIngredient == answerRecipe.length-1){
-                console.log("****burger complete*****");
-                pickBurgerRecipe();
-                // removeCurrentBurger();
-                burgerCount++;
-                score += BURGERBONUS;
-            }
             if(answerRecipe[currentIngredient] != i){
                 console.log("****differnet ingredient*****", answerRecipe[currentIngredient], i, currentIngredient);
                 score -= PENALTY;
             } else { /* console 찍으려고 생성 */
                 console.log("****correct ingredient*****");
+            }
+            if(currentIngredient == answerRecipe.length-1){
+                console.log("****burger complete*****");
+                pickBurgerRecipe();
+                burgerCount++;
+                score += BURGERBONUS;
+                return true;
             }
             break;    
     }
@@ -127,7 +128,6 @@ function appendIngredient(i){
         setBurgerRecipeHistory();
         setTotalBurger();
         console.log("complete:", burgerCount);
-        // removeBuregerRecipe();
         return;
     }
 }
