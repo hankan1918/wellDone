@@ -27,6 +27,7 @@
     display: flex;
     align-items: center; justify-content: center;
     z-index: 10;
+    pointer-events: none;
 }
 
 .title-card {
@@ -49,6 +50,7 @@
     width: calc(var(--cWidth) * 1px);
     height: calc(var(--cHeight) * 1px);
     transition: all 0.1s;
+    z-index: 30;
 }
 .overlay{
     position: absolute;
