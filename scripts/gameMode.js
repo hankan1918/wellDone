@@ -21,6 +21,7 @@ function easyMode(){
     removeModeImage();
     changeModeImage();
     removeBuregerRecipe();
+    removeCurrentBurger();
     pickIngredient();
 }
 
@@ -31,6 +32,7 @@ function normalMode(){
     removeModeImage();
     changeModeImage();
     removeBuregerRecipe();
+    removeCurrentBurger();
     pickBurgerRecipe();
 }
 
@@ -42,6 +44,7 @@ function hardMode(){
     removeModeImage();
     changeModeImage();
     removeBuregerRecipe();
+    removeCurrentBurger();
     pickBurgerRecipe();
 }
 
