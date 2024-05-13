@@ -27,6 +27,11 @@ function createCards(name, dec, imgUrl, have = true) {
     var container = document.createElement('div');
     container.classList.add('container');
     title_card.appendChild(container);
+
+    var frame = document.createElement('img');
+    frame.setAttribute('src', 'img/challenge/frame.png');
+    frame.classList.add('cardFrame');
+    container.appendChild(frame);
     
     if(have){
         var overlay = document.createElement('div');
@@ -40,8 +45,9 @@ function createCards(name, dec, imgUrl, have = true) {
     card.appendChild(title);
     card.classList.add('card');
     card.style.backgroundImage = `url(img/${imgUrl})`;
+    
     if(!have)
-        card.style.filter = "grayscale(100%)";
+        container.style.filter = "grayscale(100%)";
     card.style.position = "relative";
     container.appendChild(card);
     
@@ -57,7 +63,7 @@ function createCards(name, dec, imgUrl, have = true) {
 }
 
 var tasks = [
-    "굶주린 손님들", "버거기만 하면 되는 손님들", "제대로 된 버거를 줘", "세상을 구한 버거",
+    "굶주린 손님들", "아무튼 버거를 주세요", "제대로 된 버거를 줘", "세상을 구한 버거",
     "이제 좀 알 것 같아요", "행운 버거", "버거? 눈 감고도 만듭니다", "아 그 버거요?"
 ];
 var taskDescrptions = [
@@ -90,11 +96,10 @@ function showChallenge(){
 
     for(i = 0; i<get.length; i++){
         if(get[i] == '1'){
-            // createCards(tasks[i],"challenge/"+String(i+1).padStart(3, "0")+'.png');
-            createCards(tasks[i],taskDescrptions[i],"challenge/001"+'.png');
+            createCards(tasks[i],taskDescrptions[i],"challenge/"+String(i+1).padStart(3, "0")+'.png');
             // console.log(`${tasks[i]} Card is created from ${String(i+1).padStart(3,"0")}!`);
         } else {
-            createCards(tasks[i],taskDescrptions[i],"challenge/001"+'.png', false);
+            createCards(tasks[i],taskDescrptions[i],"challenge/"+String(i+1).padStart(3, "0")+'.png', false);
         }
     }
 }

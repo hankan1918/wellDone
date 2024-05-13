@@ -17,9 +17,15 @@
 }
 
 #cards h1{
-    width: calc(var(--cWidth) * 1px);
+    position: absolute; /* 추가 */
+    left: 50%; /* 추가 */
+    transform: translateX(-50%);
+    bottom: calc(var(--cWidth) * 1px/4);
+    width: calc(var(--cWidth) * 1px - 40px); height: calc(var(--cHeight) * 1px/10);
     margin: 0;
-    position: absolute; bottom: 63px; font-size: 15px; text-align: center;
+    font-size: 15px; text-align: center;
+    display: flex;
+    align-items: center; justify-content: center;
 }
 
 .title-card {
@@ -37,6 +43,7 @@
 }
 
 .container {
+    position: relative;
     padding: 15px;
     width: calc(var(--cWidth) * 1px);
     height: calc(var(--cHeight) * 1px);
@@ -59,13 +66,23 @@
     z-index: 3;
 }
 .card {
-    object-fit: cover;
     width: calc(var(--cWidth) * 1px);
     height: calc(var(--cHeight) * 1px);
     background-image: url(img/challenge/001.png);
     background-size: cover;
+    background-position: center;
     border-radius: 5%;
 }
+
+.cardFrame{
+    position: absolute;
+    top: 0;
+    left: 50%; /* 추가 */
+    transform: translateX(-50%);
+    width: calc(var(--cWidth) * 1.2px);
+    height: calc(var(--cHeight) * 1.05px);
+}
+
 #challenge p {
     font-size: x-large; 
 }
