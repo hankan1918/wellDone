@@ -10,10 +10,9 @@
 }
 
 #charImage {
-    width: 300px;
-    height: 300px;
+    width: 280px;
+    height: 280px;
     border: 10px solid burlywood;
-    border-radius: 30px;
     position: absolute;
     right: 10px;
     top: 300px;
@@ -24,10 +23,9 @@
 }
 
 #currentBurger {
-    width: 300px;
-    height: 300px;
+    width: 280px;
+    height: 280px;
     border: 10px solid burlywood;
-    border-radius: 30px;
     position: absolute;
     right: 10px;
     top: 610px;
@@ -41,10 +39,9 @@
 }
 
 #burgerRecipe {
-    width: 300px;
-    height: 300px;
+    width: 280px;
+    height: 280px;
     border: 10px solid burlywood;
-    border-radius: 30px;
     position: absolute;
     left: 10px;
     top: 300px;
@@ -63,7 +60,6 @@ canvas{
 
 #game-title h1{
     border: 10px solid burlywood;
-    border-radius: 30px;
     margin: 0 auto;
     margin-top: 20px;
     width: 1000px;
@@ -83,7 +79,6 @@ canvas{
     font-size: 75px;
     background-color: #f5f4df;
     border: 10px solid burlywood;
-    border-radius: 30px;
     position: absolute;
     width: 880px;
     text-align: center;
@@ -97,7 +92,6 @@ canvas{
     margin-bottom: 20px;
     background-color: #f5f4df;
     border: 10px solid burlywood;
-    border-radius: 30px;
     position: absolute;
     text-align: center;
     width: 880px;
@@ -116,7 +110,7 @@ canvas{
     position: absolute;
     background-color: #f5f4df;
     left: 10px; top: 610px;
-    width: 300px; height: 300px;
+    width: 280px; height: 280px;
     border: 10px solid burlywood;
-    border-radius: 30px;
+    align-content: center;
 }
