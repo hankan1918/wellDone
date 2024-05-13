@@ -27,7 +27,7 @@ const BENJAMINABILITY = {                                   /* BENJAMIN의 능�
 var bencount;                                               /* BENJAMIN의 추가 시간 개수 카운트*/
 
 /* 공 관련 변수 */
-const BALLRADIUS = 5;                                       /* 공 반지름 */
+const BALLRADIUS = 8;                                       /* 공 반지름 */
 var ballX;                                                  /* 공의 현재 x방향 위치 */
 var ballY;                                                  /* 공의 현재 y방향 위치 */
 const BALL_SPEED = 6;                                       /* 공의 초기 속도 */
@@ -38,7 +38,7 @@ const WEIGHT = 0.07;                                        /* 바운스 */
 
 /* 패들 관련 변수 */
 const BARWIDTH = 140;                                       /* 패들 너비 */
-const BARHEIGHT = 10;                                       /* 패들 높이 */
+const BARHEIGHT = 14;                                       /* 패들 높이 */
 var barX;                                                   /* 패들 x 위치 */
 var barY;                                                   /* 패들 y 위치 */
 
