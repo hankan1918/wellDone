@@ -64,7 +64,7 @@ function createCards(name, dec, imgUrl, have = true) {
 
 var tasks = [
     "굶주린 손님들", "아무튼 버거를 주세요", "제대로 된 버거를 줘", "세상을 구한 버거",
-    "이제 좀 알 것 같아요", "행운 버거", "버거? 눈 감고도 만듭니다", "아 그 버거요?"
+    "이제 좀 알 것 같아요", "행운 버거", "버거? 눈 감고도 만들지", "아 그 버거요?"
 ];
 var taskDescrptions = [
     "Easy 모드 클리어", "Normal 모드 클리어", "Hard 모드 클리어", "모든 모드 클리어",
