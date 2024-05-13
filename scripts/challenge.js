@@ -90,11 +90,11 @@ function showChallenge(){
 
     for(i = 0; i<get.length; i++){
         if(get[i] == '1'){
-            // createCards(tasks[i],"chellenge/"+String(i+1).padStart(3, "0")+'.png');
-            createCards(tasks[i],taskDescrptions[i],"chellenge/001"+'.png');
+            // createCards(tasks[i],"challenge/"+String(i+1).padStart(3, "0")+'.png');
+            createCards(tasks[i],taskDescrptions[i],"challenge/001"+'.png');
             // console.log(`${tasks[i]} Card is created from ${String(i+1).padStart(3,"0")}!`);
         } else {
-            createCards(tasks[i],taskDescrptions[i],"chellenge/001"+'.png', false);
+            createCards(tasks[i],taskDescrptions[i],"challenge/001"+'.png', false);
         }
     }
 }
