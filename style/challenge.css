@@ -6,14 +6,12 @@
 
 #cards {
     font-family: "DungGeunMo";
-    display: grid;
-    margin: 60px auto 0 auto;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    display: flex;
+    margin: auto auto;
     padding: 40px;
     overflow: hidden;
     place-items: center;
-    gap: 20px;
+    gap: 10px;
     justify-content: center;
     flex-wrap: wrap;
 }
@@ -97,7 +95,7 @@
 #challenge-box {
     border: 10px solid burlywood;
     background-color: #f5f4df;
-    width: 50%;
+    width: 80%;
     height: calc(100vh - 60px);
     margin: 20px auto;
 }
