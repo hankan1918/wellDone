@@ -20,12 +20,13 @@
     position: absolute; /* 추가 */
     left: 50%; /* 추가 */
     transform: translateX(-50%);
-    bottom: calc(var(--cWidth) * 1px/4);
-    width: calc(var(--cWidth) * 1px - 40px); height: calc(var(--cHeight) * 1px/10);
+    bottom: calc(var(--cWidth) * 1px/4.3);
+    width: calc(var(--cWidth) * 1px - 40px);
     margin: 0;
     font-size: 15px; text-align: center;
     display: flex;
     align-items: center; justify-content: center;
+    z-index: 10;
 }
 
 .title-card {
@@ -70,8 +71,9 @@
     height: calc(var(--cHeight) * 1px);
     background-image: url(img/challenge/001.png);
     background-size: cover;
-    background-position: center;
+    background-position: center center;
     border-radius: 5%;
+    box-shadow: inset 0px 0px 60px 1px rgba(0, 0, 0, 0.5);
 }
 
 .cardFrame{
@@ -80,7 +82,8 @@
     left: 50%; /* 추가 */
     transform: translateX(-50%);
     width: calc(var(--cWidth) * 1.2px);
-    height: calc(var(--cHeight) * 1.05px);
+    height: calc(var(--cHeight) * 1.1px);
+    z-index: 5;
 }
 
 #challenge p {

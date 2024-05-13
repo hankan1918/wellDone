@@ -27,11 +27,6 @@ function createCards(name, dec, imgUrl, have = true) {
     var container = document.createElement('div');
     container.classList.add('container');
     title_card.appendChild(container);
-
-    var frame = document.createElement('img');
-    frame.setAttribute('src', 'img/challenge/frame.png');
-    frame.classList.add('cardFrame');
-    container.appendChild(frame);
     
     if(have){
         var overlay = document.createElement('div');
@@ -45,6 +40,11 @@ function createCards(name, dec, imgUrl, have = true) {
     card.appendChild(title);
     card.classList.add('card');
     card.style.backgroundImage = `url(img/${imgUrl})`;
+
+    var frame = document.createElement('img');
+    frame.setAttribute('src', 'img/challenge/frame.png');
+    frame.classList.add('cardFrame');
+    container.appendChild(frame);
     
     if(!have)
         container.style.filter = "grayscale(100%)";
