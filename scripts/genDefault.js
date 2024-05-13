@@ -591,6 +591,7 @@ function completeHard(msg="COMPLETE HARD MODE"){
     clearInterval(timer);
     clearInterval(ingredientTimer);
     clearInterval(gTimer);
+    showScoreboard();
 }
 
 // Canvas Resizing
