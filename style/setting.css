@@ -19,7 +19,7 @@
 
 #charMenu{
     display: flex;
-    height: 300px;
+    height: 250px;
     align-items: center;
 }
 
@@ -73,9 +73,8 @@
     border: 10px solid burlywood;
     background-color: #f5f4df;
     width: 50%;
-    height: calc(100vh - 20px);
-    margin: auto auto;
-    border-radius: 30px;
+    height: calc(100vh - 60px);
+    margin: 20px auto;
 }
 
 #settings-title {
