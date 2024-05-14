@@ -96,7 +96,6 @@
 }
 
 #challenge-box {
-    border: 10px solid burlywood;
     background-color: #f5f4df;
     width: 80%;
     height: calc(100vh - 60px);
