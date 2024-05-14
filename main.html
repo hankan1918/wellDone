@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Games Using Canvas</title>
+    <title>Well Done!</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="style/config.css">
     <link rel="stylesheet" href="style/challenge.css">
@@ -17,7 +17,13 @@
 <body onload="bodyOnLoad();">
     <audio autoplay loop controls id="bgmPlayer" style="display: none;"></audio>
     <div class="page" id="main">
-        <h1>This is title</h1>
+        <!-- <h1>This is title</h1 -->
+        <div id="gameTitle" style="height: 600px;">
+            <div>
+                <img src="img/etc/gameIcon.png" alt="burgerIcon">
+                <img src="img/etc/gameTitle.png" alt="WellDone!">
+            </div>
+        </div>
         <div class="button-div">
             <div class="button-box main-button" onclick="showPage('game', 'main'); showGamePage();" id="game-start-button">
                 <img src="img/button/main-button/game-start/game-start.png" alt="game start">
