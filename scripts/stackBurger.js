@@ -1,8 +1,13 @@
 const BURGER_LIST =[
-    ['bottom-bun', 'patty', 'cheese', 'patty', 'tomato', 'lettuce' , 'top-bun'],
+    ['bottom-bun', 'lettuce', 'patty', 'cheese', 'top-bun'],
+    ['bottom-bun', 'lettuce', 'tomato', 'cheese', 'top-bun'],
+    ['bottom-bun', 'patty', 'cheese', 'tomato', 'top-bun'],
+    ['bottom-bun', 'lettuce', 'patty', 'tomato', 'top-bun'],
+    ['bottom-bun', 'patty', 'tomato', 'patty', 'top-bun'],
+    ['bottom-bun', 'tomato', 'patty', 'tomato', 'top-bun'],
+    ['bottom-bun', 'patty', 'cheese', 'patty', 'top-bun'],
     ['bottom-bun', 'lettuce', 'patty', 'lettuce', 'cheese', 'top-bun'],
-    ['bottom-bun', 'lettuce', 'tomato', 'patty', 'cheese', 'patty', 'lettuce', 'top-bun'],
-    ['bottom-bun', 'lettuce', 'tomato', 'cheese', 'tomato', 'lettuce', 'top-bun']
+    ['bottom-bun', 'lettuce', 'tomato', 'patty', 'cheese', 'patty', 'lettuce', 'top-bun']
 ]; //추후 추가 가능하도록
 const BURGER_WIDTH = 180;
 const INGREDIENT = {'bottom-bun': (7*BURGER_WIDTH)/30, 'lettuce':(3*BURGER_WIDTH)/30, 'tomato':(4*BURGER_WIDTH)/30, 'patty':(5*BURGER_WIDTH)/30, 'cheese':(7*BURGER_WIDTH)/30};
@@ -85,6 +90,7 @@ function isComplete(i){
         case MODE.NORMAL:
             if(currentIngredient == answerRecipe.length-1){
                 console.log("****complete*****");
+                pickBurgerRecipe();
                 burgerCount++;
                 return true;
             }

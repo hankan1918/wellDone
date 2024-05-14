@@ -47,6 +47,7 @@ var gTimer;
 const TOTALTIME = 180;                                       /* 제한 시간 */
 var remainingTime;                                          /* 남은 시간 */
 var timeboard;                                              /* 게임 시간판 */
+const POINT = 10;
 const MIN_SCORE = 0;                                        /* 초기 점수 */
 const BONUS = 5;                                            /* 추가 점수 */
 const BURGERBONUS = 50;
@@ -64,9 +65,7 @@ let activeingredients = [];                                 /* 활성화 된 재
 var FALLSPEED = 0.6;                                        /* 재료 낙하 속도 */
 const INGREDIENTW = 60;                                     /* 재료 너비 */
 const INGREDIENTH = 30;                                     /* 재료 높이 */
-// const INGREDIENTP = 10;                                  /* 재료 사이 간격 */
-// const INGREDIENTOT = 30;                                 /* 윗쪽 벽과 간격 */
-// const INGREDIENTOL = 20;                                 /* 좌우 벽과 간격 */
+
 
 /* init */
 function init(sb, tb){
@@ -278,18 +277,18 @@ function loadImage(src, callback) {
       재료가 있던 격자 지우기, 배열에서 활성화였던 재료 비활성화(인덱스 조정)
 */
 function collisionDetection(){
-    if (mode == MODE.EASY && score >= 100){
+    if (mode == MODE.EASY && score >= 200){
         mode = MODE.NORMAL
-        console.log("mode change", mode);
-        console.log("burgerCount", burgerCount);
+        // console.log("mode change", mode);
+        // console.log("burgerCount", burgerCount);
         completeEasy();
         setTimeout(normalMode,1500);
         removeModeImage();
         changeModeImage();
     }
-    if (mode == MODE.NORMAL && score >= 100 && burgerCount >= 1){
+    if (mode == MODE.NORMAL && score >= 300 && burgerCount >= 3){
         mode = MODE.HARD
-        console.log("mode change", mode);
+        // console.log("mode change", mode);
         completeNormal();
         setTimeout(hardMode,1500);
         removeModeImage();
@@ -307,7 +306,7 @@ function collisionDetection(){
                 (ballX <= b.x + INGREDIENTW + BALLRADIUS)) {
                 ballVy *= -1;
                 b.status = 0;
-                score += 10;
+                score += POINT;
                 if (charimg == "CEO") score += CEOABILITY;
 
                 updateGrid(b.x, b.y);   // 격자 업데이트 (재료가 있던 칸 비우기)
@@ -409,10 +408,14 @@ function gameTimer(){
     if (remainingTime <= 0){
         if(charimg != "BENJAMIN"){
             updateTime();
-            if(mode != MODE.HARD) drawGameover();
-            // mode == MODE.HARD인 경우만, 버거 완성 개수가 1 이상이면 컴플릿, 아니면 게임오버
-            if(burgerCount >= 1){ completeHard(); }
-            else{ drawGameover();}
+            if(mode != MODE.HARD) {drawGameover();}
+            // mode == MODE.HARD인 경우만, 버거 완성 개수가 3 이상이면 컴플릿, 아니면 게임오버
+            else{
+                if (burgerCount >= 3){
+                    console.log("here");
+                    completeHard(); }
+                else {drawGameover();}
+                }
         } else {
             // 캐릭터가 BENJAMIN인 경우 REMAINGTIME 0 일 때 추가 시간(BENJAMINABILITY) 제공
             bencount--;
@@ -421,15 +424,15 @@ function gameTimer(){
             if(bencount < 0){
                 remainingTime = 0;
                 updateTime();
-                if(mode != MODE.HARD) drawGameover();
-                // mode == MODE.HARD인 경우만, 버거 완성 개수가 1 이상이면 컴플릿, 아니면 게임오버
-                if(burgerCount >= 1){
-                
-                    completeHard(); 
+                if(mode != MODE.HARD) {drawGameover();}
+                // mode == MODE.HARD인 경우만, 버거 완성 개수가 3 이상이면 컴플릿, 아니면 게임오버
+                else{
+                    if (burgerCount >= 3){
+                        console.log("here");
+                        completeHard(); }
+                    else {drawGameover();}
                 }
-                else{ drawGameover();}
             }
-
         }
     }
 }
