@@ -85,6 +85,7 @@ function isComplete(i){
         case MODE.NORMAL:
             if(currentIngredient == answerRecipe.length-1){
                 console.log("****complete*****");
+                pickBurgerRecipe();
                 burgerCount++;
                 return true;
             }
