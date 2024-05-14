@@ -64,9 +64,7 @@ let activeingredients = [];                                 /* 활성화 된 재
 var FALLSPEED = 0.6;                                        /* 재료 낙하 속도 */
 const INGREDIENTW = 60;                                     /* 재료 너비 */
 const INGREDIENTH = 30;                                     /* 재료 높이 */
-// const INGREDIENTP = 10;                                  /* 재료 사이 간격 */
-// const INGREDIENTOT = 30;                                 /* 윗쪽 벽과 간격 */
-// const INGREDIENTOL = 20;                                 /* 좌우 벽과 간격 */
+
 
 /* init */
 function init(sb, tb){
@@ -278,18 +276,18 @@ function loadImage(src, callback) {
       재료가 있던 격자 지우기, 배열에서 활성화였던 재료 비활성화(인덱스 조정)
 */
 function collisionDetection(){
-    if (mode == MODE.EASY && score >= 100){
+    if (mode == MODE.EASY && score >= 200){
         mode = MODE.NORMAL
-        console.log("mode change", mode);
-        console.log("burgerCount", burgerCount);
+        // console.log("mode change", mode);
+        // console.log("burgerCount", burgerCount);
         completeEasy();
         setTimeout(normalMode,1500);
         removeModeImage();
         changeModeImage();
     }
-    if (mode == MODE.NORMAL && score >= 100 && burgerCount >= 1){
+    if (mode == MODE.NORMAL && score >= 300 && burgerCount >= 3){
         mode = MODE.HARD
-        console.log("mode change", mode);
+        // console.log("mode change", mode);
         completeNormal();
         setTimeout(hardMode,1500);
         removeModeImage();
@@ -423,7 +421,7 @@ function gameTimer(){
                 updateTime();
                 if(mode != MODE.HARD) drawGameover();
                 // mode == MODE.HARD인 경우만, 버거 완성 개수가 1 이상이면 컴플릿, 아니면 게임오버
-                if(burgerCount >= 1){
+                if(burgerCount >= 3){
                 
                     completeHard(); 
                 }
