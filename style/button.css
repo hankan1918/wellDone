@@ -32,8 +32,12 @@
 
 .back-button {
     position: absolute;
-    top: 30px;
-    left: 30px;
+    top: 4vh;
+    left: 4vh;
+}
+
+.back-button img {
+    height: 8vh;
 }
 
 #mute-button {

@@ -1,34 +1,35 @@
 #difficulty {
-    height: 74px;
     position: absolute;
-    right: 30px;
-    top: 30px;
+    right: 4vh;
+    top: 4vh;
 }
 #difficulty img {
-    height: 74px;
+    height: 8vh;
     width: auto;
 }
 
 #charImage {
-    width: 280px;
-    height: 280px;
-    border: 10px solid burlywood;
+    width: 28vh;
+    height: 28vh;
     position: absolute;
-    right: 10px;
-    top: 300px;
+    right: 1vh;
+    top: 33vh;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #f5f4df;
 }
 
+#charImage img {
+    width: 18vh;
+}
+
 #currentBurger {
-    width: 280px;
-    height: 280px;
-    border: 10px solid burlywood;
+    width: 28vh;
+    height: 28vh;
     position: absolute;
-    right: 10px;
-    top: 610px;
+    right: 1vh;
+    top: 66vh;
     background-color: #f5f4df;
 }
 
@@ -39,12 +40,11 @@
 }
 
 #burgerRecipe {
-    width: 280px;
-    height: 280px;
-    border: 10px solid burlywood;
+    width: 28vh;
+    height: 28vh;
     position: absolute;
-    left: 10px;
-    top: 300px;
+    left: 1vh;
+    top: 33vh;
     background-color: #f5f4df;
 }
 
@@ -56,61 +56,62 @@
 
 canvas{
     background-color: #f5f4df;
+    margin-top: 19vh;
 }
 
 #game-title h1{
-    border: 10px solid burlywood;
     margin: 0 auto;
-    margin-top: 20px;
-    width: 1000px;
-    font-size: 100px;
-    line-height: 100px;
+    margin-top: 1vh;
+    width: 100vh;
+    font-size: 10vh;
+    line-height: 10vh;
     background-color: #f5f4df;
-}
-
-#board{
-    position: relative;
-    height: 100px;
-    margin-bottom: 17px;
 }
 
 #timeboard{
     padding: 20px;
-    font-size: 75px;
+    font-size: 6vh;
     background-color: #f5f4df;
-    border: 10px solid burlywood;
     position: absolute;
-    width: 880px;
+    width: 80vh;
     text-align: center;
     display: inline-block;
+    margin-top: 3vh;
     left: 0;
 }
 
 #gscoreboard{
     padding: 20px;
-    font-size: 75px;
+    font-size: 6vh;
     margin-bottom: 20px;
     background-color: #f5f4df;
-    border: 10px solid burlywood;
     position: absolute;
     text-align: center;
-    width: 880px;
+    width: 80vh;
     display: inline-block;
+    margin-top: 3vh;
     right: 0;
 }
 
-#gameCanvas {
-    margin-top: 80px;
+#gamebutton{
+    width: 28vh;
+    height: 28vh;
+    position: absolute;
+    left: 1vh;
+    top: 66vh;
+    text-align: center;
     background-color: #f5f4df;
-    border: 10px solid burlywood;
+    align-content: center;
 }
 
-#gamebutton{
-    text-align: center;
-    position: absolute;
-    background-color: #f5f4df;
-    left: 10px; top: 610px;
-    width: 280px; height: 280px;
-    border: 10px solid burlywood;
-    align-content: center;
+#gamebutton div img{
+    height: 4vh;
+}
+
+.border {;
+    border: 15px solid transparent;
+    border-radius: 30px;
+    border-image: url("/img/etc/border.png");
+    border-image-width: 1;
+    border-image-slice: 50;
 }
