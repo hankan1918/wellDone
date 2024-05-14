@@ -21,7 +21,7 @@
 }
 
 #charImage img {
-    width: 18vh;
+    width: 16vh;
 }
 
 #currentBurger {
@@ -29,7 +29,7 @@
     height: 28vh;
     position: absolute;
     right: 1vh;
-    top: 66vh;
+    top: 68vh;
     background-color: #f5f4df;
 }
 
@@ -98,7 +98,7 @@ canvas{
     height: 28vh;
     position: absolute;
     left: 1vh;
-    top: 66vh;
+    top: 68vh;
     text-align: center;
     background-color: #f5f4df;
     align-content: center;
@@ -112,6 +112,30 @@ canvas{
     border: 15px solid transparent;
     border-radius: 30px;
     border-image: url("/img/etc/border.png");
-    border-image-width: 1;
+    border-image-width: 0.75;
     border-image-slice: 50;
+}
+
+.small-title {
+    position: absolute;
+    font-family: 'arcade', sans-serif;
+    font-size: 3vh;
+    background-color: #f5f4df;
+    z-index: 1;
+    padding: 0 1vh;
+}
+
+#recipe-title {
+    top: 31vh;
+    left: 9vh;
+}
+
+#character-title {
+    top: 31vh;
+    right: 7vh;
+}
+
+#current-title {
+    top: 65vh;
+    right: 8vh;
 }
