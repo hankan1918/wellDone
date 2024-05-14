@@ -6,3 +6,15 @@
     height: 100%;
     z-index: -1;
 } */
+
+#gameTitle{
+    width: 100vh;
+    height: 500px;
+    border: 15px solid transparent;
+    border-image: url("../img/etc/borderA.png") 30 stretch;
+    border-image-width: 1;
+    border-image-outset: 0;
+    border-image-slice: 34%;
+    background-color: bisque;
+    border-radius: 15px;
+}
