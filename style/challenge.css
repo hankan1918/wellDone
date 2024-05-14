@@ -9,11 +9,11 @@
     display: flex;
     margin: auto auto;
     padding: 40px;
-    overflow: hidden;
     place-items: center;
     gap: 10px 3%;
     justify-content: center;
     flex-wrap: wrap;
+    overflow: scroll;
 }
 
 #cards h1{
