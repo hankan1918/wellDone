@@ -97,15 +97,19 @@
 
 #challenge-box {
     background-color: #f5f4df;
-    width: 80%;
-    height: calc(100vh - 60px);
-    margin: 20px auto;
+    width: 100vh;
+    height: 80vh;
+    margin: 100px auto;
 }
 
 #achievements-title {
-    margin: 0;
-    font-size: 100px;
+    background-color: #f5f4df;
+    position: absolute;
+    padding: 0 1vh;
+    font-size: 10vh;
     line-height: 100px;
     text-align: center;
-    border-bottom: 10px solid burlywood;
+    top: 1vh;
+    left: 50%;
+    transform: translateX(-50%);
 }
