@@ -1,20 +1,34 @@
-/* .background-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-} */
+/* <div id="gameTitle" style="height: 600px;">
+    <div>
+        <img src="img/etc/gameIcon.png" alt="burgerIcon">
+        <img src="img/etc/gameTitle.png" alt="WellDone!">
+    </div>
+</div> */
 
 #gameTitle{
-    width: 100vh;
-    height: 500px;
-    border: 15px solid transparent;
-    border-image: url("../img/etc/borderA.png") 30 stretch;
-    border-image-width: 1;
-    border-image-outset: 0;
-    border-image-slice: 34%;
-    background-color: bisque;
-    border-radius: 15px;
+    position: absolute;
+    display: block;
+    width: 100%;;
+    top: 2vh;
+}
+
+#gameTitle>div{
+    height: 60vh;
+}
+
+#gameTitle>div>img{
+    object-fit: cover;
+}
+
+#gameTitle>div>img:first-child{
+    display: block;
+    height: 50%;
+    margin: 0 auto -4% auto;
+}
+
+#gameTitle>div>img:last-child{
+    display: block;
+    margin: auto auto;
+    height: 25%;
+    animation: hovering 1s Infinite Alternate;
 }
