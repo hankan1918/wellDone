@@ -9,11 +9,11 @@
     position: absolute;
     display: block;
     width: 100%;;
-    top: 2vh;
+    top: 5vh;
 }
 
 #gameTitle>div{
-    height: 60vh;
+    height: 30vh;
 }
 
 #gameTitle>div>img{
@@ -22,13 +22,13 @@
 
 #gameTitle>div>img:first-child{
     display: block;
-    height: 50%;
+    height: 100%;
     margin: 0 auto -4% auto;
 }
 
 #gameTitle>div>img:last-child{
     display: block;
     margin: auto auto;
-    height: 25%;
+    height: 50%;
     animation: hovering 1s Infinite Alternate;
 }
