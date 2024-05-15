@@ -10,10 +10,14 @@
     margin: auto auto;
     padding: 40px;
     place-items: center;
-    gap: 10px 3%;
+    gap: 10px 2%;
     justify-content: center;
     flex-wrap: wrap;
     overflow: scroll;
+}
+
+#cards::-webkit-scrollbar{
+    display: none;
 }
 
 #cards h1{
@@ -100,6 +104,7 @@
     width: 100vh;
     height: 80vh;
     margin: 100px auto;
+    overflow: hidden;
 }
 
 #achievements-title {
