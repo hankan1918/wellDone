@@ -5,9 +5,6 @@ function showScoreboard(){
     showPage('scoreboard', 'main');
     var td, tr, th, img;
     var parent = document.getElementById('scoreboardList');
-    // start test code
-    resetScoreStorage();
-    // end test code
     var scoreList = getScores();
     parent.innerHTML = "";
     parent = document.createElement('table');
