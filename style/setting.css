@@ -3,6 +3,7 @@
     align-items: center;
     justify-content: center;
     margin: 0 auto;
+    background-color: #f7e8be;
 }
 
 .picker:last-of-type {
@@ -18,14 +19,15 @@
 
 #charMenu{
     display: flex;
-    height: 250px;
+    height: 220px;
     align-items: center;
 }
 
 #charMenu>div{
+    margin: 0 10px;
     overflow: hidden;
     clip-path: polygon(30% 0, 100% 0, 70% 100%, 0 100%);
-    width: 150px; height: 150px;
+    width: 120px; height: 150px;
     transition: all 0.3s;
 }
 
@@ -65,11 +67,12 @@
     margin-bottom: 10px;
 }
 .picker {
+    margin-bottom: 20px;
     padding-bottom: 20px;
 }
 
 #settings-box {
-    padding-top: 5vh;
+    padding-top: 6vh;
     background-color: #f5f4df;
     width: 50%;
     height: 80vh;
@@ -91,6 +94,7 @@
     text-align: center;
     font-size: 8vh;
     line-height: 100px;
+    background-color: #f7e8be;
 }
 
 #scoreboardList table tr td img {
