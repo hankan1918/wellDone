@@ -4,16 +4,16 @@
     top: 4vh;
 }
 #difficulty img {
-    height: 8vh;
+    height: 6vh;
     width: auto;
 }
 
 #charImage {
-    width: 28vh;
-    height: 28vh;
+    width: 25vh;
+    height: 25vh;
     position: absolute;
-    right: 1vh;
-    top: 33vh;
+    right: 10vh;
+    top: 35vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,14 +21,15 @@
 }
 
 #charImage img {
-    width: 16vh;
+    width: 13vh;
+    padding-top: 1vh;
 }
 
 #currentBurger {
-    width: 28vh;
-    height: 28vh;
+    width: 25vh;
+    height: 25vh;
     position: absolute;
-    right: 1vh;
+    right: 10vh;
     top: 68vh;
     background-color: #f5f4df;
 }
@@ -36,22 +37,22 @@
 #currentBurger img {
     position: absolute;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateY(10%);
 }
 
 #burgerRecipe {
-    width: 28vh;
-    height: 28vh;
+    width: 25vh;
+    height: 25vh;
     position: absolute;
-    left: 1vh;
-    top: 33vh;
+    left: 10vh;
+    top: 35vh;
     background-color: #f5f4df;
 }
 
 #burgerRecipe img {
     position: absolute;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateY(10%);
 }
 
 canvas{
@@ -73,11 +74,12 @@ canvas{
     font-size: 6vh;
     background-color: #f5f4df;
     position: absolute;
-    width: 80vh;
+    width: 70vh;
     text-align: center;
     display: inline-block;
-    margin-top: 3vh;
-    left: 0;
+    margin-top: 4vh;
+    left: 10vh;
+    line-height: 4vh;
 }
 
 #gscoreboard{
@@ -87,17 +89,18 @@ canvas{
     background-color: #f5f4df;
     position: absolute;
     text-align: center;
-    width: 80vh;
+    width: 70vh;
     display: inline-block;
-    margin-top: 3vh;
-    right: 0;
+    margin-top: 4vh;
+    right: 10vh;
+    line-height: 4vh;
 }
 
 #gamebutton{
-    width: 28vh;
-    height: 28vh;
+    width: 25vh;
+    height: 25vh;
     position: absolute;
-    left: 1vh;
+    left: 10vh;
     top: 68vh;
     text-align: center;
     background-color: #f5f4df;
@@ -105,7 +108,7 @@ canvas{
 }
 
 #gamebutton div img{
-    height: 4vh;
+    height: 3.5vh;
 }
 
 .border {
@@ -126,18 +129,17 @@ canvas{
 }
 
 #recipe-title {
-    top: 31vh;
-    left: 9vh;
+    top: 32vh;
+    left: 17vh;
 }
 
 #character-title {
-    top: 31vh;
-    right: 7vh;
+    transform: translateY(-240%);
 }
 
 #current-title {
     top: 65vh;
-    right: 8vh;
+    right: 16vh;
 }
 
 /*userName 창 구현*/

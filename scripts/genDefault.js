@@ -612,7 +612,7 @@ function completeHard(msg="COMPLETE HARD MODE"){
 // Get the canvas element
 // Resize the canvas to maintain aspect ratio
 function resizeCanvas(){
-    var aspectRatio = 1000 / 500; // Width / Height
+    var aspectRatio = 1000 / 700; // Width / Height
     var targetWidth = window.innerWidth * 0.6;
     var targetHeight = targetWidth / aspectRatio;
 
