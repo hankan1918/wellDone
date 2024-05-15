@@ -1,10 +1,12 @@
 var SCORE_KEY = "scoreList";
 var SCORE_SHOW_FORM = ['rank', 'char', 'name', 'score']; //여기가 수정되면 appendScore()의 인자 이름도 수정되어야함.
+var SCOREBOARD_LENGTH = 10;
 
 function showScoreboard(){
     showPage('scoreboard', 'main');
     var td, tr, th, img;
     var parent = document.getElementById('scoreboardList');
+
     var scoreList = getScores();
     parent.innerHTML = "";
     parent = document.createElement('table');
@@ -56,9 +58,9 @@ function appendScore(score, name, char=CHAR_LIST[CHAR]) {
         savedData.push({ score, name, char });
 
         savedData.sort((a,b) => b.score - a.score)
-        if(savedData.length >10){
+        if(savedData.length >SCOREBOARD_LENGTH){
             // console.log("개수 조정")
-            savedData = savedData.slice(0,10)
+            savedData = savedData.slice(0,SCOREBOARD_LENGTH)
         }
         // 로컬 스토리지에 저장
         localStorage.setItem(SCORE_KEY, JSON.stringify(savedData));
@@ -73,10 +75,22 @@ function getScores() {
         // 로컬 스토리지에서 데이터 가져오기
         let savedData = JSON.parse(localStorage.getItem(SCORE_KEY)) || [];
         console.log(savedData)
+
+        savedData.sort((a,b) => b.score - a.score)
+
         // 가져온 데이터 반환
         return savedData;
     } catch (error) {
         console.error("데이터 불러오기 중 오류가 발생했습니다:", error);
         return []; // 오류 발생 시 빈 배열 반환
     }
+}
+
+//main.html에서 사용자 이름 submit 버튼 클릭하면 실행되는 함수
+function saveScore(){
+    var username = document.getElementById("playerNameInput").value;
+    if(username){
+        appendScore(score,username,CHAR_LIST[CHAR]);
+    }
+    document.getElementById("userName").style.display="none";
 }

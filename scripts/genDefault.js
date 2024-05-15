@@ -558,23 +558,6 @@ function drawGameover(msg="GAME OVER!"){
     clearInterval(timer);
     clearInterval(ingredientTimer);
     clearInterval(gTimer);
-    //하드 모드에서 userName 입력받는 창 display로 변경 (조건 만족 할 시)
-    if(mode==MODE.HARD){
-        let highestScore = parseInt(localStorage.getItem("highScore"))||0;
-        if(score>highestScore){
-            document.getElementById("userName").style.display="block";
-            localStorage.setItem("highScore",score);
-        }
-        
-    }
-}
-//main.html에서 사용자 이름 submit 버튼 클릭하면 실행되는 함수
-function saveScore(){
-    var username = document.getElementById("playerNameInput").value;
-    if(username){
-        appendScore(score,username,CHAR_LIST[CHAR]);
-    }
-    document.getElementById("userName").style.display="none";
 }
 
 function completeEasy(msg="COMPLETE EASY MODE"){
@@ -611,6 +594,18 @@ function completeHard(msg="COMPLETE HARD MODE"){
     clearInterval(timer);
     clearInterval(ingredientTimer);
     clearInterval(gTimer);
+
+    //최고기록 10위 안인 경우만 이름을 물어본다.
+    var scoreList = getScores();
+    console.log(scoreList);
+    if((scoreList.length<10) || (scoreList[scoreList.length-1].score || 0)<score){
+        document.getElementById("userName").style.display="block";
+    }
+    
+    // if(score>highestScore){
+    //     document.getElementById("userName").style.display="block";
+    //     localStorage.setItem("highScore",score);
+    // }
 }
 
 // Canvas Resizing
