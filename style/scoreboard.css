@@ -1,15 +1,31 @@
 #scoreboard-box {
     background-color: #f5f4df;
-    width: 65%;
+    width: 120vh;
     height: 80vh;
     margin: 90px auto;
 }
 
 table{
     margin: 0 auto;
-    margin-top: 5vh;
+    margin-top: 7vh;
     font-size: 40px;
     border-collapse: collapse;
+}
+
+table tr:nth-of-type(2) { /* 1등 */
+    color: white;
+    background-color: #fff77a;
+    border-bottom: 3vh solid #f5f4df;
+}
+
+table tr:nth-of-type(3) { /* 2등 */
+    background-color: #d6d6d6;
+    border-bottom: 3vh solid #f5f4df;
+}
+
+table tr:nth-of-type(4) { /* 3등 */
+    background-color: #cd7f32;
+    border-bottom: 3vh solid #f5f4df;
 }
 
 table tr th {
@@ -19,7 +35,7 @@ table tr th {
 }
 
 table tr td{
-    padding: 30px 40px;
+    padding: 10px 40px;
     font-size: 50px;
     text-align: center;
 }
@@ -31,7 +47,7 @@ table tr td:first-of-type {
 #scoreboard-title {
     background-color: #f5f4df;
     position: absolute;
-    width: 100vh;
+    width: 60vh;
     margin: 0;
     padding: 0 1vh;
     font-size: 10vh;
