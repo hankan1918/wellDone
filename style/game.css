@@ -111,7 +111,7 @@ canvas{
 .border {
     border: 15px solid transparent;
     border-radius: 30px;
-    border-image-source: url("/img/etc/borderA.png");
+    border-image-source: url("/img/etc/border.png");
     border-image-width: 0.75;
     border-image-slice: 50;
 }
