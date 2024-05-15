@@ -108,7 +108,7 @@ canvas{
     height: 4vh;
 }
 
-.border {;
+.border {
     border: 15px solid transparent;
     border-radius: 30px;
     border-image: url("/img/etc/border.png");
@@ -138,4 +138,18 @@ canvas{
 #current-title {
     top: 65vh;
     right: 8vh;
+}
+
+/*userName 창 구현*/
+
+#userName{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    background: rgba(0,0,0,0.8);
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
 }

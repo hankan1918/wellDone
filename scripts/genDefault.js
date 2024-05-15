@@ -558,6 +558,23 @@ function drawGameover(msg="GAME OVER!"){
     clearInterval(timer);
     clearInterval(ingredientTimer);
     clearInterval(gTimer);
+    //하드 모드에서 userName 입력받는 창 display로 변경 (조건 만족 할 시)
+    if(mode==MODE.HARD){
+        let highestScore = parseInt(localStorage.getItem("highScore"))||0;
+        if(score>highestScore){
+            document.getElementById("userName").style.display="block";
+            localStorage.setItem("highScore",score);
+        }
+        
+    }
+}
+//main.html에서 사용자 이름 submit 버튼 클릭하면 실행되는 함수
+function saveScore(){
+    var username = document.getElementById("playerNameInput").value;
+    if(username){
+        appendScore(score,username,CHAR_LIST[CHAR]);
+    }
+    document.getElementById("userName").style.display="none";
 }
 
 function completeEasy(msg="COMPLETE EASY MODE"){
