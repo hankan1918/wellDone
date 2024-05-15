@@ -10,6 +10,8 @@
     display: block;
     width: 100%;;
     top: 5vh;
+    filter: drop-shadow(0 0 50px rgb(255, 255, 255))  drop-shadow(0 0 50px rgb(255, 255, 255));;
+
 }
 
 #gameTitle>div{
