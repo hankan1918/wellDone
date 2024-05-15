@@ -70,7 +70,8 @@ function createCarouselMenu(pos, content, val){
                 THEME-=1;
                 cmItems.style.transform = `translateX(-${THEME*cmMenuWidth}px)`;
                 console.log(THEME);
-                applyTheme()
+                applyTheme();
+                applyBorder();
             }
         });
         next.addEventListener('click', function(){
@@ -78,7 +79,8 @@ function createCarouselMenu(pos, content, val){
                 THEME+=1;
                 cmItems.style.transform = `translateX(-${THEME*cmMenuWidth}px)`;
                 console.log(THEME);
-                applyTheme()
+                applyTheme();
+                applyBorder();
             }
         });
     } else if(val == "BGM"){
@@ -111,4 +113,12 @@ function playBGM(){
 function applyTheme(){
     var themeName = THEME_LIST[THEME].replaceAll(' ', '')
     document.body.style.backgroundImage = `url('img/background/${themeName}.png')`;
+}
+
+function applyBorder() {
+    var borderName = BORDER_LIST[THEME].replaceAll(' ', '');
+    var elements = document.querySelectorAll(".border");
+    elements.forEach(function (e) {
+        e.style.borderImageSource = `url('img/etc/${borderName}.png')`;
+    })
 }
