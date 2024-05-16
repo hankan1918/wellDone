@@ -1,6 +1,6 @@
 var SCORE_KEY = "scoreList";
 var SCORE_SHOW_FORM = ['rank', 'char', 'name', 'score']; //여기가 수정되면 appendScore()의 인자 이름도 수정되어야함.
-var SCOREBOARD_LENGTH = 10;
+var SCOREBOARD_LENGTH = 3;
 
 function showScoreboard(){
     showPage('scoreboard', 'main');
