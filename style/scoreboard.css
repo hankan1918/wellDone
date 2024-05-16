@@ -54,6 +54,7 @@ table tr td:first-of-type {
     left: 50%;
     top: 2vh;
     transform: translateX(-50%);
+    z-index: 1;
 }
 
 td>img{

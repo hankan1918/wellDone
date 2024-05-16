@@ -88,6 +88,7 @@
     font-size: 10vh;
     transform: translateX(-50%);
     background-color: #f5f4df;
+    z-index: 1;
 }
 
 .settings-sub-title {
