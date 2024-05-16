@@ -16,10 +16,6 @@
     overflow: scroll;
 }
 
-#cards::-webkit-scrollbar{
-    display: none;
-}
-
 #cards h1{
     position: absolute; /* 추가 */
     left: 50%; /* 추가 */
@@ -104,7 +100,11 @@
     width: 100vh;
     height: 80vh;
     margin: 100px auto;
-    overflow: hidden;
+    overflow: scroll;
+}
+
+#challenge-box::-webkit-scrollbar{
+    display: none;
 }
 
 #achievements-title {
