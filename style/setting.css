@@ -10,24 +10,17 @@
     border: 0;
 }
 
-.picker>h2{
-    margin: 10px;
-    height: 50px;
-    line-height: 50px;
-    display: inline;
-}
-
 #charMenu{
     display: flex;
-    height: 220px;
+    height: 20vh;
     align-items: center;
 }
 
 #charMenu>div{
-    margin: 0 10px;
+    margin: 0 2vh;
     overflow: hidden;
     clip-path: polygon(30% 0, 100% 0, 70% 100%, 0 100%);
-    width: 120px; height: 150px;
+    width: 14vh; height: 15vh;
     transition: all 0.3s;
 }
 
@@ -48,6 +41,10 @@
 .carouselMenu{
     display: flex;
 }
+
+.carouselMenu .button-box img {
+    height: 7vh;
+}
 .cmContainer{
     overflow: hidden;
     width: 300px;
@@ -61,14 +58,18 @@
     display: inline-block;
     flex-shrink: 0;
     width: 300px;
-    height: 50px;
-    line-height: 50px;
+    height: 6vh;
+    font-size: 5vh;
+    line-height: 5vh;
     text-align: center;
     margin-bottom: 10px;
 }
 .picker {
-    margin-bottom: 20px;
-    padding-bottom: 20px;
+    margin-bottom: 3vh;
+    padding-bottom: 3vh;
+}
+.picker:last-of-type {
+    margin-bottom: 0;
 }
 
 #settings-box {
@@ -94,8 +95,9 @@
 .settings-sub-title {
     text-align: center;
     font-size: 8vh;
-    line-height: 100px;
+    line-height: 8vh;
     background-color: #f7e8be;
+    height: 10vh;
 }
 
 #scoreboardList table tr td img {
