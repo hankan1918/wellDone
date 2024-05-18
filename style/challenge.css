@@ -16,6 +16,10 @@
     overflow: scroll;
 }
 
+#cards::-webkit-scrollbar{
+    display: none;
+}
+
 #cards h1{
     position: absolute; /* 추가 */
     left: 50%; /* 추가 */
