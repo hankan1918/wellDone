@@ -15,9 +15,39 @@ function bodyOnLoad(){
 }
 
 function showGamePage(){
+    resetGame();
     resizeCanvas();
     pickIngredient();
     init(document.getElementById('gscoreboard'), document.getElementById('timeboard'));
     changeModeImage();
     changeChar();
+}
+
+function showDefeatPage(){
+    var PAGE_TIMER = 10;
+    var pageTimeout, noticeTimeout;
+    var notice = document.getElementById('defeatPageNotice');
+    
+    showPage("defeat", "game");
+    
+    pageTimeout = setTimeout(function(){
+        clearInterval(noticeTimeout);
+        showPage("main", "defeat");
+    }, PAGE_TIMER*1000);
+
+    notice.innerText = `Return to the home in ${String(PAGE_TIMER).padStart(2, "\0")} seconds.`;
+    noticeTimeout = setInterval(function(){
+        PAGE_TIMER--;
+        notice.innerText = `Return to the home in ${String(PAGE_TIMER).padStart(2, "\0")} seconds.`;
+    }, 1000)
+
+    document.getElementById("defeat").addEventListener("click", function(){
+        clearInterval(pageTimeout);
+        clearInterval(noticeTimeout);
+        showPage("main", "defeat")
+    })
+}
+
+function showBeforeEasyPage(){
+
 }

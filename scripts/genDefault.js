@@ -549,10 +549,11 @@ function resetGame(){
 
 /* 게임 오버 */
 function drawGameover(msg="GAME OVER!"){
+    showDefeatPage();
     context.clearRect(0, 0, CWIDTH, CHEIGHT);
-    context.fillStyle = "black"
-    context.font = '150px arcade';
-    context.fillText(msg, 210, 300);
+    // context.fillStyle = "black"
+    // context.font = '150px arcade';
+    // context.fillText(msg, 210, 300);
     removeCurrentBurger();
     removeBuregerRecipe();
     clearInterval(timer);
