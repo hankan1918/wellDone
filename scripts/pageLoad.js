@@ -35,10 +35,10 @@ function showDefeatPage(){
         showPage("main", "defeat");
     }, PAGE_TIMER*1000);
 
-    notice.innerText = `Return to the home in ${String(PAGE_TIMER).padStart(2, "\0")} seconds.`;
+    notice.innerText = `Return\0to\0the\0home\0in\0${String(PAGE_TIMER).padStart(2, "\0")}\0seconds.`;
     noticeTimeout = setInterval(function(){
         PAGE_TIMER--;
-        notice.innerText = `Return to the home in ${String(PAGE_TIMER).padStart(2, "\0")} seconds.`;
+        notice.innerText = `Return\0to\0the\0home\0in\0${String(PAGE_TIMER).padStart(2, "\0")}\0seconds.`;
     }, 1000)
 
     document.getElementById("defeat").addEventListener("click", function(){
