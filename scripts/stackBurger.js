@@ -6,7 +6,7 @@ const BURGER_LIST =[
     ['bottom-bun', 'patty', 'tomato', 'patty', 'top-bun'],
     ['bottom-bun', 'tomato', 'patty', 'tomato', 'top-bun'],
     ['bottom-bun', 'patty', 'cheese', 'patty', 'top-bun'],
-    ['bottom-bun', 'lettuce', 'patty', 'lettuce', 'cheese', 'top-bun']
+    ['bottom-bun', 'lettuce', 'patty', 'cheese', 'lettuce', 'top-bun']
 ]; //추후 추가 가능하도록
 const BURGER_WIDTH = 120;
 const INGREDIENT = {'bottom-bun': (7*BURGER_WIDTH)/30, 'lettuce':(3*BURGER_WIDTH)/30, 'tomato':(4*BURGER_WIDTH)/30, 'patty':(5*BURGER_WIDTH)/30, 'cheese':(7*BURGER_WIDTH)/30};
