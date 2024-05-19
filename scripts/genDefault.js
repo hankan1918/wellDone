@@ -467,14 +467,14 @@ function replay(){
     console.log("replay", mode);
     switch (mode) {
         case MODE.NORMAL:
-            normalMode();
+            showNormalModePage();
             break;
         case MODE.HARD:
-            hardMode();
+            showHardModePage();
             break;
         case MODE.EASY:
         default:
-            easyMode();
+            showeasyModePage();
             break;
     }
 }
