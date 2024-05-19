@@ -44,7 +44,7 @@ var barY;                                                   /* 패들 y 위치 *
 
 /* 제한시간, 점수, 목숨 관련 변수 */
 var gTimer;
-const TOTALTIME = 180;                                       /* 제한 시간 */
+const TOTALTIME = 180;                                      /* 제한 시간 */
 var remainingTime;                                          /* 남은 시간 */
 var timeboard;                                              /* 게임 시간판 */
 const POINT = 10;
@@ -54,9 +54,7 @@ const BURGERBONUS = 50;
 const PENALTY = 2;                                          /* 감점 */
 var score;                                                  /* 점수 */
 var gscoreboard;                                            /* 점수판 */
-// var lifeboard;                                              /* 목숨판 */
-// const MAX_LIFE = 3;                                         /* 최대목숨 */
-// var life;                                                   /* 목숨 */
+
 
 /* 재료 관련 변수 */
 loadImage.cache = {};                                       /* 이미지 캐시 객체 */
@@ -73,7 +71,6 @@ function init(sb, tb){
     clearInterval(ingredientTimer);
     clearInterval(gTimer);
     gscoreboard = sb;
-    // lifeboard = lb;
     timeboard = tb;
     
     /* 캐릭터 능력 */
@@ -81,15 +78,13 @@ function init(sb, tb){
     console.log("init char: ", charimg);
     if (charimg == "BENJAMIN") bencount = BENJAMINABILITY.count;
     console.log("bencount", bencount);
-
     console.log("starting mode", mode);
+
     /* 제한시간, 점수, 목숨세팅 */
     remainingTime = TOTALTIME;
     timeboard.innerText = remainingTime;
     score = MIN_SCORE;
     gscoreboard.innerText = score;
-    // life = MAX_LIFE
-    // lifeboard.innerText = life;
 
     /* 격자 */
     initGrid();
@@ -112,8 +107,6 @@ function init(sb, tb){
             barX = relativeX - BARWIDTH/2;
         }
     })
-    // console.log(`speed: ${speed}`);
-    // console.log(`x: ${ballX}`, `y: ${ballY}`);
 
     ingredientTimer = setInterval(createNewingredient, 1500);
     timer = setInterval(draw, 10);
@@ -138,7 +131,6 @@ function bounce(){
         ballVx = distanceFromCenter* WEIGHT;
         ballVy = Math.sqrt(speed**2 - ballVx**2);
         ballVy *= -1;
-        // console.log(`ballVx: ${ballVx}, ballvy: ${ballVy}`);
     }
     else if(ballX <= BALLRADIUS || ballX >= CWIDTH-BALLRADIUS){
         ballVx *= -1;
@@ -152,44 +144,13 @@ function bounce(){
 
 /* 그리기 */
 function draw(){
-    if(ballY>=CHEIGHT-BALLRADIUS){
-        // 떨어지면 게임 오버
-        drawGameover();
-        /*
-            목숨 사라지면 GAMEOVER
-        
-        ballX = CWIDTH/2;                    
-        ballY = CHEIGHT/2;                   
-        ballVy *= -1;
-        life -= 1;
-        drawBall();
-        updateLife();
-        if(life <= 0){
-            if(mode != MODE.HARD){ // 하드 모드가 아닌 경우 땅에 떨어져서 목숨이 0이면 게임 오버
-                drawGameover();
-            }
-            // 하드인 경우 땅에 떨어져서 목숨이 0이 되었는데
-            else{
-                // 버거 완성 개수가 0보다 크면 성공
-                if(burgerCount >= 1){
-                    completeHard();
-                    // 스코어 기록
-                }
-                // 아니면 게임 오버
-                else{
-                    drawGameover();
-                }
-            }
-        }
-        */
-    }
+    if(ballY>=CHEIGHT-BALLRADIUS){ drawGameover(); }
     else{
         bounce();                        
         ballX += ballVx; 
         ballY += ballVy; 
         context.clearRect(0, 0, CWIDTH, CHEIGHT); 
         updateTime();
-        //updateLife();
         updateScore();
         drawBall();
         drawBar();
@@ -207,7 +168,6 @@ function draw(){
     - activeingredient: 재료 객체 생성 (x좌표, y좌표, stats, 재료 타입, 이미지 경로)
     - 생성한 재료 객체를 activeingredients 배열에 추가
 */
-// const ingredientColor = ["red", "green",  "orange", "black", "pink"];
 function createNewingredient(){
     const emptyCell = findEmptyGridCell();
     const gridX = emptyCell.x;
@@ -215,7 +175,6 @@ function createNewingredient(){
     const x = gridX * GRIDSIZE + Math.random() * (GRIDSIZE - INGREDIENTW);
     const y = -INGREDIENTH;
     const type = ingredientType[Math.floor(Math.random() * ingredientType.length)];
-    // const color = ingredientColor[Math.floor(Math.random() * ingredientColor.length)];
     const IINGREDIENTNAME = type + ".png";
     const INGREDIENTSRC = "./img/ingredient/" + IINGREDIENTNAME;
     const ACTIVEINGREDIENT = { x, y, status: 1, type, src: INGREDIENTSRC };
@@ -233,7 +192,6 @@ function drawIngredients(){
     for (var i = 0; i < activeingredients.length; i++){
         const INGRED = activeingredients[i];
         INGRED.y += FALLSPEED;                                          // 재료 아래로 이동
-        // console.log(INGRED);
         if (INGRED.y > CHEIGHT){
             // 재료가 화면 아래로 사라지면 제거
             updateGrid(INGRED.x, INGRED.y);
@@ -277,24 +235,7 @@ function loadImage(src, callback) {
       재료가 있던 격자 지우기, 배열에서 활성화였던 재료 비활성화(인덱스 조정)
 */
 function collisionDetection(){
-    if (mode == MODE.EASY && score >= 200){
-        mode = MODE.NORMAL
-        // console.log("mode change", mode);
-        // console.log("burgerCount", burgerCount);
-        completeEasy();
-        setTimeout(normalMode,1500);
-        removeModeImage();
-        changeModeImage();
-    }
-    if (mode == MODE.NORMAL && score >= 300 && burgerCount >= 3){
-        mode = MODE.HARD
-        // console.log("mode change", mode);
-        completeNormal();
-        setTimeout(hardMode,1500);
-        removeModeImage();
-        changeModeImage();
-    }
-    
+    nextMode();
     // HARD: 버거 완성 개수가 1이상, 목숨이 0, 남은 시간이 있는 경우 --> 땅에 공이 떨어져서 죽은 경우 -->draw()함수 참고
     // 시간이 다 되어서 목숨이 0이 된 경우는 --> gameTimer()함수 참고
     for (let i = 0; i < activeingredients.length; i++){
@@ -320,6 +261,8 @@ function collisionDetection(){
         }
     }
 }
+
+
 
 /* 공 그리기 */
 function drawBall(){
@@ -380,87 +323,6 @@ function updateGrid(ingredientX, ingredientY){
     grid[gridX][gridY] = false;                     // 격자 비움 표시
 }
 
-/* 시간 계산 */
-/* 목숨제
-        life -= 1;
-        updateTime();
-        updateLife();
-        remainingTime = TOTALTIME;
-        if(life <= 0){
-            if(mode != MODE.HARD){ // hard가 아닌 경우
-                drawGameover();
-                resetGame();
-            }
-            // mode == MODE.HARD인 경우만, 버거 완성 개수가 1 이상이면 컴플릿, 아니면 게임오버
-            if(burgerCount >= 1){
-                completeHard();
-                // 스코어 보드 기록
-            }
-            else{
-                drawGameover();
-                resetGame();
-            }
-        }
-*/
-
-function gameTimer(){
-    remainingTime--;
-    if (remainingTime <= 0){
-        if(charimg != "BENJAMIN"){
-            updateTime();
-            if(mode != MODE.HARD) {drawGameover();}
-            // mode == MODE.HARD인 경우만, 버거 완성 개수가 3 이상이면 컴플릿, 아니면 게임오버
-            else{
-                if (burgerCount >= 3){
-                    console.log("here");
-                    completeHard(); }
-                else {drawGameover();}
-                }
-        } else {
-            // 캐릭터가 BENJAMIN인 경우 REMAINGTIME 0 일 때 추가 시간(BENJAMINABILITY) 제공
-            bencount--;
-            remainingTime = BENJAMINABILITY.time;
-            console.log(bencount);
-            if(bencount < 0){
-                remainingTime = 0;
-                updateTime();
-                if(mode != MODE.HARD) {drawGameover();}
-                // mode == MODE.HARD인 경우만, 버거 완성 개수가 3 이상이면 컴플릿, 아니면 게임오버
-                else{
-                    if (burgerCount >= 3){
-                        console.log("here");
-                        completeHard(); }
-                    else {drawGameover();}
-                }
-            }
-        }
-    }
-}
-
-
-/* 제한 시간 출력 */
-function updateTime(){
-    timeboard.innerText = "시간: " + remainingTime;
-}
-
-/* 점수 출력 */
-function updateScore(){
-    gscoreboard.innerText = "점수: " + score;
-}
-
-/* 목숨 출력 
-function updateLife(){
-    var parentElement = document.getElementById("lifeboard");
-    lifeboard.innerHTML = ""; // 이전 하트 이미지 제거
-    for(var i = 0; i<life; i++){
-        var imgElement = document.createElement("img");
-        imgElement.src = "./img/etc/heart.png";
-        imgElement.style.width = "50px";
-        imgElement.style.height = "50px";
-        imgElement.alt = "하트";
-        parentElement.appendChild(imgElement);
-    }
-}*/
 
 /* replay 버튼 이벤트 처리 */
 function replay(){
@@ -487,11 +349,9 @@ function newGame(sb, tb){
     //if(charimg == "CEO") bencount = BENJAMINABILITY.count;
     // init에 보낼 인수
     rsb = sb;       // scoreboard
-    // rlb = lb;       // lifeboard
     rtb = tb;       // timeboard
     console.log("re mode: ", mode);
     // 점수 초기화
-    // life = MAX_LIFE;
     score = MIN_SCORE;
     remainingTime = TOTALTIME;
 
@@ -511,9 +371,7 @@ function newGame(sb, tb){
     init(rsb, rtb);
 }
 
-/*
-    init함수를 부르는 거 제외 한 초기화
-*/
+/* init함수를 부르는 거 제외 한 초기화 */
 function resetGame(){
     mode = MODE.EASY;
     if(charimg == "BENJAMIN") bencount = BENJAMINABILITY.count;
@@ -528,8 +386,7 @@ function resetGame(){
     barX = CWIDTH/2 - (BARWIDTH/2);      // 패들 x축 초기 위치
     barY = CHEIGHT - BARHEIGHT*2;        // 패들 y축 초기 위치
 
-    // 점수, 목숨 초기화
-    // life = MAX_LIFE;
+    // 점수 초기화
     score = MIN_SCORE;
     remainingTime = TOTALTIME;
     
@@ -545,68 +402,6 @@ function resetGame(){
     removeCurrentBurger();
     removeModeImage();
     removeChar();
-}
-
-/* 게임 오버 */
-function drawGameover(msg="GAME OVER!"){
-    showDefeatPage();
-    context.clearRect(0, 0, CWIDTH, CHEIGHT);
-    // context.fillStyle = "black"
-    // context.font = '150px arcade';
-    // context.fillText(msg, 210, 300);
-    removeCurrentBurger();
-    removeBuregerRecipe();
-    clearInterval(timer);
-    clearInterval(ingredientTimer);
-    clearInterval(gTimer);
-}
-
-function completeEasy(msg="COMPLETE EASY MODE"){
-    context.clearRect(0, 0, CWIDTH, CHEIGHT);
-    context.fillStyle = "black";
-    context.font = '100px arcade';
-    context.fillText(msg, 100, 250);
-    removeCurrentBurger();
-    removeBuregerRecipe();
-    clearInterval(timer);
-    clearInterval(ingredientTimer);
-    clearInterval(gTimer);
-}
-
-function completeNormal(msg="COMPLETE NORMAL MODE"){
-    context.clearRect(0, 0, CWIDTH, CHEIGHT);
-    context.fillStyle = "black";
-    context.font = '100px arcade';
-    context.fillText(msg, 60, 250);
-    removeCurrentBurger();
-    removeBuregerRecipe();
-    clearInterval(timer);
-    clearInterval(ingredientTimer);
-    clearInterval(gTimer);
-}
-
-function completeHard(msg="COMPLETE HARD MODE"){
-    context.clearRect(0, 0, CWIDTH, CHEIGHT);
-    context.fillStyle = "black";
-    context.font = '100px arcade';
-    context.fillText(msg, 100, 250);
-    removeCurrentBurger();
-    removeBuregerRecipe();
-    clearInterval(timer);
-    clearInterval(ingredientTimer);
-    clearInterval(gTimer);
-
-    //최고기록 10위 안인 경우만 이름을 물어본다.
-    var scoreList = getScores();
-    console.log(scoreList);
-    if((scoreList.length<10) || (scoreList[scoreList.length-1].score || 0)<score){
-        document.getElementById("userName").style.display="block";
-    }
-    
-    // if(score>highestScore){
-    //     document.getElementById("userName").style.display="block";
-    //     localStorage.setItem("highScore",score);
-    // }
 }
 
 // Canvas Resizing
@@ -630,28 +425,3 @@ function resizeCanvas(){
 }
 
 window.addEventListener('resize', resizeCanvas);
-
-/*
-   캐릭터 이미지 생성
-   - config.js의 CHAR_LIST, CHAR(현재 선택한 캐릭터 인덱스)
- */
-function changeChar(){
-    var parent = document.getElementById("charImage");
-    var child = document.createElement("img");
-    charimg = CHAR_LIST[CHAR];
-    console.log(charimg);
-    child.src = `img/char/${charimg}.png`;
-    child.alt = "CHAR";
-    parent.appendChild(child);
-}
-/*
-    캐릭터 이미지 제거
-    resetGame에서 사용
- */
-function removeChar(){
-    var parent = document.getElementById("charImage");
-    var child = parent.querySelector("img");
-    if (child) {
-        parent.removeChild(child);
-    }
-}
