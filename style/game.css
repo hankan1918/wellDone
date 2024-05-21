@@ -55,11 +55,6 @@
     transform: translateX(-50%) translateY(10%);
 }
 
-canvas{
-    background-color: #f5f4df;
-    margin-top: 19vh;
-}
-
 #game-title h1{
     margin: 0 auto;
     margin-top: 1vh;
