@@ -75,6 +75,7 @@ var challengeState;
 const TASK_KEY = 'challenge';
 const BURGER_COUNT_KEY = 'totalBurger';
 const BURGER_RECIPE_HISTORY_KEY = 'recipeHistory';
+const MODE_CLEAR_HISTORY_KEY = 'modeClearHistory';
 
 function changeState(achieve){
     var t;
@@ -124,4 +125,16 @@ function setBurgerRecipeHistory(recipe = BURGER){
     if(history==('1'.repeat(BURGER_LIST.length))) changeState('아 그 버거요?');
 
     localStorage.setItem(BURGER_RECIPE_HISTORY_KEY, history);
+}
+
+function setModeClearHistory(curMode=mode){
+    var history = localStorage.getItem(MODE_CLEAR_HISTORY_KEY) || '0'.repeat(3);
+    console.log('before: ', history);
+
+    history = history.substring(0, curMode) + '1' + history.substring(curMode+1, 3);
+    console.log('after: ', history);
+
+    if(history==('1'.repeat(3))) changeState('세상을 구한 버거');
+
+    localStorage.setItem(MODE_CLEAR_HISTORY_KEY, history);
 }
