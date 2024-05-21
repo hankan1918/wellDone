@@ -65,6 +65,7 @@ function showEasyModePage(){
     removeBuregerRecipe();
     removeCurrentBurger();
     pickIngredient();
+    removeInput();
 }
 
 function showNormalModePage(){
@@ -76,6 +77,7 @@ function showNormalModePage(){
     removeBuregerRecipe();
     removeCurrentBurger();
     pickBurgerRecipe();
+    removeInput();
 }
 
 function showHardModePage(){
@@ -88,6 +90,7 @@ function showHardModePage(){
     removeBuregerRecipe();
     removeCurrentBurger();
     pickBurgerRecipe();
+    removeInput();
 }
 
 function changeModeImage(){
@@ -143,4 +146,8 @@ function removeChar(){
     if (child) {
         parent.removeChild(child);
     }
+}
+
+function removeInput(){
+    document.getElementById("userName").style.display="none";
 }
