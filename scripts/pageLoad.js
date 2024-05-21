@@ -28,6 +28,10 @@ function showDefeatPage(){
     var pageTimeout, noticeTimeout;
     var notice = document.getElementById('defeatPageNotice');
     
+    function setNotice(timer){
+        notice.innerHTML = `Return   to   the   home   in   ${String(timer).padStart(2, "   ")}   seconds.`;
+    }
+
     showPage("defeat", "game");
     
     pageTimeout = setTimeout(function(){
@@ -35,11 +39,11 @@ function showDefeatPage(){
         showPage("main", "defeat");
     }, PAGE_TIMER*1000);
 
-    notice.innerText = `Return\0to\0the\0home\0in\0${String(PAGE_TIMER).padStart(2, "\0")}\0seconds.`;
+    setNotice(PAGE_TIMER);
     noticeTimeout = setInterval(function(){
         PAGE_TIMER--;
-        notice.innerText = `Return\0to\0the\0home\0in\0${String(PAGE_TIMER).padStart(2, "\0")}\0seconds.`;
-    }, 1000)
+        setNotice(PAGE_TIMER);
+    }, 1000);
 
     document.getElementById("defeat").addEventListener("click", function(){
         clearInterval(pageTimeout);
