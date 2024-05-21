@@ -336,7 +336,7 @@ function replay(){
             break;
         case MODE.EASY:
         default:
-            showeasyModePage();
+            showEasyModePage();
             break;
     }
 }
