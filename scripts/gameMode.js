@@ -96,6 +96,7 @@ function completeEasy(msg="COMPLETE EASY MODE"){
     clearInterval(timer);
     clearInterval(ingredientTimer);
     clearInterval(gTimer);
+    setModeClearHistory(0);
 }
 
 /* NormalMode 성공 */
@@ -109,6 +110,7 @@ function completeNormal(msg="COMPLETE NORMAL MODE"){
     clearInterval(timer);
     clearInterval(ingredientTimer);
     clearInterval(gTimer);
+    setModeClearHistory(1);
 }
 
 /* HardMode 성공 */
@@ -122,11 +124,13 @@ function completeHard(msg="COMPLETE HARD MODE"){
     clearInterval(timer);
     clearInterval(ingredientTimer);
     clearInterval(gTimer);
+    setModeClearHistory(2);
 
     //최고기록 10위 안인 경우만 이름을 물어본다.
     var scoreList = getScores();
     console.log(scoreList);
     if((scoreList.length<10) || (scoreList[scoreList.length-1].score || 0)<score){
+        document.getElementById("playerNameInput").value = "";
         document.getElementById("userName").style.display="block";
     }
     
