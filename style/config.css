@@ -54,6 +54,8 @@ canvas {
     display: block;
     margin: auto;
     border: 3px solid black;
+    background-color: #f5f4df;
+    margin-top: 19vh;
 }
 
 .page{
