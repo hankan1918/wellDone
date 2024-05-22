@@ -52,8 +52,56 @@ function showDefeatPage(){
     })
 }
 
-function showBeforeEasyPage(){
+function typingScript(s, callback){
+    var script = document.getElementById("script");
+    // var scene = document.getElementById("scene");
 
+    var i = 0;
+    function typing(){
+        if(i == s.length){
+            clearInterval(timer);
+            setTimeout(function(){
+                script.innerHTML = "";
+                // scene.setAttribute("src", "");
+                if(callback) {
+                    callback();
+                }
+            }, 1000);
+            
+        }
+        else{
+            let letter = (s[i] == '\0') ? "   " : s[i];
+            i++;
+            script.innerHTML += (letter == '\n' ? "<br/>" : letter);
+        }
+    }
+
+    var timer = setInterval(typing, 150); // 타이핑 속도 조절
+}
+
+function showBeforeEasyPage(){
+    var scene = document.getElementById("scene");
+
+    showPage('story', 'main');
+    const scriptList = [
+        "한가로운 어느 버거 가게가 있었습니다.",
+        "소란스러운 소리에 가게 밖을 보니 사람들이 몰려오고 있었습니다.",
+        "굶주린 사람들이 당신의 가게에 몰려왔고 그들은 재료를 마구잡이로 집어먹기 시작했습니다.",
+        "재료를 모아 이 굶주린 사람들로부터 가게를 지키세요!"
+    ];
+
+    let index = 0;
+    function runScripts() {
+        if(index < scriptList.length) {
+            scene.setAttribute("src", `./img/scene/easy/${index}.png`);
+            typingScript(scriptList[index++], runScripts); // 현재 스크립트가 끝나면 다음 스크립트를 실행
+        }
+        else{
+            showPage('main','story');
+        }
+    }
+
+    runScripts(); 
 }
 
 function showEasyModePage(){
