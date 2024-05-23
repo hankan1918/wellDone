@@ -45,7 +45,7 @@ function gameTimer(){
             if(mode != MODE.HARD) {drawGameover();}
             // mode == MODE.HARD인 경우만, 버거 완성 개수가 3 이상이면 컴플릿, 아니면 게임오버
             else{
-                if (burgerCount >= 0){
+                if (burgerCount >= 3){
                     console.log("here");
                     completeHard();
                 }
@@ -62,7 +62,7 @@ function gameTimer(){
                 if(mode != MODE.HARD) {drawGameover();}
                 // mode == MODE.HARD인 경우만, 버거 완성 개수가 3 이상이면 컴플릿, 아니면 게임오버
                 else{
-                    if (burgerCount >= 0){
+                    if (burgerCount >= 3){
                         console.log("here");
                         completeHard();
                         }
