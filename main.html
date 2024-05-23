@@ -27,7 +27,8 @@
             </div>
         </div>
         <div class="button-div">
-            <div class="button-box main-button" onclick="showBeforeEasyPage();" id="game-start-button">
+            <!--<div class="button-box main-button" onclick="showPage('game', 'main'); showGamePage();" id="game-start-button"></div>-->
+            <div class="button-box main-button" onclick="showPage('story', 'main'); showBeforeEasyPage();" id="game-start-button">
                 <img src="img/button/main-button/game-start/game-start.png" alt="game start">
                 <img src="img/button/main-button/game-start/game-start-hover.png" alt="game start">
             </div>
@@ -50,8 +51,8 @@
         </div>
     </div>
     <div class="page" id="setting">
-        <h1 class="border main-title">Setting</h1>
-        <div class="border main-box">
+        <h1 id="settings-title" class="border">Setting</h1>
+        <div id="settings-box" class="border">
             <div class="button-box back-button" onclick="showPage('main', 'setting')">
                 <img src="img/button/sub-button/back/back.png" alt="back">
                 <img src="img/button/sub-button/back/back-hover.png" alt="back">
@@ -75,28 +76,21 @@
                     </div>
                 </div>
             </div>
-
-            <div id="bgiBgm">
-                <div>
-                    <h2 class="settings-sub-title">Theme</h2>
-                    <div class="picker" id="bgi">
-                        <div class="carouselMenu">
-                        </div>
-                    </div>
+            <h2 class="settings-sub-title">Theme</h2>
+            <div class="picker" id="bgi">
+                <div class="carouselMenu">
                 </div>
-                <div>
-                    <h2 class="settings-sub-title">BGM</h2>
-                    <div class="picker" id="bgm">
-                        <div class="carouselMenu">
-                        </div>
-                    </div>
+            </div>
+            <h2 class="settings-sub-title">BGM</h2>
+            <div class="picker" id="bgm">
+                <div class="carouselMenu">
                 </div>
             </div>
         </div>
     </div>
     <div class="page" id="challenge">
-        <h1 class="border main-title">Achievements</h1>
-        <div class="border main-box">
+        <h1 id="achievements-title" class="border">Achievements</h1>
+        <div id="challenge-box" class="border">
             <div class="button-box back-button" onclick="showPage('main', 'challenge')">
                 <img src="img/button/sub-button/back/back.png" alt="back">
                 <img src="img/button/sub-button/back/back-hover.png" alt="back">
@@ -105,8 +99,8 @@
         </div>
     </div>
     <div class="page" id="scoreboard">
-        <h1 class="border main-title">scoreboard</h1>
-        <div class="border main-box">
+        <h1 id="scoreboard-title" class="border">scoreboard</h1>
+        <div id="scoreboard-box" class="border">
             <div id="scoreboardList">
 
             </div>
@@ -133,7 +127,7 @@
 
     <!-- game page -->
     <div class="page" id="game">
-        <div class="button-box back-button" onclick="showPage('main', 'game'); resetGame(); removeInput();">
+        <div class="button-box back-button" onclick="showPage('main', 'game'); resetGame();">
             <img src="img/button/sub-button/back/back.png" alt="back">
             <img src="img/button/sub-button/back/back-hover.png" alt="back">
         </div>
@@ -156,15 +150,15 @@
                 <img src="img/button/sub-button/replay/replay.png" alt="replay">
                 <img src="img/button/sub-button/replay/replay-hover.png" alt="replay">
             </div>
-            <div class="button-box small-button" onclick="showEasyModePage();">
+            <div class="button-box small-button" onclick="resetGame(); showBeforeEasyPage();">
                 <img src="img/button/sub-button/easy/easy.png" alt="easy">
                 <img src="img/button/sub-button/easy/easy-hover.png" alt="easy">
             </div>
-            <div class="button-box small-button" onclick="showNormalModePage();">
+            <div class="button-box small-button" onclick="resetGame(); showBeforeNormalPage();">
                 <img src="img/button/sub-button/normal/normal.png" alt="normal">
                 <img src="img/button/sub-button/normal/normal-hover.png" alt="normal">
             </div>
-            <div class="button-box small-button" onclick="showHardModePage();">
+            <div class="button-box small-button" onclick="resetGame(); showBeforeHardPage();">
                 <img src="img/button/sub-button/hard/hard.png" alt="hard">
                 <img src="img/button/sub-button/hard/hard-hover.png" alt="hard">
             </div>
@@ -180,8 +174,8 @@
     <script type="text/javascript" src="scripts/challenge.js"></script>
     <script type="text/javascript" src="scripts/stackBurger.js"></script>
     <script type="text/javascript" src="scripts/genDefault.js"></script>
-    <!--<script type="text/javascript" src="scripts/gameMode.js"></script>-->
-    <script type="text/javascript" src="scripts/test.js"></script>
+    <script type="text/javascript" src="scripts/gameMode.js"></script>
+    <!--<script type="text/javascript" src="scripts/test.js"></script>-->
     <script type="text/javascript" src="scripts/scoreboard.js"></script>
     <script type="text/javascript" src="scripts/setting.js"></script>
 </body>
