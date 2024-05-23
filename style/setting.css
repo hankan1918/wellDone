@@ -64,8 +64,8 @@
     margin-bottom: 10px;
 }
 .picker {
-    margin-bottom: 3vh;
-    padding-bottom: 3vh;
+    margin-bottom: 2vh;
+    padding-bottom: 2vh;
 }
 .picker:last-of-type {
     margin-bottom: 0;
@@ -75,7 +75,7 @@
     padding-top: 6vh;
     background-color: #f5f4df;
     width: 50%;
-    height: 80vh;
+    height:77vh;
     margin: 9vh auto 0;
 }
 
@@ -84,8 +84,8 @@
     padding: 0 2vh;
     position: absolute;
     left: 50%;
-    top: 2vh;
-    font-size: 10vh;
+    top: 4vh;
+    font-size: 9vh;
     transform: translateX(-50%);
     background-color: #f5f4df;
     z-index: 1;
