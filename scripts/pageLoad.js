@@ -199,7 +199,7 @@ function showClearPage(){
             typingScript(scriptList[index++], runScripts, () => click); // 현재 스크립트가 끝나면 다음 스크립트를 실행
         }
         else{
-            showPage('main','story'); //modi here
+            showPage('EnterName','story'); //modi here
             var scoreList = getScores();
             console.log(scoreList);
             //최고기록 10위 안인 경우만 이름을 물어본다.
@@ -231,7 +231,6 @@ function showEasyModePage(){
     removeBuregerRecipe();
     removeCurrentBurger();
     pickIngredient();
-    removeInput();
     changeChar();
 }
 
@@ -244,7 +243,6 @@ function showNormalModePage(){
     removeBuregerRecipe();
     removeCurrentBurger();
     pickBurgerRecipe();
-    removeInput();
     changeChar();
 }
 
@@ -258,7 +256,6 @@ function showHardModePage(){
     removeBuregerRecipe();
     removeCurrentBurger();
     pickBurgerRecipe();
-    removeInput();
     changeChar();
 }
 
