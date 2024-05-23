@@ -2,7 +2,6 @@ function showPage(nxt='', cur=''){
     if(cur!= '') document.querySelector(`#${cur}.page`).style.display = 'none';
     document.querySelector(`#${nxt}.page`).style.display = 'block';
 }
-
 function bodyOnLoad(){
     showPage('main');
     challengeState = localStorage.getItem(TASK_KEY) || '0'.repeat(tasks.length);
@@ -97,11 +96,13 @@ function showBeforeEasyPage(){
             typingScript(scriptList[index++], runScripts); // 현재 스크립트가 끝나면 다음 스크립트를 실행
         }
         else{
-            showPage('main','story'); //modi here
+            document.querySelector(`#story.page`).style.display = 'none';
+            showPage('game', 'main'); //modi here
+            showGamePage();
         }
     }
 
-    runScripts(); 
+    runScripts();
 }
 
 function showEasyModePage(){
