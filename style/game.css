@@ -25,6 +25,10 @@
     padding-top: 1vh;
 }
 
+canvas {
+    margin-top: 17vh;
+}
+
 #currentBurger {
     width: 25vh;
     height: 25vh;
