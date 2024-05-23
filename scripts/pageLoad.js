@@ -103,6 +103,7 @@ function showBeforeEasyPage(){
 
     runScripts();
     document.getElementById("story").addEventListener("click", function(){
+        // runScripts()  중단하는거 필요
         showPage('game', 'story); //modi here
         showGamePage();
     })
