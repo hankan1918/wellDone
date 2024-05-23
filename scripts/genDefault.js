@@ -44,7 +44,7 @@ var barY;                                                   /* 패들 y 위치 *
 
 /* 제한시간, 점수, 목숨 관련 변수 */
 var gTimer;
-const TOTALTIME = 180;                                      /* 제한 시간 */
+const TOTALTIME = 3;                                      /* 제한 시간 */
 var remainingTime;                                          /* 남은 시간 */
 var timeboard;                                              /* 게임 시간판 */
 const POINT = 10;
@@ -327,6 +327,7 @@ function updateGrid(ingredientX, ingredientY){
 /* replay 버튼 이벤트 처리 */
 function replay(){
     console.log("replay", mode);
+    resetGame();
     switch (mode) {
         case MODE.NORMAL:
             showNormalModePage();
@@ -373,7 +374,6 @@ function newGame(sb, tb){
 
 /* init함수를 부르는 거 제외 한 초기화 */
 function resetGame(){
-    mode = MODE.EASY;
     if(charimg == "BENJAMIN") bencount = BENJAMINABILITY.count;
     // 공 초기화
     ballX = CWIDTH/2;                    
