@@ -51,12 +51,20 @@ function showDefeatPage(){
     })
 }
 
-function typingScript(s, callback){
+function typingScript(s, callback, clickCheck){
     var script = document.getElementById("script");
     // var scene = document.getElementById("scene");
-
     var i = 0;
+
     function typing(){
+        if (clickCheck()) {
+            clearInterval(timer);
+            script.innerHTML = "";
+            if (callback) {
+                callback();
+            }
+            return;
+        }
         if(i == s.length){
             clearInterval(timer);
             setTimeout(function(){
@@ -80,6 +88,7 @@ function typingScript(s, callback){
 
 function showBeforeEasyPage(){
     var scene = document.getElementById("scene");
+    var click = false;
 
     showPage('story', 'main'); //modi here
     const scriptList = [
@@ -91,9 +100,9 @@ function showBeforeEasyPage(){
 
     let index = 0;
     function runScripts() {
-        if(index < scriptList.length) {
+        if(index < scriptList.length && click == false) {
             scene.setAttribute("src", `./img/scene/easy/${index}.png`);
-            typingScript(scriptList[index++], runScripts); // 현재 스크립트가 끝나면 다음 스크립트를 실행
+            typingScript(scriptList[index++], runScripts, () => click); // 현재 스크립트가 끝나면 다음 스크립트를 실행
         }
         else{
             showPage('game', 'story'); //modi here
@@ -103,9 +112,7 @@ function showBeforeEasyPage(){
 
     runScripts();
     document.getElementById("story").addEventListener("click", function(){
-        index = scriptList.length + 1;
-        showPage('game', 'story'); //modi here
-        showGamePage();
+        click = true;
     });
     
 }
