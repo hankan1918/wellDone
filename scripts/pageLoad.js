@@ -82,7 +82,7 @@ function typingScript(s, callback){
 function showBeforeEasyPage(){
     var scene = document.getElementById("scene");
 
-    showPage('story', 'main');
+    showPage('story', 'main'); //modi here
     const scriptList = [
         "한가로운 어느 버거 가게가 있었습니다.",
         "소란스러운 소리에 가게 밖을 보니 사람들이 몰려오고 있었습니다.",
@@ -97,7 +97,7 @@ function showBeforeEasyPage(){
             typingScript(scriptList[index++], runScripts); // 현재 스크립트가 끝나면 다음 스크립트를 실행
         }
         else{
-            showPage('main','story');
+            showPage('main','story'); //modi here
         }
     }
 
