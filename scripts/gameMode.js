@@ -45,9 +45,10 @@ function gameTimer(){
             if(mode != MODE.HARD) {drawGameover();}
             // mode == MODE.HARD인 경우만, 버거 완성 개수가 3 이상이면 컴플릿, 아니면 게임오버
             else{
-                if (burgerCount >= 3){
+                if (burgerCount >= 0){
                     console.log("here");
-                    completeHard(); }
+                    completeHard();
+                }
                 else {drawGameover();}
                 }
         } else {
@@ -61,9 +62,10 @@ function gameTimer(){
                 if(mode != MODE.HARD) {drawGameover();}
                 // mode == MODE.HARD인 경우만, 버거 완성 개수가 3 이상이면 컴플릿, 아니면 게임오버
                 else{
-                    if (burgerCount >= 3){
+                    if (burgerCount >= 0){
                         console.log("here");
-                        completeHard(); }
+                        completeHard();
+                        }
                     else {drawGameover();}
                 }
             }
@@ -72,25 +74,19 @@ function gameTimer(){
 }
 
 /* 게임 오버 */
-function drawGameover(msg="GAME OVER!"){
-    showDefeatPage();
+function drawGameover(){
     context.clearRect(0, 0, CWIDTH, CHEIGHT);
-    // context.fillStyle = "black"
-    // context.font = '150px arcade';
-    // context.fillText(msg, 210, 300);
     removeCurrentBurger();
     removeBuregerRecipe();
     clearInterval(timer);
     clearInterval(ingredientTimer);
     clearInterval(gTimer);
+    showDefeatPage();
 }
 
 /* EasyMode 성공 */
-function completeEasy(msg="COMPLETE EASY MODE"){
+function completeEasy(){
     context.clearRect(0, 0, CWIDTH, CHEIGHT);
-    context.fillStyle = "black";
-    context.font = '100px arcade';
-    context.fillText(msg, 100, 250);
     removeCurrentBurger();
     removeBuregerRecipe();
     clearInterval(timer);
@@ -100,11 +96,8 @@ function completeEasy(msg="COMPLETE EASY MODE"){
 }
 
 /* NormalMode 성공 */
-function completeNormal(msg="COMPLETE NORMAL MODE"){
+function completeNormal(){
     context.clearRect(0, 0, CWIDTH, CHEIGHT);
-    context.fillStyle = "black";
-    context.font = '100px arcade';
-    context.fillText(msg, 60, 250);
     removeCurrentBurger();
     removeBuregerRecipe();
     clearInterval(timer);
@@ -114,28 +107,13 @@ function completeNormal(msg="COMPLETE NORMAL MODE"){
 }
 
 /* HardMode 성공 */
-function completeHard(msg="COMPLETE HARD MODE"){
+function completeHard(){
     context.clearRect(0, 0, CWIDTH, CHEIGHT);
-    context.fillStyle = "black";
-    context.font = '100px arcade';
-    context.fillText(msg, 100, 250);
     removeCurrentBurger();
     removeBuregerRecipe();
     clearInterval(timer);
     clearInterval(ingredientTimer);
     clearInterval(gTimer);
     setModeClearHistory(2);
-
-    //최고기록 10위 안인 경우만 이름을 물어본다.
-    var scoreList = getScores();
-    console.log(scoreList);
-    if((scoreList.length<10) || (scoreList[scoreList.length-1].score || 0)<score){
-        document.getElementById("playerNameInput").value = "";
-        document.getElementById("userName").style.display="block";
-    }
-    
-    // if(score>highestScore){
-    //     document.getElementById("userName").style.display="block";
-    //     localStorage.setItem("highScore",score);
-    // }
+    showClearPage();
 }
