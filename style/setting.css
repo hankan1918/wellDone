@@ -39,6 +39,7 @@
 
 .carouselMenu{
     display: flex;
+    align-items: center;
 }
 
 .carouselMenu .button-box img {
@@ -47,6 +48,7 @@
 .cmContainer{
     overflow: hidden;
     width: 300px;
+    height: 6vh;
 }
 .cmItems{
     display: flex;
@@ -59,12 +61,10 @@
     width: 300px;
     height: 6vh;
     font-size: 5vh;
-    line-height: 5vh;
+    line-height: 6vh;
     text-align: center;
-    margin-bottom: 10px;
 }
 .picker {
-    margin-bottom: 2vh;
     padding-bottom: 2vh;
 }
 .picker:last-of-type {
@@ -93,8 +93,8 @@
 
 .settings-sub-title {
     text-align: center;
-    font-size: 8vh;
-    line-height: 8vh;
+    font-size: 7vh;
+    line-height: 10vh;
     height: 10vh;
 }
 
