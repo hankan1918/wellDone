@@ -104,6 +104,56 @@ function showBeforeEasyPage(){
     runScripts(); 
 }
 
+function showBeforeNormalPage(){
+    var scene = document.getElementById("scene");
+
+    showPage('story', 'main'); //modi here
+    const scriptList = [
+        "사람들이 더 이상 버거 재료를 집어먹지 않습니다.",
+        "아무래도 이성을 일부 되찾은 것 같습니다.",
+        "더 까다로워졌습니다. \'버거\'를 원합니다.",
+        "지금부터는 버거를 만드세요!"
+    ];
+
+    let index = 0;
+    function runScripts() {
+        if(index < scriptList.length) {
+            scene.setAttribute("src", `./img/scene/normal/${index}.png`);
+            typingScript(scriptList[index++], runScripts); // 현재 스크립트가 끝나면 다음 스크립트를 실행
+        }
+        else{
+            showPage('main','story'); //modi here
+        }
+    }
+
+    runScripts(); 
+}
+
+function showBeforeHardPage(){
+    var scene = document.getElementById("scene");
+
+    showPage('story', 'main'); //modi here
+    const scriptList = [
+        "엉망인 버거를 내놓아도 먹지 않고 음식을 요구합니다.",
+        "이젠 제대로 된 버거를 달라 요구하는 군요.",
+        "\'제대로 된 버거\'를 원합니다.",
+        "지금부터는 순서가 맞는 버거를 만드세요! 잘못된 재료에는 패널티가 부과됩니다."
+    ];
+
+    let index = 0;
+    function runScripts() {
+        if(index < scriptList.length) {
+            scene.setAttribute("src", `./img/scene/hard/${index}.png`);
+            typingScript(scriptList[index++], runScripts); // 현재 스크립트가 끝나면 다음 스크립트를 실행
+        }
+        else{
+            showPage('main','story'); //modi here
+        }
+    }
+
+    runScripts(); 
+}
+
 function showEasyModePage(){
     mode = MODE.EASY;
     console.log("easy: ", mode);
