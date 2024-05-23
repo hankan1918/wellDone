@@ -96,13 +96,16 @@ function showBeforeEasyPage(){
             typingScript(scriptList[index++], runScripts); // 현재 스크립트가 끝나면 다음 스크립트를 실행
         }
         else{
-            document.querySelector(`#story.page`).style.display = 'none';
-            showPage('game', 'main'); //modi here
+            showPage('game', 'story); //modi here
             showGamePage();
         }
     }
 
     runScripts();
+    document.getElementById("story").addEventListener("click", function(){
+        showPage('game', 'story); //modi here
+        showGamePage();
+    })
 }
 
 function showEasyModePage(){
