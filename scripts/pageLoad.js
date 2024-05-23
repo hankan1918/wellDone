@@ -176,6 +176,36 @@ function showBeforeHardPage(){
     });
 }
 
+function showClearPage(){
+    var scene = document.getElementById("scene");
+    var click = false;
+
+    showPage('story', 'main'); //modi here
+    const scriptList = [
+        "제대로 된 버거를 먹고 사람들이 하나둘 자신의 이성을 찾고 떠났습니다.",
+        "당신에게는 돈과 약간 (많이) 어질러진 가게가 남았습니다.",
+        "그리고 한가한 일상으로 돌아왔습니다.",
+        "버거로 세상을 구했습니다."
+    ];
+
+    let index = 0;
+    function runScripts() {
+        if(index < scriptList.length && click == false) {
+            scene.setAttribute("src", `./img/scene/hard/${index}.png`);
+            typingScript(scriptList[index++], runScripts, () => click); // 현재 스크립트가 끝나면 다음 스크립트를 실행
+        }
+        else{
+            showPage('main','story'); //modi here
+        }
+    }
+
+    runScripts();
+    
+    document.getElementById("story").addEventListener("click", function(){
+        click = true;
+    });
+}
+
 function showEasyModePage(){
     mode = MODE.EASY;
     console.log("easy: ", mode);
