@@ -1,12 +1,13 @@
+// main.html에서 gameMode.js 대신 사용
 function nextMode(){
-    if (mode == MODE.EASY && score >= 30){ // 테스트 조건 변경
+    if (mode == MODE.EASY && score >= 30){  // score 변경
         mode = MODE.NORMAL
         completeEasy();
         setTimeout(showNormalModePage,1500);
         removeModeImage();
         changeModeImage();
     }
-    if (mode == MODE.NORMAL && score >= 10 && burgerCount >= 1){ // 테스트 조건 변경
+    if (mode == MODE.NORMAL && score >= 30 && burgerCount >= 1){
         mode = MODE.HARD
         completeNormal();
         setTimeout(showHardModePage,1500);
@@ -15,16 +16,17 @@ function nextMode(){
     }
 }
 
+
 function gameTimer(){
     remainingTime--;
-    if (mode == MODE.HARD && remainingTime <= 170){completeHard();}     // 테스트 추가
-    if (remainingTime <= 0){
+    if (remainingTime <= 160){      // remainingTime 변경
         if(charimg != "BENJAMIN"){
             updateTime();
             if(mode != MODE.HARD) {drawGameover();}
             else{
-                if (burgerCount >= 0){
-                    completeHard(); }
+                if (burgerCount >= 1){  // burgerCount 변경
+                    completeHard();
+                }
                 else {drawGameover();}
                 }
         } else {
@@ -35,9 +37,11 @@ function gameTimer(){
                 remainingTime = 0;
                 updateTime();
                 if(mode != MODE.HARD) {drawGameover();}
+
                 else{
-                    if (burgerCount >= 0){
-                        completeHard(); }
+                    if (burgerCount >= 1){ // burgerCount 변경
+                        completeHard();
+                        }
                     else {drawGameover();}
                 }
             }
@@ -45,20 +49,18 @@ function gameTimer(){
     }
 }
 
-function drawGameover(msg="GAME OVER!"){
-    showDefeatPage();
+function drawGameover(){
     context.clearRect(0, 0, CWIDTH, CHEIGHT);
     removeCurrentBurger();
     removeBuregerRecipe();
     clearInterval(timer);
     clearInterval(ingredientTimer);
     clearInterval(gTimer);
+    showDefeatPage();
 }
-function completeEasy(msg="COMPLETE EASY MODE"){
+
+function completeEasy(){
     context.clearRect(0, 0, CWIDTH, CHEIGHT);
-    context.fillStyle = "black";
-    context.font = '100px arcade';
-    context.fillText(msg, 100, 250);
     removeCurrentBurger();
     removeBuregerRecipe();
     clearInterval(timer);
@@ -67,11 +69,8 @@ function completeEasy(msg="COMPLETE EASY MODE"){
     setModeClearHistory(0);
 }
 
-function completeNormal(msg="COMPLETE NORMAL MODE"){
+function completeNormal(){
     context.clearRect(0, 0, CWIDTH, CHEIGHT);
-    context.fillStyle = "black";
-    context.font = '100px arcade';
-    context.fillText(msg, 60, 250);
     removeCurrentBurger();
     removeBuregerRecipe();
     clearInterval(timer);
@@ -80,22 +79,13 @@ function completeNormal(msg="COMPLETE NORMAL MODE"){
     setModeClearHistory(1);
 }
 
-function completeHard(msg="COMPLETE HARD MODE"){
+function completeHard(){
     context.clearRect(0, 0, CWIDTH, CHEIGHT);
-    context.fillStyle = "black";
-    context.font = '100px arcade';
-    context.fillText(msg, 100, 250);
     removeCurrentBurger();
     removeBuregerRecipe();
     clearInterval(timer);
     clearInterval(ingredientTimer);
     clearInterval(gTimer);
     setModeClearHistory(2);
-
-    var scoreList = getScores();
-    console.log(scoreList);
-    if((scoreList.length<10) || (scoreList[scoreList.length-1].score || 0)<score){
-        document.getElementById("playerNameInput").value = "";
-        document.getElementById("userName").style.display="block";
-    }
+    showClearPage();
 }
