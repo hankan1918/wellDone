@@ -1,25 +1,21 @@
 // main.html에서 gameMode.js 대신 사용
 function nextMode(){
-    if (mode == MODE.EASY && score >= 30){  // score 변경
+    if (mode == MODE.EASY && score >= 20){
         mode = MODE.NORMAL
-        completeEasy();
-        setTimeout(showNormalModePage,1500);
-        removeModeImage();
-        changeModeImage();
+        resetGame();
+        showBeforeNormalPage();
     }
-    if (mode == MODE.NORMAL && score >= 30 && burgerCount >= 1){
+    if (mode == MODE.NORMAL && score >= 10 && burgerCount >= 1){
         mode = MODE.HARD
-        completeNormal();
-        setTimeout(showHardModePage,1500);
-        removeModeImage();
-        changeModeImage();
+        resetGame();
+        showBeforeHardPage();
     }
 }
 
 
 function gameTimer(){
     remainingTime--;
-    if (remainingTime <= 160){      // remainingTime 변경
+    if (remainingTime <= 100){      // remainingTime 변경
         if(charimg != "BENJAMIN"){
             updateTime();
             if(mode != MODE.HARD) {drawGameover();}
