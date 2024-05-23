@@ -1,6 +1,6 @@
 #difficulty {
     position: absolute;
-    right: 4vh;
+    right: 6vh;
     top: 4vh;
 }
 #difficulty img {
@@ -13,7 +13,7 @@
     height: 25vh;
     position: absolute;
     right: 10vh;
-    top: 35vh;
+    top: 33vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,7 +26,7 @@
 }
 
 canvas {
-    margin-top: 17vh;
+    margin-top: 31vh;
 }
 
 #currentBurger {
@@ -34,7 +34,7 @@ canvas {
     height: 25vh;
     position: absolute;
     right: 10vh;
-    top: 68vh;
+    top: 66vh;
     background-color: #f5f4df;
 }
 
@@ -49,7 +49,7 @@ canvas {
     height: 25vh;
     position: absolute;
     left: 10vh;
-    top: 35vh;
+    top: 33vh;
     background-color: #f5f4df;
 }
 
@@ -59,13 +59,17 @@ canvas {
     transform: translateX(-50%) translateY(10%);
 }
 
-#game-title h1{
-    margin: 0 auto;
-    margin-top: 4vh;
-    width: 40vh;
-    font-size: 10vh;
-    line-height: 10vh;
+#game-title{
     background-color: #f5f4df;
+    position: absolute;
+    width: 30vh;
+    margin: 0;
+    padding: 0 1vh;
+    font-size: 9vh;
+    left: 50%;
+    top: 5vh;
+    transform: translateX(-50%);
+    z-index: 1;
 }
 
 #timeboard{
@@ -79,6 +83,7 @@ canvas {
     margin-top: 2vh;
     left: 10vh;
     line-height: 4vh;
+    top: 15vh;
 }
 
 #gscoreboard{
@@ -93,6 +98,7 @@ canvas {
     margin-top: 2vh;
     right: 10vh;
     line-height: 4vh;
+    top: 15vh;
 }
 
 #gamebutton{
@@ -100,7 +106,7 @@ canvas {
     height: 25vh;
     position: absolute;
     left: 10vh;
-    top: 68vh;
+    top: 66vh;
     text-align: center;
     background-color: #f5f4df;
     align-content: center;
@@ -128,7 +134,7 @@ canvas {
 }
 
 #recipe-title {
-    top: 32vh;
+    top: 30vh;
     left: 17vh;
 }
 
@@ -137,7 +143,7 @@ canvas {
 }
 
 #current-title {
-    top: 65vh;
+    top: 63vh;
     right: 16vh;
 }
 
