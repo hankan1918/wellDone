@@ -21,7 +21,7 @@ var grid = [];
 var charimg;                                                /* 현재 캐릭터 */
 const CEOABILITY = 3;                                       /* CEO의 능력 추가 점수 */
 const BENJAMINABILITY = {                                   /* BENJAMIN의 능력 추가 시간*/    
-    time: 5,
+    time: 10,
     count: 1
 }
 var bencount;                                               /* BENJAMIN의 추가 시간 개수 카운트*/
@@ -44,7 +44,7 @@ var barY;                                                   /* 패들 y 위치 *
 
 /* 제한시간, 점수, 목숨 관련 변수 */
 var gTimer;
-const TOTALTIME = 3;                                      /* 제한 시간 */
+const TOTALTIME = 180;                                      /* 제한 시간 */
 var remainingTime;                                          /* 남은 시간 */
 var timeboard;                                              /* 게임 시간판 */
 const POINT = 10;
