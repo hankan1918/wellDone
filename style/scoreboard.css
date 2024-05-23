@@ -47,9 +47,8 @@ table tr td:first-of-type {
 #scoreboard-title {
     background-color: #f5f4df;
     position: absolute;
-    width: 60vh;
     margin: 0;
-    padding: 0 1vh;
+    padding: 0 7vh;
     font-size: 9vh;
     left: 50%;
     top: 4vh;

@@ -2,7 +2,6 @@ function showPage(nxt='', cur=''){
     if(cur!= '') document.querySelector(`#${cur}.page`).style.display = 'none';
     document.querySelector(`#${nxt}.page`).style.display = 'block';
 }
-
 function bodyOnLoad(){
     showPage('main');
     challengeState = localStorage.getItem(TASK_KEY) || '0'.repeat(tasks.length);
@@ -52,12 +51,20 @@ function showDefeatPage(){
     })
 }
 
-function typingScript(s, callback){
+function typingScript(s, callback, clickCheck){
     var script = document.getElementById("script");
     // var scene = document.getElementById("scene");
-
     var i = 0;
+
     function typing(){
+        if (clickCheck()) {
+            clearInterval(timer);
+            script.innerHTML = "";
+            if (callback) {
+                callback();
+            }
+            return;
+        }
         if(i == s.length){
             clearInterval(timer);
             setTimeout(function(){
@@ -81,6 +88,7 @@ function typingScript(s, callback){
 
 function showBeforeEasyPage(){
     var scene = document.getElementById("scene");
+    var click = false;
 
     showPage('story', 'main'); //modi here
     const scriptList = [
@@ -92,16 +100,21 @@ function showBeforeEasyPage(){
 
     let index = 0;
     function runScripts() {
-        if(index < scriptList.length) {
+        if(index < scriptList.length && click == false) {
             scene.setAttribute("src", `./img/scene/easy/${index}.png`);
-            typingScript(scriptList[index++], runScripts); // 현재 스크립트가 끝나면 다음 스크립트를 실행
+            typingScript(scriptList[index++], runScripts, () => click); // 현재 스크립트가 끝나면 다음 스크립트를 실행
         }
         else{
-            showPage('main','story'); //modi here
+            showPage('game', 'story'); //modi here
+            showGamePage();
         }
     }
 
-    runScripts(); 
+    runScripts();
+    document.getElementById("story").addEventListener("click", function(){
+        click = true;
+    });
+    
 }
 
 function showBeforeNormalPage(){
