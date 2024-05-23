@@ -73,10 +73,10 @@ canvas {
     font-size: 6vh;
     background-color: #f5f4df;
     position: absolute;
-    width: 70vh;
+    width: 35vh;
     text-align: center;
     display: inline-block;
-    margin-top: 4vh;
+    margin-top: 2vh;
     left: 10vh;
     line-height: 4vh;
 }
@@ -88,9 +88,9 @@ canvas {
     background-color: #f5f4df;
     position: absolute;
     text-align: center;
-    width: 70vh;
+    width: 35vh;
     display: inline-block;
-    margin-top: 4vh;
+    margin-top: 2vh;
     right: 10vh;
     line-height: 4vh;
 }
