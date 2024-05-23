@@ -89,8 +89,7 @@ function typingScript(s, callback, clickCheck){
 function showBeforeEasyPage(){
     var scene = document.getElementById("scene");
     var click = false;
-
-    showPage('story', 'main'); //modi here
+    showPage('story', 'game'); //modi here
     const scriptList = [
         "한가로운 어느 버거 가게가 있었습니다.",
         "소란스러운 소리에 가게 밖을 보니 사람들이 몰려오고 있었습니다.",
@@ -105,8 +104,10 @@ function showBeforeEasyPage(){
             typingScript(scriptList[index++], runScripts, () => click); // 현재 스크립트가 끝나면 다음 스크립트를 실행
         }
         else{
+            mode = MODE.EASY;
             showPage('game', 'story'); //modi here
             showGamePage();
+            // showEasyModePage();
         }
     }
 
@@ -114,14 +115,13 @@ function showBeforeEasyPage(){
     document.getElementById("story").addEventListener("click", function(){
         click = true;
     });
-    
 }
 
 function showBeforeNormalPage(){
     var scene = document.getElementById("scene");
     var click = false;
 
-    showPage('story', 'main'); //modi here
+    showPage('story', 'game'); //modi here
     const scriptList = [
         "사람들이 더 이상 버거 재료를 집어먹지 않습니다.\n아무래도 이성을 일부 되찾은 것 같습니다.",
         "내용물이 어찌되든 \'버거\'를 주자 집어먹기 시작합니다.",
@@ -135,7 +135,9 @@ function showBeforeNormalPage(){
             typingScript(scriptList[index++], runScripts, () => click); // 현재 스크립트가 끝나면 다음 스크립트를 실행
         }
         else{
-            showPage('main','story'); //modi here
+            mode = MODE.NORMAL;
+            showPage('game','story'); //modi here
+            showNormalModePage();
         }
     }
 
@@ -150,7 +152,7 @@ function showBeforeHardPage(){
     var scene = document.getElementById("scene");
     var click = false;
 
-    showPage('story', 'main'); //modi here
+    showPage('story', 'game'); //modi here
     const scriptList = [
         "엉망인 버거를 내놓아도 이젠 쳐다도 보지 않습니다.",
         "이젠 제대로 된 버거를 달라 요구하는 군요.",
@@ -165,7 +167,9 @@ function showBeforeHardPage(){
             typingScript(scriptList[index++], runScripts, () => click); // 현재 스크립트가 끝나면 다음 스크립트를 실행
         }
         else{
-            showPage('main','story'); //modi here
+            mode = MODE.HARD;
+            showPage('game','story'); //modi here
+            showHardModePage();
         }
     }
 
@@ -180,7 +184,7 @@ function showClearPage(){
     var scene = document.getElementById("scene");
     var click = false;
 
-    showPage('story', 'main'); //modi here
+    showPage('story', 'game'); //modi here
     const scriptList = [
         "제대로 된 버거를 먹고 사람들이 하나둘 자신의 이성을 찾고 떠났습니다.",
         "당신에게는 돈과 약간 (많이) 어질러진 가게가 남았습니다.",
@@ -196,6 +200,17 @@ function showClearPage(){
         }
         else{
             showPage('main','story'); //modi here
+            var scoreList = getScores();
+            console.log(scoreList);
+            //최고기록 10위 안인 경우만 이름을 물어본다.
+            if((scoreList.length<10) || (scoreList[scoreList.length-1].score || 0)<score){
+                document.getElementById("playerNameInput").value = "";
+                document.getElementById("userName").style.display="block";
+            // if(score>highestScore){
+            //     document.getElementById("userName").style.display="block";
+            //     localStorage.setItem("highScore",score);
+            //}
+            }
         }
     }
 
@@ -205,6 +220,7 @@ function showClearPage(){
         click = true;
     });
 }
+
 
 function showEasyModePage(){
     mode = MODE.EASY;
@@ -216,6 +232,7 @@ function showEasyModePage(){
     removeCurrentBurger();
     pickIngredient();
     removeInput();
+    changeChar();
 }
 
 function showNormalModePage(){
@@ -228,6 +245,7 @@ function showNormalModePage(){
     removeCurrentBurger();
     pickBurgerRecipe();
     removeInput();
+    changeChar();
 }
 
 function showHardModePage(){
@@ -241,10 +259,10 @@ function showHardModePage(){
     removeCurrentBurger();
     pickBurgerRecipe();
     removeInput();
+    changeChar();
 }
 
 function changeModeImage(){
-    console.log(mode)
     var parent = document.getElementById("difficulty");
     var child = document.createElement("img");
         if (mode == MODE.EASY)        child.src = "./img/button/sub-button/easy/easy.png";
@@ -281,7 +299,6 @@ function changeChar(){
     var parent = document.getElementById("charImage");
     var child = document.createElement("img");
     charimg = CHAR_LIST[CHAR];
-    console.log(charimg);
     child.src = `img/char/${charimg}.png`;
     child.alt = "CHAR";
     parent.appendChild(child);
