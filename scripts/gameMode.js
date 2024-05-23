@@ -22,17 +22,13 @@
 function nextMode(){
     if (mode == MODE.EASY && score >= 200){
         mode = MODE.NORMAL
-        completeEasy();
-        setTimeout(showNormalModePage,1500);
-        removeModeImage();
-        changeModeImage();
+        resetGame();
+        showBeforeNormalPage();
     }
     if (mode == MODE.NORMAL && score >= 300 && burgerCount >= 3){
         mode = MODE.HARD
-        completeNormal();
-        setTimeout(showHardModePage,1500);
-        removeModeImage();
-        changeModeImage();
+        resetGame();
+        showBeforeHardPage();
     }
 }
 
