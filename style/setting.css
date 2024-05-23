@@ -11,25 +11,25 @@
 
 #charMenu{
     display: flex;
-    height: 20vh;
+    height: 26vh;
     align-items: center;
 }
 
 #charMenu>div{
-    margin: 0 2vh;
+    margin: 0 4vh;
     overflow: hidden;
     clip-path: polygon(30% 0, 100% 0, 70% 100%, 0 100%);
-    width: 14vh; height: 15vh;
+    width: 16vh; height: 18vh;
     transition: all 0.3s;
 }
 
 #charMenu>div:hover{
-    transform: scale(1.2);
+    transform: scale(1.4);
     transition: all 0.3s;
 }
 
 .selected{
-    transform: scale(1.2);
+    transform: scale(1.4);
 }
 
 #charMenu>div>img{
@@ -71,23 +71,10 @@
     margin-bottom: 0;
 }
 
-#settings-title {
-    margin: 0;
-    padding: 0 7vh;
-    position: absolute;
-    left: 50%;
-    top: 4vh;
-    font-size: 9vh;
-    transform: translateX(-50%);
-    background-color: #f5f4df;
-    z-index: 1;
-}
-
 .settings-sub-title {
     text-align: center;
-    font-size: 7vh;
-    line-height: 10vh;
-    height: 10vh;
+    font-size: 9vh;
+    line-height: 13vh;
 }
 
 #scoreboardList table tr td img {

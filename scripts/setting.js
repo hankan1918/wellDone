@@ -10,8 +10,8 @@ function selectChar(event){
         charMenu.children[i].style.borderBottom = "";
         charMenu.children[i].classList.remove("selected");
     }
-    event.style.borderTop = "5px solid blue";
-    event.style.borderBottom = "5px solid blue";
+    event.style.borderTop = "10px solid blue";
+    event.style.borderBottom = "10px solid blue";
     event.classList.add("selected");
     
     var t = CHAR_LIST.indexOf(event.children[0].alt);

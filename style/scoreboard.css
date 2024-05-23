@@ -1,12 +1,5 @@
-#scoreboard-box {
-    background-color: #f5f4df;
-    width: 120vh;
-    height: 80vh;
-    margin: 90px auto;
-}
-
 table{
-    margin: 0 auto;
+    margin: 3vh auto 0;
     font-size: 40px;
     border-collapse: collapse;
 }
@@ -28,14 +21,14 @@ table tr:nth-of-type(4) { /* 3등 */
 }
 
 table tr th {
-    padding: 10px 40px;
-    font-size: 50px;
+    padding: 1vh 4vh;
+    font-size: 8vh;
     text-align: center;
 }
 
 table tr td{
-    padding: 10px 40px;
-    font-size: 50px;
+    padding: 1vh 4vh;
+    font-size: 6vh;
     text-align: center;
 }
 
