@@ -70,3 +70,24 @@ h1{
     padding: 0;
     margin: 10px;
 }
+
+.main-title {
+    background-color: #f5f4df;
+    position: absolute;
+    padding: 0 7vh;
+    font-size: 9vh;
+    line-height: 9vh;
+    text-align: center;
+    top: 7vh;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+}
+
+.main-box {
+    padding-top: 6vh;
+    background-color: #f5f4df;
+    width: 50%;
+    height: 70vh;
+    margin: 14vh auto 0;
+}
