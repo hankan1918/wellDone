@@ -50,9 +50,9 @@ table tr td:first-of-type {
     width: 60vh;
     margin: 0;
     padding: 0 1vh;
-    font-size: 10vh;
+    font-size: 9vh;
     left: 50%;
-    top: 2vh;
+    top: 4vh;
     transform: translateX(-50%);
     z-index: 1;
 }
