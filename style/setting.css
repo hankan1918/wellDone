@@ -93,3 +93,9 @@
 #scoreboardList table tr td img {
     height: 130px;
 }
+
+#bgiBgm{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 5vh;
+}

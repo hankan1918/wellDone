@@ -1,15 +1,13 @@
 :root{
 /* 220 * 310 */
-    --cWidth: 220*0.9;
-    --cHeight: 310*0.9;
+    --cWidth: 220*0.88;
+    --cHeight: 310*0.88;
 }
 
 #cards {
     font-family: "DungGeunMo";
     display: flex;
     margin: auto auto;
-    margin-top: 2vh;
-    padding: 40px;
     place-items: center;
     gap: 10px 2%;
     justify-content: center;
@@ -45,6 +43,7 @@
     margin-bottom: 15px;
     transition: all 0.2s;
     flex-basis: calc(20% - 20px);
+    margin: 30px 0 0;
 }
 
 .title-card:hover{
@@ -100,14 +99,10 @@
     font-size: x-large; 
 }
 
-#challenge-box {
-    background-color: #f5f4df;
-    width: 100vh;
-    height: 80vh;
-    margin: 100px auto;
+#challenge .main-box {
     overflow: scroll;
 }
 
-#challenge-box::-webkit-scrollbar{
+#challenge .main-box::-webkit-scrollbar{
     display: none;
 }
