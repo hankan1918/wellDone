@@ -96,17 +96,18 @@ function showBeforeEasyPage(){
             typingScript(scriptList[index++], runScripts); // 현재 스크립트가 끝나면 다음 스크립트를 실행
         }
         else{
-            showPage('game', 'story); //modi here
+            showPage('game', 'story'); //modi here
             showGamePage();
         }
     }
 
     runScripts();
     document.getElementById("story").addEventListener("click", function(){
-        // runScripts()  중단하는거 필요
-        showPage('game', 'story); //modi here
+        index = scriptList.length + 1;
+        showPage('game', 'story'); //modi here
         showGamePage();
-    })
+    });
+    
 }
 
 function showEasyModePage(){
