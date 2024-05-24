@@ -103,4 +103,7 @@ function getPlayerName(){
         document.getElementById("playerNameInput").value = "";
         document.getElementById("userName").style.display="block";
     }
+    else{
+        showPage('main', 'story');
+    }
 }

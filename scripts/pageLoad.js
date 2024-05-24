@@ -202,9 +202,11 @@ function showClearPage(){
             if(click){
                 click = false;
                 scene.setAttribute("src", `./img/scene/clear/${scriptList.length-1}.png`);
-                typingScript(scriptList[scriptList.length-1], getPlayerName, () => click);    
+                typingScript(scriptList[scriptList.length-1], getPlayerName, () => click);
+                document.getElementById("scene").innerHTML = scriptList[scriptList.length-1];
             }
             else{
+                document.getElementById("scene").innerHTML = scriptList[scriptList.length-1];
                 getPlayerName();
             }
         }
