@@ -51,7 +51,7 @@ const POINT = 10;
 const MIN_SCORE = 0;                                        /* 초기 점수 */
 const BONUS = 5;                                            /* 추가 점수 */
 const BURGERBONUS = 50;
-const PENALTY = 2;                                          /* 감점 */
+const PENALTY = 5;                                          /* 감점 */
 var score;                                                  /* 점수 */
 var gscoreboard;                                            /* 점수판 */
 
