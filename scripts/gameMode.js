@@ -19,15 +19,18 @@
 다음 게임 모드로 넘어가는 함수
   - collisionDetection에서 호출
 */
+
 function nextMode(){
     if (mode == MODE.EASY && score >= 200){
         mode = MODE.NORMAL
         resetGame();
+        changeState("굶주린 손님들");
         showBeforeNormalPage();
     }
     if (mode == MODE.NORMAL && score >= 300 && burgerCount >= 3){
         mode = MODE.HARD
         resetGame();
+        changeState("아무튼 버거를 주세요");
         showBeforeHardPage();
     }
 }
@@ -42,7 +45,7 @@ function gameTimer(){
             // mode == MODE.HARD인 경우만, 버거 완성 개수가 3 이상이면 컴플릿, 아니면 게임오버
             else{
                 if (burgerCount >= 3){
-                    console.log("here");
+                    changeState("제대로 된 버거를 줘");
                     completeHard();
                 }
                 else {drawGameover();}
@@ -59,7 +62,7 @@ function gameTimer(){
                 // mode == MODE.HARD인 경우만, 버거 완성 개수가 3 이상이면 컴플릿, 아니면 게임오버
                 else{
                     if (burgerCount >= 3){
-                        console.log("here");
+                        changeState("제대로 된 버거를 줘");
                         completeHard();
                         }
                     else {drawGameover();}
