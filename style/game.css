@@ -158,4 +158,14 @@ canvas {
     padding: 20px;
     border-radius: 10px;
     color: white;
+
+    margin-top: 30vh;
+    width: 100%;
+}
+
+#userName input, #userName button {
+    font-size: 5vh;
+    margin: 0 1vh;
+    line-height: 6vh;
+    padding: 0 1vh;
 }
