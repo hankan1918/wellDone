@@ -194,7 +194,7 @@ function showClearPage(){
     let index = 0;
     function runScripts() {
         if(index < scriptList.length && click == false) {
-            scene.setAttribute("src", `./img/scene/hard/${index}.png`);
+            scene.setAttribute("src", `./img/scene/clear/${index}.png`);
             typingScript(scriptList[index++], runScripts, () => click); // 현재 스크립트가 끝나면 다음 스크립트를 실행
         }
         else{
