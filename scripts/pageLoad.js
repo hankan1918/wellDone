@@ -69,7 +69,6 @@ function typingScript(s, callback, clickCheck){
             clearInterval(timer);
             setTimeout(function(){
                 script.innerHTML = "";
-                // scene.setAttribute("src", "");
                 if(callback) {
                     callback();
                 }
@@ -199,18 +198,13 @@ function showClearPage(){
             typingScript(scriptList[index++], runScripts, () => click); // 현재 스크립트가 끝나면 다음 스크립트를 실행
         }
         else{
-            showPage('EnterName','story'); //modi here
-            var scoreList = getScores();
-            console.log(scoreList);
-            //최고기록 10위 안인 경우만 이름을 물어본다.
-            if((scoreList.length<10) || (scoreList[scoreList.length-1].score || 0)<score){
-                document.getElementById("playerNameInput").value = "";
-                document.getElementById("userName").style.display="block";
-            // if(score>highestScore){
-            //     document.getElementById("userName").style.display="block";
-            //     localStorage.setItem("highScore",score);
-            //}
+            //마지막 장면은 항상 보여준다.
+            if(click){
+                click = false;
+                scene.setAttribute("src", `./img/scene/hard/${scriptList.length-1}.png`);
+                typingScript(scriptList[scriptList.length-1], getPlayerName, () => click);    
             }
+            else getPlayerName();
         }
     }
 

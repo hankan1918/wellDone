@@ -93,4 +93,16 @@ function saveScore(){
         appendScore(score,username,CHAR_LIST[CHAR]);
     }
     document.getElementById("userName").style.display="none";
+    showPage('main', 'story')
+}
+
+function getPlayerName(){
+    document.getElementById('userName').display = "block";
+    var scoreList = getScores();
+    console.log(scoreList);
+    //최고기록 10위 안인 경우만 이름을 물어본다.
+    if((scoreList.length<SCOREBOARD_LENGTH) || (scoreList[scoreList.length-1].score || 0)<score){
+        document.getElementById("playerNameInput").value = "";
+        document.getElementById("userName").style.display="block";
+    }
 }
