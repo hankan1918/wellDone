@@ -201,10 +201,12 @@ function showClearPage(){
             //마지막 장면은 항상 보여준다.
             if(click){
                 click = false;
-                scene.setAttribute("src", `./img/scene/hard/${scriptList.length-1}.png`);
+                scene.setAttribute("src", `./img/scene/clear/${scriptList.length-1}.png`);
                 typingScript(scriptList[scriptList.length-1], getPlayerName, () => click);    
             }
-            else getPlayerName();
+            else{
+                getPlayerName();
+            }
         }
     }
 
