@@ -158,14 +158,28 @@ canvas {
     padding: 20px;
     border-radius: 10px;
     color: white;
-
-    margin-top: 30vh;
-    width: 100%;
+    width: 40%;
+    height: 60%;
+    align-content: center;
 }
 
-#userName input, #userName button {
-    font-size: 5vh;
-    margin: 0 1vh;
-    line-height: 6vh;
+
+
+#userName input {
+    text-align: center;
+    width: 60vh;
+    font-size: 8vh;
+    margin: 7vh 0 10vh;
+    line-height: 10vh;
     padding: 0 1vh;
+    outline:none;
+}
+
+#userName button {
+    text-align: center;
+    font-size: 7vh;
+    margin: 6vh 1vh;
+    line-height: 8vh;
+    padding: 0 2vh;
+    outline: none;
 }
