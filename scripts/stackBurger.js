@@ -9,7 +9,7 @@ const BURGER_LIST =[
     ['bottom-bun', 'lettuce', 'patty', 'cheese', 'lettuce', 'top-bun']
 ]; //추후 추가 가능하도록
 const BURGER_WIDTH = 120;
-const INGREDIENT = {'bottom-bun': (7*BURGER_WIDTH)/30, 'lettuce':(3*BURGER_WIDTH)/30, 'tomato':(4*BURGER_WIDTH)/30, 'patty':(5*BURGER_WIDTH)/30, 'cheese':(7*BURGER_WIDTH)/30};
+const INGREDIENT = {'bottom-bun': (7*BURGER_WIDTH)/30, 'lettuce':(3.05*BURGER_WIDTH)/30, 'tomato':(4*BURGER_WIDTH)/30, 'patty':(5*BURGER_WIDTH)/30, 'cheese':(7*BURGER_WIDTH)/30};
 const ingredientType = ["top-bun", "bottom-bun", "cheese", "lettuce","patty", "tomato"];
 var BURGER = 3;//현재 만들어야하는 버거
 var MAKEINGREDIENT; // 현재 만들어야 하는 재료
