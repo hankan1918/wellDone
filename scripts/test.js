@@ -1,6 +1,12 @@
 // main.html에서 gameMode.js 대신 사용
+// test 모드
+// 총 시간 100까지
+// EASY: 20점 이상
+// NORMAL: 10점 이상 && 버거 카운트 1개 이상
+// HARD: 100초 끝나기 전까지 버거 카운트 1개 이상
+
 function nextMode(){
-    if (mode == MODE.EASY && score >= 20){
+    if (mode == MODE.EASY && score >= 20){ // score 변경
         mode = MODE.NORMAL
         resetGame();
         changeState("굶주린 손님들");
