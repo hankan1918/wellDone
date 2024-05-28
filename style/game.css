@@ -165,19 +165,19 @@ canvas {
 
 
 
-#userName input {
+#userName input[type=text] {
     text-align: center;
     width: 60vh;
-    font-size: 8vh;
+    font-size: 7vh;
     margin: 7vh 0 10vh;
     line-height: 10vh;
     padding: 0 1vh;
     outline:none;
 }
 
-#userName button {
+#userName input[type=submit] {
     text-align: center;
-    font-size: 7vh;
+    font-size: 6vh;
     margin: 6vh 1vh;
     line-height: 8vh;
     padding: 0 2vh;
