@@ -276,7 +276,10 @@ function drawBall(){
 function drawBar(){
     context.beginPath();
     context.rect(barX, barY, BARWIDTH, BARHEIGHT);
-    context.fillStyle = "blue";
+    console.log(THEME);
+    if ( THEME == 1) context.fillStyle = "#2979ff";
+    else if ( THEME == 2) context.fillStyle = "#f06292";
+    else context.fillStyle = "#f09116";
     context.fill();
     context.closePath();
 }
