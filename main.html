@@ -179,8 +179,12 @@
         </div>
     </div>
     <div id="userName" style="display: none;" class="border">
-        <input type="text" id="playerNameInput" placeholder="Enter your name" class="border"/><br>
-        <button onclick="saveScore()" class="border">Submit</button>
+        <form onsubmit="saveScore()">
+            <input type="text" id="playerNameInput" placeholder="Enter your name" class="border" minlength="3" maxlength="3" required title="Please enter a 3-character"/><br>
+            <input type="submit" class="border" value="submit">
+            <!-- <button onclick="saveScore()" class="border">Submit</button> -->
+            <!-- 디자인 후 185, 186 라인 삭제 요망 -->
+        </form>
     </div>
     <script type="text/javascript" src="scripts/config.js"></script>
     <script type="text/javascript" src="scripts/pageLoad.js"></script>
