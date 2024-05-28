@@ -25,12 +25,14 @@ function nextMode(){
         mode = MODE.NORMAL
         resetGame();
         changeState("굶주린 손님들");
+        setModeClearHistory(MODE.EASY)
         showBeforeNormalPage();
     }
     if (mode == MODE.NORMAL && score >= 600 && burgerCount >= 2){
         mode = MODE.HARD
         resetGame();
         changeState("아무튼 버거를 주세요");
+        setModeClearHistory(MODE.NORMAL)
         showBeforeHardPage();
     }
 }
@@ -46,6 +48,7 @@ function gameTimer(){
             else{
                 if (burgerCount >= 3){
                     changeState("제대로 된 버거를 줘");
+                    setModeClearHistory(MODE.NORMAL)
                     completeHard();
                 }
                 else {drawGameover();}
