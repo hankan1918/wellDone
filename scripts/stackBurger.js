@@ -1,6 +1,6 @@
 const BURGER_LIST =[
     ['bottom-bun', 'lettuce', 'patty', 'cheese', 'top-bun'],
-    ['bottom-bun', 'lettuce', 'tomato', 'cheese', 'top-bun'],
+    ['bottom-bun', 'patty', 'tomato', 'lettuce', 'top-bun'],
     ['bottom-bun', 'patty', 'cheese', 'tomato', 'top-bun'],
     ['bottom-bun', 'lettuce', 'patty', 'tomato', 'top-bun'],
     ['bottom-bun', 'patty', 'tomato', 'patty', 'top-bun'],
@@ -78,17 +78,18 @@ function isComplete(i){
     switch(mode){
         case MODE.EASY: //todo 구현 필요 
         // anwerIngerdient랑 충돌한 재료가 같으면 보너스 점수
-            console.log("co", answerIngredient, i);
+            // console.log("co", answerIngredient, i);
             if(answerIngredient == i){
-                console.log("****complete*****");
+                // console.log("****complete*****");
                 score += BONUS;
                 pickIngredient();
                 return true;
         }
             break;
         case MODE.NORMAL:
+            console.log(answerRecipe[currentIngredient], i);
             if(currentIngredient == answerRecipe.length-1){
-                console.log("****complete*****");
+                //console.log("버거 완성");
                 pickBurgerRecipe();
                 burgerCount++;
                 return true;
@@ -96,17 +97,12 @@ function isComplete(i){
             else
                 return false;
         case MODE.HARD: //todo 구현 필요
-            if(answerRecipe[currentIngredient] != i){
-                console.log("****differnet ingredient*****", answerRecipe[currentIngredient], i, currentIngredient);
-                score -= PENALTY;
-            } else { /* console 찍으려고 생성 */
-                console.log("****correct ingredient*****");
-            }
             if(currentIngredient == answerRecipe.length-1){
-                console.log("****burger complete*****");
+                //console.log("버거 완성", score);
                 pickBurgerRecipe();
                 burgerCount++;
                 score += BURGERBONUS;
+                //console.log("버거 완성 추가 점수", score);
                 return true;
             }
             break;    
@@ -161,7 +157,10 @@ function appendIngredientNormal(i){
     if(i != answerRecipe[currentIngredient+1]){
         return;
     }
+    console.log("같은 재료 추가점수",score);
     currentIngredient += 1;
+    score += BONUS;
+    console.log("점수",score);
     console.log("currnt", currentIngredient);
     ingredient = document.createElement('img');
     ingredient.src = `img/ingredient/${i}.png`;
@@ -179,10 +178,14 @@ function appendIngredientHard(i){
     var ingredient;
     var div = document.getElementById('currentBurger');
     if(i != answerRecipe[currentIngredient+1]){
+        //console.log("재료가 달라서 감점", score);
+        score -= PENALTY;
+        //console.log("점수",score);
         return;
     }
     currentIngredient += 1;
-    console.log("currnt", currentIngredient);
+    console.log("점수",score);
+    //console.log("currnt", currentIngredient);
     ingredient = document.createElement('img');
     ingredient.src = `img/ingredient/${i}.png`;
     ingredient.style.width = `${BURGER_WIDTH}px`;
