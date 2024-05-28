@@ -19,9 +19,9 @@ var grid = [];
 
 /* 캐릭터 관련 변수 */
 var charimg;                                                /* 현재 캐릭터 */
-const CEOABILITY = 3;                                       /* CEO의 능력 추가 점수 */
+const CEOABILITY = 7;                                       /* CEO의 능력 추가 점수 */
 const BENJAMINABILITY = {                                   /* BENJAMIN의 능력 추가 시간*/    
-    time: 10,
+    time: 30,
     count: 1
 }
 var bencount;                                               /* BENJAMIN의 추가 시간 개수 카운트*/
