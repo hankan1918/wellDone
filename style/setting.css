@@ -21,15 +21,16 @@
     clip-path: polygon(30% 0, 100% 0, 70% 100%, 0 100%);
     width: 16vh; height: 18vh;
     transition: all 0.3s;
+    border: 3px solid black;
 }
 
 #charMenu>div:hover{
-    transform: scale(1.4);
+    transform: scale(1.2);
     transition: all 0.3s;
 }
 
 .selected{
-    transform: scale(1.4);
+    transform: scale(1.2);
 }
 
 #charMenu>div>img{
