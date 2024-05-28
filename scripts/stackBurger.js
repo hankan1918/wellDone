@@ -152,16 +152,16 @@ function appendIngredientEasy(i){
 function appendIngredientNormal(i){
     var ingredient;
     var div = document.getElementById('currentBurger');
-    console.log(i+", "+answerRecipe[currentIngredient+1]+", "+currentIngredient); 
-    console.log("burgerRecipe length: ", answerRecipe.length-1);
+    //console.log(i+", "+answerRecipe[currentIngredient+1]+", "+currentIngredient); 
+    //console.log("burgerRecipe length: ", answerRecipe.length-1);
     if(i != answerRecipe[currentIngredient+1]){
         return;
     }
-    console.log("같은 재료 추가점수",score);
+    //console.log("같은 재료 추가점수",score);
     currentIngredient += 1;
     score += BONUS;
-    console.log("점수",score);
-    console.log("currnt", currentIngredient);
+    //console.log("점수",score);
+    //console.log("currnt", currentIngredient);
     ingredient = document.createElement('img');
     ingredient.src = `img/ingredient/${i}.png`;
     ingredient.style.width = `${BURGER_WIDTH}px`;
@@ -184,7 +184,7 @@ function appendIngredientHard(i){
         return;
     }
     currentIngredient += 1;
-    console.log("점수",score);
+    // console.log("점수",score);
     //console.log("currnt", currentIngredient);
     ingredient = document.createElement('img');
     ingredient.src = `img/ingredient/${i}.png`;
