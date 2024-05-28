@@ -27,7 +27,7 @@ function nextMode(){
         changeState("굶주린 손님들");
         showBeforeNormalPage();
     }
-    if (mode == MODE.NORMAL && score >= 300 && burgerCount >= 3){
+    if (mode == MODE.NORMAL && score >= 600 && burgerCount >= 2){
         mode = MODE.HARD
         resetGame();
         changeState("아무튼 버거를 주세요");
