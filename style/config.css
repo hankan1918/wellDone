@@ -40,6 +40,12 @@
     color: #022D3E;
     margin: 0;
     padding: 0;
+    cursor: url('../img/etc/cursor.png') 0 32, auto;
+
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
 }
 
 body{
