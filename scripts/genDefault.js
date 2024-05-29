@@ -51,7 +51,7 @@ const MIN_SCORE = 0;                                        /* 초기 점수 */
 const POINT = 10;                                           /* 기본 점수 */
 const BONUS = 5;                                            /* 추가 점수 재료 */
 const BURGERBONUS = 50;                                     /* 추가 점수 버거 */
-const PENALTY = 5;                                          /* 감점 */
+const PENALTY = 12;                                          /* 감점 */
 var score;                                                  /* 점수 */
 var gscoreboard;                                            /* 점수판 */
 
@@ -317,7 +317,10 @@ function draw(){
         bounce();                        
         ballX += ballVx; 
         ballY += ballVy; 
-        context.clearRect(0, 0, CWIDTH, CHEIGHT); 
+        context.clearRect(0, 0, CWIDTH, CHEIGHT);
+        //console.log(score);
+        if (score<=0) score=0;
+        //console.log(score);
         updateTime();
         updateScore();
         drawBall();
