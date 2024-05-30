@@ -180,6 +180,9 @@ function appendIngredientHard(i){
     if(i != answerRecipe[currentIngredient+1]){
         //console.log("재료가 달라서 감점", score);
         score -= PENALTY;
+        //console.log(score);
+        if (score<=0) score=0;
+        //console.log(score);
         //console.log("점수",score);
         return;
     }
