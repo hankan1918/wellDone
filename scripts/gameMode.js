@@ -46,7 +46,7 @@ function gameTimer(){
             if(mode != MODE.HARD) {drawGameover();}
             // mode == MODE.HARD인 경우만, 버거 완성 개수가 3 이상이면 컴플릿, 아니면 게임오버
             else{
-                if (burgerCount >= 3 && score >= 300){
+                if (burgerCount >= 3 && score >= 200){
                     changeState("제대로 된 버거를 줘");
                     setModeClearHistory(MODE.NORMAL)
                     completeHard();
@@ -64,7 +64,7 @@ function gameTimer(){
                 if(mode != MODE.HARD) {drawGameover();}
                 // mode == MODE.HARD인 경우만, 버거 완성 개수가 3 이상이면 컴플릿, 아니면 게임오버
                 else{
-                    if (burgerCount >= 3 && score >= 300){
+                    if (burgerCount >= 3 && score >= 200){
                         changeState("제대로 된 버거를 줘");
                         completeHard();
                         }
