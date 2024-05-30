@@ -318,9 +318,6 @@ function draw(){
         ballX += ballVx; 
         ballY += ballVy; 
         context.clearRect(0, 0, CWIDTH, CHEIGHT);
-        //console.log(score);
-        if (score<=0) score=0;
-        //console.log(score);
         updateTime();
         updateScore();
         drawBall();
